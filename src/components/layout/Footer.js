@@ -6,7 +6,7 @@ export default class Footer extends Component {
     return (
       <nav className="navbar navbar-dark fixed-bottom">
         <div className="full-width">
-          <a href="">dfdsf</a>
+          <a href=" ">dfdsf</a>
         </div>
       </nav>
     );
