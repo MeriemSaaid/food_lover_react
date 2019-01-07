@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-
 import image from "../../img/about-vision.jpg";
-
 import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
@@ -50,15 +48,14 @@ export default class Navbar extends Component {
                 </li>
               </ul>
             </li>
-
             <li className="menu-active">
               <a href="#contact">Search</a>
-              <a href="#" className="fa fa-facebook" />
+              <input type="text" />
             </li>
-            <li>
+            <li className="menu-active">
               <Link to="/login">Sign In</Link>
             </li>
-            <li>
+            <li className="menu-active">
               <Link to="/register">Sign Up</Link>
             </li>
           </ul>

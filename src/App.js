@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -21,7 +20,7 @@ class App extends Component {
           <header id="header">
             <Navbar />
           </header>
-          <section id="intro">
+          <section id="main">
             <Route exact path="/add" component={RecipeAdd} />
             <Route exact path="/list" component={RecipeList} />
             <Route exact path="/login" component={Login} />
