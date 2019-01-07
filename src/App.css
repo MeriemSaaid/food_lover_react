@@ -1587,3 +1587,26 @@ body.mobile-nav-active #mobile-nav-toggle {
     background-color: #00004c00;
   }
 }
+.loginForm{
+  padding-top: 9vw;
+}
+
+.loginBox{
+    height: 30vw;
+    width: 40vw;
+    background-color: #06080630;
+}
+
+span:before{
+  content:" "; 
+  display:inline-block; 
+  width:15px;
+}
+
+.form-style {
+  max-width: 520px;
+  padding: 30px 38px 66px;
+  margin: 0 auto;
+  /* background-color: #eee; */
+  border: 3px dotted rgba(0, 0, 0, 0.1);
+ }
