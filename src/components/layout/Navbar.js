@@ -1,21 +1,37 @@
 import React, { Component } from "react";
+import image from "../../img/about-vision.jpg";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav id="nav-menu-container">
+        <nav className="navbar navbar-light fixed-top bg-dark">
           <ul className="nav-menu">
             <li className="menu-active">
               <a href="#intro">Home</a>
             </li>
-            <li>
-              <a href="#about">Recipes</a>
+            <li className="menu-active">
+              <Link to="">Recipes</Link>
+              <ul>
+                <li>
+                  <Link to="/list">Chicken</Link>
+                </li>
+                <li>
+                  <a href="#">Pasta</a>
+                </li>
+                <li>
+                  <a href="#">Desserts</a>
+                </li>
+                <li>
+                  <a href="#">Pizza</a>
+                </li>
+              </ul>
             </li>
-            <li>
+            <li className="menu-active">
               <a href="#services">Features</a>
             </li>
-            <li className="menu-has-children">
+            <li className="menu-active">
               <a href="">Our Chefs</a>
               <ul>
                 <li>
@@ -32,9 +48,9 @@ export default class Navbar extends Component {
                 </li>
               </ul>
             </li>
-            <li>
-              <input type="text" />
+            <li className="menu-active">
               <a href="#contact">Search</a>
+              <a href="#" className="fa fa-facebook" />
             </li>
           </ul>
         </nav>

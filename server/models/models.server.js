@@ -1,16 +1,17 @@
-var connectionString = "mongodb://127.0.0.1:27017/assignment1"; // for local
+//var connectionString = "mongodb://127.0.0.1:27017/project"; // for local
 
-if (process.env.MLAB_USERNAME_WEBDEV) {
-  // check if running remotely
+// if (process.env.MLAB_USERNAME_WEBDEV) {
+// check if running remotely
 
-  var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
+// var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
+var username = "admin";
+//var password = process.env.MLAB_PASSWORD_WEBDEV;
+var password = "admin123";
 
-  var password = process.env.MLAB_PASSWORD_WEBDEV;
+connectionString = "mongodb://admin:admin123";
 
-  connectionString = "mongodb://" + username + ":" + password;
-
-  connectionString += "@ds127954.mlab.com:27954/web_maker"; // use yours
-}
+connectionString += "@ds115045.mlab.com:15045/food_lover"; // use yours
+// }
 
 var mongoose = require("mongoose");
 
