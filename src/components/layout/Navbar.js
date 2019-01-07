@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 export default class Navbar extends Component {
   render() {
     return (
@@ -33,8 +32,8 @@ export default class Navbar extends Component {
               </ul>
             </li>
             <li>
-              <input type="text" />
               <a href="#contact">Search</a>
+              <input type="text" />
             </li>
           </ul>
         </nav>
