@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   render() {
@@ -32,13 +33,22 @@ export default class Navbar extends Component {
                 </li>
               </ul>
             </li>
-            <li>
-              <input type="text" />
+            <li>              
               <a href="#contact">Search</a>
+              <input type="text" />
+            </li>
+            <li>
+              <Link to="/login">Sign In</Link>
+            </li>
+            <li>
+              <Link to="/register">Sign Up</Link>
             </li>
           </ul>
-        </nav>
+       
+        
+            </nav>
       </div>
+    
     );
   }
 }
