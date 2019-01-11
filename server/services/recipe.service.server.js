@@ -4,7 +4,8 @@ module.exports = function(app) {
   app.post("/api/recipe", createRecipe);
   // list all recipe
   app.get("/api/recipe/list", findAllRecipes);
-
+  // find  recipe by id
+  app.get("/api/recipe/:id", findRecipeById);
   //Function to create recipe
   async function createRecipe(req, res) {
     var recipe = req.body;
@@ -18,12 +19,12 @@ module.exports = function(app) {
     res.json(result);
   }
 
-  // //Function to find website by website id
-  // async function findPageById(req, res) {
-  //   const pid = req.params["pid"];
-  //   const page = await PageModel.findPageById(pid);
-  //   res.json(page);
-  // }
+  //Function to find website by website id
+  async function findRecipeById(req, res) {
+    const id = req.params["id"];
+    const recipe = await RecipeModel.findRecipeById(id);
+    res.json(recipe);
+  }
 
   // //Update Website
   // async function updatePage(req, res) {

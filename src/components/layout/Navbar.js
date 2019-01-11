@@ -15,16 +15,16 @@ export default class Navbar extends Component {
               <Link to="">Recipes</Link>
               <ul>
                 <li>
-                  <Link to="/list">Chicken</Link>
+                  <Link to="/list/chicken">Chicken</Link>
                 </li>
                 <li>
-                  <a href="#">Pasta</a>
+                  <Link to="/list/pasta">Pasta</Link>
                 </li>
                 <li>
-                  <a href="#">Desserts</a>
+                  <Link to="/list/desserts">Desserts</Link>
                 </li>
                 <li>
-                  <a href="#">Pizza</a>
+                  <Link to="/list/pizza">Pizza</Link>
                 </li>
               </ul>
             </li>

@@ -4,8 +4,8 @@ var UserSchema = mongoose.Schema(
   {
     username: String,
     password: String,
-    firstName: { type: String, default: "" },
-    lastName: { type: String, default: "" },
+    firstname: { type: String, default: "" },
+    lastname: { type: String, default: "" },
     email: { type: String, default: "" },
     dateCreated: { type: String, default: Date() },
     admin: { type: Boolean, default: false }

@@ -14,9 +14,11 @@ function createRecipe(user) {
 }
 //Find recipe by Id
 function findRecipeById(recId) {
-  return RecipeModel.findById(recId);
+  return RecipeModel.findById(recId)
+    .populate("userId", "username")
+    .exec();
 }
-//Find user by user ID
+//Find recipe by user ID
 function findRecipeByUser(userId) {
   return RecipeModel.find({ username: username });
 }
