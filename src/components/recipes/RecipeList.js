@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import Pagination from "react-js-pagination";
+// require("bootstrap/less/bootstrap.less");
 
 export default class RecipeList extends Component {
   state = {
     recipes: [],
     type: "",
-    title: ""
+    title: "",
+    activePage: 15
   };
-
+  handlePageChange(pageNumber) {
+    console.log(`active page is ${pageNumber}`);
+    this.setState({ activePage: pageNumber });
+  }
   getRecipes = async () => {
     //const { uid } = this.props.match.params;
     const res = await axios.get(`/api/recipe/list`);
@@ -49,10 +54,8 @@ export default class RecipeList extends Component {
 
   render() {
     const { recipes, type, title } = this.state;
-
-    console.log(type);
     return (
-      <div className="container">
+      <div className="container padding_div">
         <div className="row">
           <div className="col-3">&nbsp;&nbsp;</div>
           <div className="col-4">
@@ -116,6 +119,13 @@ export default class RecipeList extends Component {
               </div>
             );
           })}
+          {/* <Pagination
+            activePage={this.state.activePage}
+            itemsCountPerPage={10}
+            totalItemsCount={450}
+            pageRangeDisplayed={5}
+            onChange={this.handlePageChange}
+          /> */}
         </div>
       </div>
     );

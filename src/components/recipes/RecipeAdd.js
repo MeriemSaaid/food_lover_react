@@ -85,7 +85,7 @@ export default class RecipeAdd extends Component {
   };
   render() {
     return (
-      <div className="container margin_top">
+      <div className="container margin_top padding_div">
         <form onSubmit={this.onSubmit}>
           <div className="card person-card">
             <div className="card-body">
@@ -203,6 +203,9 @@ export default class RecipeAdd extends Component {
           <div className="margin_top">
             <button className="btn btn-primary btn-lg btn-block">Submit</button>
           </div>
+          <br />
+          <br />
+          <br />
         </form>
       </div>
     );

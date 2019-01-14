@@ -38,7 +38,7 @@ app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "build")));
 
 // CORS - Cross Origin Resource Sharing
 app.use(function(req, res, next) {
@@ -59,7 +59,7 @@ const server = http.createServer(app);
 require("./server/app")(app);
 
 app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "dist/index.html"));
+  res.sendFile(path.join(__dirname, "build/index.html"));
 });
 
 // server.listen(port);
