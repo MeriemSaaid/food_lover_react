@@ -49,14 +49,13 @@ export default class Navbar extends Component {
               </ul>
             </li>
             <li className="menu-active">
-              <a href="#contact">Search</a>
-              <input type="text" />
-            </li>
-            <li className="menu-active">
               <Link to="/login">Sign In</Link>
             </li>
             <li className="menu-active">
               <Link to="/register">Sign Up</Link>
+            </li>
+            <li className="menu-active">
+              <Link to="/profile">Profile</Link>
             </li>
           </ul>
         </nav>
