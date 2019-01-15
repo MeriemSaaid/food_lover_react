@@ -127,7 +127,7 @@ export default class RecipeDetail extends Component {
     } = this.state;
     // console.log(comments);
     return (
-      <div className="container">
+      <div className="container padding_div">
         <div className="row">
           <div className="col-lg-8">
             <h1 className="mt-4">{name}</h1>
