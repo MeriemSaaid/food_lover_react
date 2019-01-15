@@ -65,14 +65,7 @@ export default class RecipeAdd extends Component {
       });
       return;
     }
-    const {
-      category,
-      name,
-      picture,
-      description,
-      ingredients,
-      userId
-    } = this.state;
+    const { name, picture, description, ingredients } = this.state;
 
     const recipe = {
       name,
@@ -93,6 +86,7 @@ export default class RecipeAdd extends Component {
                 id="img_sex"
                 className="person-img"
                 src="http://www.nationalschools.com/wp-content/uploads/2016/07/ThinkstockPhotos-175004788.jpg"
+                alt="Alt"
               />
               <h2 id="who_message" className="card-title">
                 Your Recipe

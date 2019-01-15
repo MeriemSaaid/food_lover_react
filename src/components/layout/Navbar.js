@@ -48,17 +48,17 @@ export default class Navbar extends Component {
                   </a>
                 </li>
                 <li className="nav-item dropdown">
-                  <a
+                  <Link
                     className="nav-link dropdown-toggle"
-                    href="#"
+                    to="/"
                     id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
+                    // role="button"
+                    // data-toggle="dropdown"
+                    // aria-haspopup="true"
                     aria-expanded="false"
                   >
                     Recipes
-                  </a>
+                  </Link>
                   <div
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
@@ -86,17 +86,17 @@ export default class Navbar extends Component {
                   </a>
                 </li>
                 <li className="nav-item dropdown">
-                  <a
+                  <Link
                     className="nav-link dropdown-toggle"
-                    href="#"
+                    to="/"
                     id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
+                    // role="button"
+                    // data-toggle="dropdown"
+                    // aria-haspopup="true"
                     aria-expanded="false"
                   >
                     Our Chefs
-                  </a>
+                  </Link>
                   <div
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
@@ -123,15 +123,15 @@ export default class Navbar extends Component {
                 </li>
               </ul>
             </div>
-            <button
-              type="button"
+            <Link
+              to="/login"
               className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
-              data-toggle="collapse"
-              data-target="#navbarTogglerDemo01"
+              // data-toggle="collapse"
+              // data-target="#navbarTogglerDemo01"
               aria-expanded="false"
             >
               Login
-            </button>
+            </Link>
           </div>
         </nav>
       </div>

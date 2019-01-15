@@ -85,7 +85,7 @@ export default class RecipeDetail extends Component {
   //Post a comment
   updateComment = async (comment, id) => {
     //const res = await axios.put("/api/update", comment);
-    const res = await axios.put(`/api/comment`, comment);
+    await axios.put(`/api/comment`, comment);
     this.setState({
       comments: this.state.comments.map(comment => {
         if (comment._id === id) {
@@ -119,7 +119,6 @@ export default class RecipeDetail extends Component {
       picture,
       description,
       ingredients,
-      userId,
       datePosted,
       username,
       content,
@@ -133,14 +132,14 @@ export default class RecipeDetail extends Component {
             <h1 className="mt-4">{name}</h1>
             <p className="lead">
               by
-              <a href="#">&nbsp;{username}</a>
+              <a href="/">&nbsp;{username}</a>
             </p>
             <hr />
             <p>Posted on {datePosted}</p>
 
             <hr />
 
-            <img className="card-img-top" src={picture} alt="Card image cap" />
+            <img className="card-img-top" src={picture} alt="rsdsd" />
 
             <hr />
 
@@ -266,7 +265,7 @@ export default class RecipeDetail extends Component {
                 <img
                   className="card-img-top"
                   src="https://2.bp.blogspot.com/-vvG5hMTFOro/W6RaoxdAikI/AAAAAAAAK1k/jezYdP7fvfYvt15Jv8a0agrGQE2lMU8YgCKgBGAs/s1600/MASAI-2.jpg"
-                  alt="Card image cap"
+                  alt="Card"
                 />
               </div>
             </div>
@@ -277,7 +276,7 @@ export default class RecipeDetail extends Component {
                 <img
                   className="card-img-top"
                   src="https://2.bp.blogspot.com/-vvG5hMTFOro/W6RaoxdAikI/AAAAAAAAK1k/jezYdP7fvfYvt15Jv8a0agrGQE2lMU8YgCKgBGAs/s1600/MASAI-2.jpg"
-                  alt="Card image cap"
+                  alt="Card"
                 />
               </div>
             </div>

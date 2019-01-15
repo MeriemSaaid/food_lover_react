@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Pagination from "react-js-pagination";
+// import Pagination from "react-js-pagination";
 // require("bootstrap/less/bootstrap.less");
 
 export default class RecipeList extends Component {
@@ -19,15 +19,15 @@ export default class RecipeList extends Component {
     const res = await axios.get(`/api/recipe/list`);
     const { type } = this.props.match.params;
     let title = "";
-    if (type == "chicken") {
+    if (type === "chicken") {
       title =
         "These recipes prove how many directions you can take a simple piece of chicken. Take full advantage of its tender meat with hot soups, cold salads, and easy oven-baked recipes";
-    } else if (type == "pasta") {
+    } else if (type === "pasta") {
       title =
         "Gnocchi, spaghetti, ramen, ravioli––We could keep going all day. Instead, we'll let these pasta recipes speak for themselves.";
-    } else if (type == "desserts") {
+    } else if (type === "desserts") {
       title = "Best dessert ever";
-    } else if (type == "pizza") {
+    } else if (type === "pizza") {
       title = "Best pizza ever";
     }
     this.setState({
@@ -53,7 +53,7 @@ export default class RecipeList extends Component {
   };
 
   render() {
-    const { recipes, type, title } = this.state;
+    const { recipes, type } = this.state;
     return (
       <div className="container padding_div">
         <div className="row">

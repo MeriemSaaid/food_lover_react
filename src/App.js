@@ -12,7 +12,6 @@ import RecipeDetail from "./components/recipes/RecipeDetail";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import Profile from "./components/user/Profile";
-import Profile2 from "./components/user/Profile2";
 import ProfileEdit from "./components/user/ProfileEdit";
 import Admin from "./components/user/Admin";
 import { BrowserRouter, Route, Switch } from "react-router-dom";

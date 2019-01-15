@@ -2,9 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import Navbar from "./components/layout/Navbar";
-import RecipeAdd from "./components/recipes/RecipeAdd";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

@@ -5,9 +5,7 @@ export default class Home extends Component {
     const divStyle1 = {
       backgroundImage: "url(../logo.jpg)"
     };
-    const divStyle2 = {
-      backgroundImage: "url(../logo2.jpg)"
-    };
+
     return (
       <div className="intro intro-carousel">
         <div id="carousel" className="owl-carousel owl-theme">
@@ -32,7 +30,7 @@ export default class Home extends Component {
                           <br /> You cook everyday
                         </h1>
                         <p className="intro-subtitle intro-price">
-                          <a href="#">
+                          <a href="/">
                             <span className="price-a">Explore</span>
                           </a>
                         </p>

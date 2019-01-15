@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class Footer extends Component {
   render() {
@@ -40,25 +40,25 @@ export default class Footer extends Component {
                   <div className="w-body-a">
                     <ul className="list-unstyled">
                       <li className="item-list-a">
-                        <i className="fa fa-angle-right" /> <a href="#">Site Map</a>
+                        <i className="fa fa-angle-right" /> <Link to="/">Site Map</Link>
                       </li>
                       <li className="item-list-a">
-                        <i className="fa fa-angle-right" /> <a href="#">Legal</a>
-                      </li>
-                      <li className="item-list-a">
-                        <i className="fa fa-angle-right" />{" "}
-                        <a href="#">Agent Admin</a>
-                      </li>
-                      <li className="item-list-a">
-                        <i className="fa fa-angle-right" /> <a href="#">Careers</a>
+                        <i className="fa fa-angle-right" /> <Link to="/">Legal</Link>
                       </li>
                       <li className="item-list-a">
                         <i className="fa fa-angle-right" />{" "}
-                        <a href="#">Affiliate</a>
+                        <Link to="/">Agent Admin</Link>
+                      </li>
+                      <li className="item-list-a">
+                        <i className="fa fa-angle-right" /> <Link to="/">Careers</Link>
                       </li>
                       <li className="item-list-a">
                         <i className="fa fa-angle-right" />{" "}
-                        <a href="#">Privacy Policy</a>
+                        <Link to="/">Affiliate</Link>
+                      </li>
+                      <li className="item-list-a">
+                        <i className="fa fa-angle-right" />{" "}
+                        <Link to="/">Privacy Policy</Link>
                       </li>
                     </ul>
                   </div>
@@ -73,23 +73,23 @@ export default class Footer extends Component {
                 <div className="w-body-a">
                   <ul className="list-unstyled">
                     <li className="item-list-a">
-                      <i className="fa fa-angle-right" /> <a href="#">Venezuela</a>
+                      <i className="fa fa-angle-right" /> <Link to="/">Venezuela</Link>
                     </li>
                     <li className="item-list-a">
-                      <i className="fa fa-angle-right" /> <a href="#">China</a>
+                      <i className="fa fa-angle-right" /> <Link to="/">China</Link>
                     </li>
                     <li className="item-list-a">
-                      <i className="fa fa-angle-right" /> <a href="#">Hong Kong</a>
+                      <i className="fa fa-angle-right" /> <Link to="/">Hong Kong</Link>
                     </li>
                     <li className="item-list-a">
-                      <i className="fa fa-angle-right" /> <a href="#">Argentina</a>
+                      <i className="fa fa-angle-right" /> <Link to="/">Argentina</Link>
                     </li>
                     <li className="item-list-a">
-                      <i className="fa fa-angle-right" /> <a href="#">Singapore</a>
+                      <i className="fa fa-angle-right" /> <Link to="/">Singapore</Link>
                     </li>
                     <li className="item-list-a">
                       <i className="fa fa-angle-right" />{" "}
-                      <a href="#">Philippines</a>
+                      <Link to="/">Philippines</Link>
                     </li>
                   </ul>
                 </div>
@@ -101,14 +101,14 @@ export default class Footer extends Component {
               <nav className="nav-footer">
                 <ul className="list-inline">
                   <li className="list-inline-item">
-                    <a href="#">Home</a>
+                    <Link to="/">Home</Link>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">About</a>
+                    <Link to="/">About </Link>
                   </li>
 
                   <li className="list-inline-item">
-                    <a href="#">Contact</a>
+                    <Link to="/">Contact</Link>
                   </li>
                 </ul>
               </nav>
@@ -120,24 +120,24 @@ export default class Footer extends Component {
                     </a>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
+                    <Link to="/">
                       <i className="fa fa-twitter" aria-hidden="true" />
-                    </a>
+                    </Link>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
+                    <Link to="/">
                       <i className="fa fa-instagram" aria-hidden="true" />
-                    </a>
+                    </Link>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
+                    <Link to="/">
                       <i className="fa fa-pinterest-p" aria-hidden="true" />
-                    </a>
+                    </Link>
                   </li>
                   <li className="list-inline-item">
-                    <a href="#">
+                    <Link to="/">
                       <i className="fa fa-dribbble" aria-hidden="true" />
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -149,7 +149,7 @@ export default class Footer extends Component {
                 </p>
               </div>
               <div className="credits">
-                Designed by <a href="#">MWG</a>
+                Designed by <Link to="/">MWG</Link>
               </div>
             </div>
           </div>
