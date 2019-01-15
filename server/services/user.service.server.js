@@ -100,7 +100,8 @@ module.exports = function(app) {
   //
   async function localStrategy(username, password, done) {
     const data = await UserModel.findUserByUsername(username);
-    if (data && bcrypt.compareSync(password, data.password)) {
+    
+    if (data && (password === data.password || bcrypt.compareSync(password, data.password) )) {
       return done(null, data);
     } else {
       return done(null, false);
@@ -109,6 +110,7 @@ module.exports = function(app) {
   //
   function login(req, res) {
     var user = req.user;
+    //console.log(user);
     res.json(user);
   }
   //
@@ -123,3 +125,9 @@ module.exports = function(app) {
   }
   //
 };
+
+// Delete Account
+
+// function deleteWebsite(wid){
+//   return WebsiteModel.remove({ _id: wid });
+// }

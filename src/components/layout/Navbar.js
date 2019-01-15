@@ -4,63 +4,6 @@ import { Link } from "react-router-dom";
 export default class Navbar extends Component {
   render() {
     return (
-      // <div>
-      //   <nav className="navbar navbar-light fixed-top bg-dark">
-      //     <ul className="nav-menu">
-      //       <li className="menu-active">
-      //         <a href="#intro">Home</a>
-      //       </li>
-      //       <li className="menu-active">
-      //         <Link to="">Recipes</Link>
-      //         <ul>
-      //           <li>
-      //             <Link to="/list/chicken">Chicken</Link>
-      //           </li>
-      //           <li>
-      //             <Link to="/list/pasta">Pasta</Link>
-      //           </li>
-      //           <li>
-      //             <Link to="/list/desserts">Desserts</Link>
-      //           </li>
-      //           <li>
-      //             <Link to="/list/pizza">Pizza</Link>
-      //           </li>
-      //         </ul>
-      //       </li>
-      //       <li className="menu-active">
-      //         <a href="#services">Features</a>
-      //       </li>
-      //       <li className="menu-active">
-      //         <a href="">Our Chefs</a>
-      //         <ul>
-      //           <li>
-      //             <a href="#">Drop Down 1</a>
-      //           </li>
-      //           <li>
-      //             <a href="#">Drop Down 3</a>
-      //           </li>
-      //           <li>
-      //             <a href="#">Drop Down 4</a>
-      //           </li>
-      //           <li>
-      //             <a href="#">Drop Down 5</a>
-      //           </li>
-      //         </ul>
-      //       </li>
-      //       <li className="menu-active">
-      //         <a href="#contact">Search</a>
-      //         <input type="text" />
-      //       </li>
-      //       <li className="menu-active">
-      //         <Link to="/login">Sign In</Link>
-      //       </li>
-      //       <li className="menu-active">
-      //         <Link to="/register">Sign Up</Link>
-      //       </li>
-      //     </ul>
-      //   </nav>
-      // </div>
-
       <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
           <div className="container">

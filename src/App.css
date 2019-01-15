@@ -2147,3 +2147,98 @@ span:before {
   width: 5px;
   padding-top: 10px;
 }
+/* User Css */
+.regbg {
+  background: url(img/onlineimg/registerwelcome.jpeg) no-repeat scroll center
+    top transparent;
+  background-size: cover;
+  height: auto;
+  width: 100%;
+}
+
+.prowelcome {
+  background: url(img/onlineimg/welcomeprofile.jpg) no-repeat scroll center top
+    transparent;
+  background-size: cover;
+  height: auto;
+  width: 100%;
+}
+
+.defaultprofile {
+  background: url(img/onlineimg/defaultprofile.jpg) no-repeat scroll center top
+    transparent;
+  background-size: cover;
+  height: 175px;
+  width: 175px;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+}
+
+.centered {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3vw;
+  font-weight: bolder;
+  color: #4f290e;
+}
+
+.centered2 {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3vw;
+  font-weight: bolder;
+  color: white;
+  font-size: 60px;
+}
+
+hr {
+  border-width: 3px;
+  border-color: #2daa0440;
+}
+
+.insertbg {
+  background-color: gray;
+}
+
+.editicon {
+  color: #5dca7f;
+  font-size: 1.5em;
+}
+
+.f2r {
+  /* position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0; */
+  padding: 1rem;
+  background-color: #343a40;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  display: block;
+}
+
+.adjsp {
+  color: #18d26e;
+  background: none;
+  outline: none;
+  height: 2.5vw;
+  padding: 0.3vw;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.f2rfollow {
+  display: inline;
+}

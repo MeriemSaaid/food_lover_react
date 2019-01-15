@@ -11,28 +11,15 @@ import RecipeDetail from "./components/recipes/RecipeDetail";
 
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
+import Profile from "./components/user/Profile";
+import Profile2 from "./components/user/Profile2";
+import ProfileEdit from "./components/user/ProfileEdit";
+import Admin from "./components/user/Admin";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      // <BrowserRouter>
-      //   <div>
-      //     {/* <Switch> */}
-      //     <header id="header">
-      //       <Navbar />
-      //     </header>
-      //     <section id="main">
-      //       <Route exact path="/add" component={RecipeAdd} />
-      //       <Route exact path="/list/:type" component={RecipeList} />
-      //       <Route exact path="/login" component={Login} />
-      //       <Route exact path="/register" component={Register} />
-      //       <Route exact path="/detail/:id" component={RecipeDetail} />
-      //     </section>
-      //     {/* </Switch> */}
-      //     <footer>{/* <Footer /> */}</footer>
-      //   </div>
-      // </BrowserRouter>
       <BrowserRouter>
         <div>
           <Navbar />
@@ -42,6 +29,9 @@ class App extends Component {
             <Route exact path="/list/:type" component={RecipeList} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profileedit" component={ProfileEdit} />
+            <Route exact path="/admin" component={Admin} />
             <Route exact path="/detail/:id" component={RecipeDetail} />
           </Switch>
           <footer>{<Footer />}</footer>
