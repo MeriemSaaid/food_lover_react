@@ -49,8 +49,9 @@ export default class Navbar extends Component {
               </ul>
             </li>
             <li className="menu-active">
-              <a href="#contact">Search</a>
-              <input type="text" />
+            <i class="fas fa-search" color="green"></i>
+              {/* <a href="#contact">Search</a> */}
+              {/* <input type="text" /> */}
             </li>
             <li className="menu-active">
               <Link to="/login">Sign In</Link>

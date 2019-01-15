@@ -66,6 +66,10 @@ h6 {
   z-index: 11;
 }
 
+.bg-dark{
+  background-color: #000
+}
+
 .back-to-top i {
   padding-top: 12px;
   color: #fff;
@@ -1396,4 +1400,20 @@ span:before {
   display: inline-block;
   width: 5px;
   padding-top: 10px;
+}
+/*modal-backdrop bootstrap use to make sure close and x button works fine*/
+body.modal-open div.modal-backdrop{
+  z-index: 0;
+}
+.contactus-bg-color{
+  background: rgb(10,10,10,0.9);
+}
+
+.float-left {
+  position: left;
+  z-index: auto;
+}
+.center {
+  text-align: center;
+  margin: auto;
 }
