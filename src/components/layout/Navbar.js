@@ -1,7 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
+  constructor(props) {
+    super(props);
+  }
+  redirect = type => {
+    // this.props.changeType(type);
+    this.props.history.push(`/list/${type}`);
+  };
   render() {
     return (
       <div>
@@ -38,9 +45,9 @@ export default class Navbar extends Component {
             >
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link active" href="index.html">
+                  <Link className="nav-link active" to="/">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="about.html">
@@ -55,7 +62,7 @@ export default class Navbar extends Component {
                     // role="button"
                     // data-toggle="dropdown"
                     // aria-haspopup="true"
-                    aria-expanded="false"
+                    // aria-expanded="false"
                   >
                     Recipes
                   </Link>
@@ -63,21 +70,36 @@ export default class Navbar extends Component {
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
                   >
-                    <Link to="/list/chicken" className="dropdown-item">
+                    <button
+                      type="button"
+                      className="dropdown-item"
+                      onClick={this.redirect.bind(this, "Chicken")}
+                    >
                       Chicken
-                    </Link>
-
-                    <Link to="/list/pasta" className="dropdown-item">
+                    </button>
+                    <button
+                      type="button"
+                      className="dropdown-item"
+                      onClick={this.redirect.bind(this, "Pasta")}
+                    >
                       Pasta
-                    </Link>
+                    </button>
 
-                    <Link to="/list/dessert" className="dropdown-item">
+                    <button
+                      type="button"
+                      className="dropdown-item"
+                      onClick={this.redirect.bind(this, "Desserts")}
+                    >
                       Desserts
-                    </Link>
+                    </button>
 
-                    <Link to="/list/pizza" className="dropdown-item">
+                    <button
+                      type="button"
+                      className="dropdown-item"
+                      onClick={this.redirect.bind(this, "Pizza")}
+                    >
                       Pizza
-                    </Link>
+                    </button>
                   </div>
                 </li>
                 <li className="nav-item">
@@ -138,3 +160,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+export default withRouter(Navbar);

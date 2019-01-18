@@ -1116,7 +1116,11 @@ a:hover {
   width: 200px;
   border-color: #313131;
 }
-
+.property-grid .grid-option .custom-input {
+  border-radius: 0;
+  width: 200px;
+  border-color: #18d26e;
+}
 .property-grid .grid-option .custom-select:hover,
 .property-grid .grid-option .custom-select:active,
 .property-grid .grid-option .custom-select:focus {
@@ -2241,4 +2245,14 @@ hr {
 
 .f2rfollow {
   display: inline;
+}
+/* Limit line per paragraph */
+.limit_p {
+  line-height: 1.2em;
+  height: 4.6em;
+  overflow: hidden;
+}
+
+#more {
+  display: none;
 }

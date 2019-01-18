@@ -19,19 +19,21 @@ export default class RecipeDetail extends Component {
   getRecipe = async id => {
     const res = await axios.get(`/api/recipe/${id}`);
     const { name, picture, description, datePosted, ingredients } = res.data;
-    const { username } = res.data.userId;
+    console.log(res.data.userId.username);
+    // const {username } = res.data.userId.username;
     this.setState({
       name,
       picture,
       description,
       ingredients,
-      username,
+      username: res.data.userId.username,
       datePosted
     });
   };
   //Call function on load
   componentDidMount() {
-    const id = this.props.match.params.id;
+    const id = this.props.location.state.id;
+    console.log(id);
     this.setState({
       recipeId: id
     });

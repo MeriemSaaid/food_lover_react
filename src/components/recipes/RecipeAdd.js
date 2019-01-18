@@ -3,12 +3,12 @@ import axios from "axios";
 
 export default class RecipeAdd extends Component {
   state = {
-    category: "",
+    userId: "",
     name: "",
     description: "",
     picture: "",
     ingredients: "",
-    userId: "",
+    category: "",
     errors: {}
   };
 
@@ -23,6 +23,7 @@ export default class RecipeAdd extends Component {
     const res = await axios.post("/api/recipe", recipe);
     this.props.history.push({
       pathname: `/list/${this.state.category}`,
+      // type: this.state.category,
       state: { recipe: res.data }
     });
   };
@@ -65,17 +66,39 @@ export default class RecipeAdd extends Component {
       });
       return;
     }
-    const { name, picture, description, ingredients } = this.state;
-
-    const recipe = {
+    const {
+      userId,
       name,
       picture,
       description,
       ingredients,
-      userId: "5c376658f5768e0950a5b669"
+      category
+    } = this.state;
+
+    const recipe = {
+      userId,
+      name,
+      picture,
+      description,
+      picture,
+      ingredients,
+      category
     };
     this.addRecipe(recipe);
   };
+
+  async componentDidMount() {
+    const res = await this.props.loggedIn();
+    // console.log(res.data);
+    if (res.data === 0) {
+      // console.log("not connected");
+      this.props.history.push("/login");
+    } else {
+      this.setState({
+        userId: res.data.userId
+      });
+    }
+  }
   render() {
     return (
       <div className="container margin_top padding_div">
@@ -98,11 +121,12 @@ export default class RecipeAdd extends Component {
                     className="form-control"
                     name="category"
                     onChange={this.onChange}
+                    defaultValue={this.props.match.params.type.toLowerCase()}
                   >
                     <option value="">Select a category</option>
                     <option value="chicken">Chicken</option>
                     <option value="pasta">Pasta</option>
-                    <option value="dessert">Desserts</option>
+                    <option value="desserts">Desserts</option>
                     <option value="pizza">Pizza</option>
                   </select>
                   {this.state.errors.category && (
@@ -195,7 +219,7 @@ export default class RecipeAdd extends Component {
           </div>
           <br />
           <div className="margin_top">
-            <button className="btn btn-primary btn-lg btn-block">Submit</button>
+            <button className="btn btn-a btn-block">Submit</button>
           </div>
           <br />
           <br />

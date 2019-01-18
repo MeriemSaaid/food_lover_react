@@ -6,6 +6,8 @@ module.exports = function(app) {
   app.get("/api/recipe/list", findAllRecipes);
   // find  recipe by id
   app.get("/api/recipe/:id", findRecipeById);
+  // find  recipe by id
+  app.get("/api/recipe/list/:val", searchRecipes);
   //Function to create recipe
   async function createRecipe(req, res) {
     var recipe = req.body;
@@ -24,6 +26,14 @@ module.exports = function(app) {
     const id = req.params["id"];
     const recipe = await RecipeModel.findRecipeById(id);
     res.json(recipe);
+  }
+
+  //Function to find website by website id
+  async function searchRecipes(req, res) {
+    const val = req.params["val"];
+
+    const recipes = await RecipeModel.searchRecipes(val);
+    res.json(recipes);
   }
 
   // //Update Website

@@ -1,45 +1,93 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import Pagination from "react-js-pagination";
-// require("bootstrap/less/bootstrap.less");
+import PopupDesc from "./PopupDesc";
+import { Link } from "react-router-dom";
 
 export default class RecipeList extends Component {
   state = {
     recipes: [],
-    type: "",
     title: "",
-    activePage: 15
+    showPopup: false,
+    query: "",
+    user: [],
+    type: ""
   };
-  handlePageChange(pageNumber) {
-    console.log(`active page is ${pageNumber}`);
-    this.setState({ activePage: pageNumber });
-  }
-  getRecipes = async () => {
-    //const { uid } = this.props.match.params;
-    const res = await axios.get(`/api/recipe/list`);
-    const { type } = this.props.match.params;
-    let title = "";
-    if (type === "chicken") {
-      title =
-        "These recipes prove how many directions you can take a simple piece of chicken. Take full advantage of its tender meat with hot soups, cold salads, and easy oven-baked recipes";
-    } else if (type === "pasta") {
-      title =
-        "Gnocchi, spaghetti, ramen, ravioli––We could keep going all day. Instead, we'll let these pasta recipes speak for themselves.";
-    } else if (type === "desserts") {
-      title = "Best dessert ever";
-    } else if (type === "pizza") {
-      title = "Best pizza ever";
-    }
+
+  togglePopup() {
     this.setState({
-      recipes: res.data,
-      type: type.toUpperCase(),
-      title: title
+      showPopup: !this.state.showPopup
+    });
+  }
+
+  handleInputChange = async e => {
+    // alert(this.props.match.params.type);
+    const res = await axios.get(`/api/recipe/list/${e.target.value}`);
+    // console.log(res.data);
+    this.setState(
+      {
+        recipes: res.data
+      },
+      () => {
+        this.filterType();
+      }
+    );
+  };
+  //Get recipes
+  getRecipes = async () => {
+    // const type = this.props.match.params.type;
+    const res = await axios.get(`/api/recipe/list`);
+    this.setState({
+      recipes: res.data
+    });
+
+    this.filterType();
+  };
+  //Filter by category
+  filterType = () => {
+    this.setState({
+      recipes: this.state.recipes.filter(recipe => {
+        return (
+          recipe.category &&
+          recipe.category.toLowerCase() === this.state.type.toLowerCase()
+        );
+      })
     });
   };
 
-  componentDidMount() {
-    this.getRecipes();
+  componentDidUpdate() {
+    // Typical usage (don't forget to compare props):
+    if (this.state.type !== this.props.match.params.type) {
+      this.setState(
+        {
+          type: this.props.match.params.type
+        },
+        () => {
+          this.getRecipes();
+        }
+      );
+    }
   }
+
+  async componentDidMount() {
+    // console.log(this.props.type);
+    const res = await this.props.loggedIn();
+    // console.log(res.data);
+    if (res.data === 0) {
+      // console.log("not connected");
+      this.props.history.push("/login");
+    } else {
+      this.setState(
+        {
+          user: res.data,
+          type: this.props.match.params.type
+        },
+        () => {
+          this.getRecipes();
+        }
+      );
+    }
+  }
+
   redirectAdd = e => {
     this.props.history.push({
       pathname: `/add`
@@ -48,49 +96,58 @@ export default class RecipeList extends Component {
   //Consult details
   showDetail = id => {
     this.props.history.push({
-      pathname: `/detail/${id}`
+      pathname: `/detail`,
+      state: { id: id }
     });
   };
 
   render() {
-    const { recipes, type } = this.state;
+    const { recipes, user } = this.state;
+
     return (
-      <div className="container padding_div">
+      <div className="container padding_div intro-single">
         <div className="row">
-          <div className="col-3">&nbsp;&nbsp;</div>
+          {/* <div className="col-3">&nbsp;&nbsp;</div>
           <div className="col-4">
             <h1 className="text-center">{type} RECIPES</h1>
+          </div> */}
+          <div className="col-md-12 col-lg-8">
+            <div className="title-single-box">
+              <h1 className="title-single">{this.state.type} Recipes</h1>
+            </div>
+          </div>
+          <div className="col-md-12 col-lg-4">
+            <nav
+              aria-label="breadcrumb"
+              className="breadcrumb-box d-flex justify-content-lg-end"
+            >
+              {user.chef === true && (
+                <ol className="breadcrumb">
+                  <li className="breadcrumb-item active" aria-current="page">
+                    <Link to={`/add/${this.state.type}`}>Add a Recipe</Link>
+                  </li>
+                </ol>
+              )}
+            </nav>
           </div>
         </div>
         <br />
-
-        <div className="form-group row">
-          <div className="col-3">&nbsp;&nbsp;</div>
-          <div className="col-4">
-            <select
-              className="form-control"
-              name="category"
-              onChange={this.onChange}
-            >
-              <option value="">Select a category</option>
-              <option value="chicken">Chicken</option>
-              <option value="pasta">Pasta</option>
-              <option value="dessert">Desserts</option>
-              <option value="pizza">Pizza</option>
-            </select>
-          </div>
-          <div className="col-5">
-            <button
-              className="btn btn-primary"
-              type="button"
-              onClick={this.redirectAdd}
-            >
-              Add recipes
-            </button>
+        <div className="row property-grid grid">
+          <div className="col-sm-12">
+            <div className="grid-option">
+              <form>
+                <input
+                  type="text"
+                  className="custom-input"
+                  placeholder="Search"
+                  // ref={input => (this.search = input)}
+                  onChange={this.handleInputChange}
+                />
+                <p>{this.state.query}</p>
+              </form>
+            </div>
           </div>
         </div>
-
-        <br />
         <div id="products" className="row view-group">
           {recipes.map((recipe, i) => {
             // console.log(recipe);
@@ -109,13 +166,19 @@ export default class RecipeList extends Component {
                     <h4 className="group card-title inner list-group-item-heading">
                       {recipe.name}
                     </h4>
-                    <p className="group inner list-group-item-text">
+                    <p className="group inner list-group-item-text limit_p">
                       {recipe.description}
                     </p>
-
-                    <div className="row" />
+                    <button
+                      type="button"
+                      data-toggle="modal"
+                      data-target={`#recipe_${recipe._id}`}
+                    >
+                      Read more
+                    </button>
                   </div>
                 </div>
+                <PopupDesc recipe={recipe} />
               </div>
             );
           })}
@@ -127,6 +190,39 @@ export default class RecipeList extends Component {
             onChange={this.handlePageChange}
           /> */}
         </div>
+        {/* <div className="row">
+          <div className="col-sm-12">
+            <nav className="pagination-a">
+              <ul className="pagination justify-content-end">
+                <li className="page-item disabled">
+                  <a className="page-link" ="#">
+                    <span className="ion-ios-arrow-back" />
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" ="#">
+                    1
+                  </a>
+                </li>
+                <li className="page-item active">
+                  <a className="page-link" ="#">
+                    2
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" ="#">
+                    3
+                  </a>
+                </li>
+                <li className="page-item next">
+                  <a className="page-link" ="#">
+                    <span className="ion-ios-arrow-forward">next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div> */}
       </div>
     );
   }
