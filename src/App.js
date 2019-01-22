@@ -23,32 +23,37 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   state = {
-    logged: false
+    logged: false,
+    loggedOut: false
   };
 
-  // changeType = type => {
-  //   // this.setState({
-  //   //   recipeType: type
-  //   // });
-  //   this.props.history.push('/list/${type}');
-  // };
-  loggedIn = () => {
-    return axios.post("/api/loggedIn");
+  loggedIn = async () => {
+    const res = await axios.post("/api/loggedIn");
+    // console.log("not connected");
+    this.setState({
+      logged: !(res.data === 0)
+    });
+    return res;
   };
+
   async componentDidMount() {
     const res = await this.loggedIn();
-    // console.log(res.data);
-    if (res.data === 0) {
-      // console.log("not connected");
-      this.setState({
-        logged: false
-      });
-    } else {
-      this.setState({
-        logged: true
-      });
-    }
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.props.logged !== prevState.logged) {
+  //     console.log(123);
+  //     this.setState(
+  //       {
+  //         logged: this.props.logged
+  //       },
+  //       () => {
+  //         console.log(this.state.logged);
+  //       }
+  //     );
+  //   }
+  // }
+
   render() {
     return (
       <BrowserRouter>
@@ -80,13 +85,23 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/login" component={Login} />
+            {/* <Route exact path="/login" component={Login} /> */}
+            <Route
+              exact
+              path="/login"
+              render={props => (
+                <Login
+                  {...props}
+                  loggedOut={this.state.loggedOut}
+                  loggedIn={this.loggedIn}
+                />
+              )}
+            />
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profileedit" component={ProfileEdit} />
             <Route exact path="/admin" component={Admin} />
             {/* <Route exact path="/detail" component={RecipeDetail} /> */}
-
             <Route
               exact
               path="/detail"
@@ -114,9 +129,7 @@ class App extends Component {
               exact
               path="/chefdetail/:id"
               render={props => (
-                <ChefDetail
-                {...props}
-              loggedIn={this.loggedIn}/>
+                <ChefDetail {...props} loggedIn={this.loggedIn} />
               )}
             />
           </Switch>

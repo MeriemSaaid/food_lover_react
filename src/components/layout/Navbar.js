@@ -1,33 +1,21 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-
+import axios from "axios";
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    // this.state={
-    //   logged :false
-    // }
   }
   redirect = type => {
     // this.props.changeType(type);
     this.props.history.push(`/list/${type}`);
   };
-  // async componentDidMount() {
-  //   const res = await this.props.loggedIn();
-  //   // console.log(res.data);
-  //   if (res.data === 0) {
-  //     // console.log("not connected");
-  //     this.setState({
-  //       logged: false
-  //     });
-  //   } else {
-  //     this.setState({
-  //       logged: true
-  //     });
-  //   }
-  // }
+  loggeOut = async () => {
+    const res = await axios.post("/api/logout");
+    this.props.loggedIn();
+    this.props.history.push(`/login`);
+  };
+
   render() {
-   
     return (
       <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
@@ -137,7 +125,6 @@ class Navbar extends Component {
                   >
                     Our Chefs
                   </Link>
-                  
                 </li>
 
                 <li className="nav-item">
@@ -147,26 +134,27 @@ class Navbar extends Component {
                 </li>
               </ul>
             </div>
-{this.props.logged === false ? (
-  <Link
-              to="/login"
-              className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
-              // data-toggle="collapse"
-              // data-target="#navbarTogglerDemo01"
-              aria-expanded="false"
-            >
-              Login
-            </Link>
-) : (<Link
-  to="/login"
-  className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
-  // data-toggle="collapse"
-  // data-target="#navbarTogglerDemo01"
-  aria-expanded="false"
->
-  Logout
-</Link>)}
-            
+            {!this.props.logged ? (
+              <Link
+                to="/login"
+                className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
+                // data-toggle="collapse"
+                // data-target="#navbarTogglerDemo01"
+                aria-expanded="false"
+              >
+                Login
+              </Link>
+            ) : (
+              <button
+                onClick={this.loggeOut}
+                className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
+                // data-toggle="collapse"
+                // data-target="#navbarTogglerDemo01"
+                aria-expanded="false"
+              >
+                Logout
+              </button>
+            )}
           </div>
         </nav>
       </div>

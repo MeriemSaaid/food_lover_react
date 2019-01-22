@@ -21,7 +21,7 @@ class Login extends Component {
     };
     try {
       const res = await axios.post("api/login", user);
-
+      this.props.loggedIn();
       this.props.history.push({
         pathname: `/profile`,
         state: { user: res.data }
@@ -58,7 +58,13 @@ class Login extends Component {
     }
     this.login(username, password);
   };
-
+  // componentDidMount() {
+  //   // const loggedOut = this.props.location.state.loggedOut;
+  //   console.log(this.props);
+  //   if (this.props.loggedOut) {
+  //     this.props.loggedIn();
+  //   }
+  // }
   render() {
     const { errors } = this.state;
     return (
