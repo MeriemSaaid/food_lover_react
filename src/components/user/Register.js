@@ -9,7 +9,9 @@ class Register extends Component {
     firstname: "",
     lastname: "",
     gender: "",
-    birthday: "",
+    email:"",
+    experience: "",
+    chef: false,
     errors: {}
   };
 
@@ -42,6 +44,14 @@ class Register extends Component {
     //  });
   }
 
+  yesnoCheck = e => {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.visibility = 'visible';
+    }
+    else document.getElementById('ifYes').style.visibility = 'hidden';
+
+}
+
   onSubmit = async e => {
     e.preventDefault();
     const {
@@ -51,8 +61,9 @@ class Register extends Component {
       firstname,
       lastname,
       email,
-      birthday,
-      gender
+      gender,
+      experience,
+      chef
     } = this.state;
     const user = {
       username,
@@ -61,8 +72,9 @@ class Register extends Component {
       firstname,
       lastname,
       email,
-      birthday,
-      gender
+      gender,
+      experience,
+      chef
     };
     if (username === "") {
       this.setState({
@@ -105,7 +117,8 @@ class Register extends Component {
       lastname,
       email,
       gender,
-      birthday,
+      experience,
+      chef,
       errors
     } = this.state;
     return (
@@ -164,7 +177,7 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                   <input
-                    type="email"
+                    type="text"
                     placeholder="Email"
                     className="form-control"
                     name="email"
@@ -200,18 +213,6 @@ class Register extends Component {
                     {errors.confirmPassword}
                   </div>
                 )}
-                <div className="form-group">
-                  <label>Date of Birth</label>
-                  <input
-                    type="date"
-                    className="form-control"
-                    id="exampleInputDOB1"
-                    placeholder="Date of Birth"
-                    name="birthday"
-                    value={birthday}
-                    onChange={this.onChange}
-                  />
-                </div>
                 <select
                   className="form-control form-control-sm"
                   id=""
@@ -225,17 +226,21 @@ class Register extends Component {
                   <option>Other</option>
                 </select>
                 <br />
-                <select
-                  className="form-control form-control-sm"
-                  id=""
-                  name=""
-                  value={gender}
-                  onChange={this.onChange}
-                >
-                  <option>Register as a chef?</option>
-                  <option>Yes</option>
-                  <option>No</option>
-                </select>
+                {/* APPLY AS CHEF FIELD */}
+                <div>
+                  <h6>Register as a chef?</h6>                
+                    Yes <input type="radio" onClick={this.yesnoCheck} name="chef" value={chef} id="yesCheck"/>
+                    No <input type="radio" onClick={this.yesnoCheck} name="chef" value={chef} id="noCheck"/>
+                <br/>
+                <div id="ifYes" style={{visibility:"hidden"}}>
+                <fieldset >
+                  <br/>
+                    <label>Tell us about your cooking experience:</label>
+                  <br/>
+                    <textarea  name="experience" value={experience} onChange={this.onChange}></textarea>
+                </fieldset>
+                </div>
+                </div>
                 <br />
                 {/* Terms of Service */}
                 <div className="form-check">
@@ -251,6 +256,7 @@ class Register extends Component {
                     I accept the new <a href="/">Terms of Service</a>.
                   </label>
                 </div>
+
                 <br />
                 {/* Buttons are here*/}
                 <div>

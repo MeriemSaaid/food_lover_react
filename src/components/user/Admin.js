@@ -10,10 +10,17 @@ export default class EditProfile extends Component {
       firstname: "",
       lastname: "",
       email: "",
+      chef: false,
       birthday: { type: Date },
       gender: { type: Selection },
+      experience: "",
       _id: ""
     };
+    this.handleChecked = this.handleChecked.bind(this);
+  }
+
+  handleChecked () {
+    this.setState({chef: !this.state.chef});
   }
 
   onChange = e => {
@@ -23,14 +30,19 @@ export default class EditProfile extends Component {
   };
 
   componentDidMount() {
+   
     this.loggedIn();
   }
+
+
 
   loggedIn = async () => {
     const res = await axios.post("/api/loggedIn");
     if (res.data === 0) {
       this.props.history.push("/login");
     } else {
+      const id =this.props.location.state.id;
+      const res = await axios.get(`/api/user/${id}`);
       const {
         username,
         password,
@@ -40,6 +52,8 @@ export default class EditProfile extends Component {
         email,
         birthday,
         gender,
+        chef,
+        experience,
         _id
       } = res.data;
       this.setState({
@@ -51,7 +65,9 @@ export default class EditProfile extends Component {
         lastname,
         email,
         birthday,
-        gender
+        gender,
+        chef,
+        experience
       });
     }
   };
@@ -66,7 +82,11 @@ export default class EditProfile extends Component {
       lastname,
       email,
       birthday,
+      bio,
+      specialty,
       gender,
+      chef,
+      experience,
       _id
     } = this.state;
     const newUser = {
@@ -77,284 +97,154 @@ export default class EditProfile extends Component {
       firstname,
       lastname,
       email,
+      bio,
+      specialty,
       birthday,
-      gender
+      gender,
+      chef,
+      experience
     };
     this.updateUser(newUser);
   };
 
   updateUser = async newUser => {
     await axios.put("/api/user", newUser);
-    this.props.history.push("/profile");
+    this.props.history.push("/listUsers");
   };
-
+  
   render() {
     const {
       username,
       firstname,
       lastname,
       email,
-      birthday,
       gender,
+      experience,
       chef
     } = this.state;
+    var txt;
+    if (this.state.isChecked) {
+      txt = 'checked'
+    } else {
+      txt = 'unchecked'
+    }
     return (
-      <div className="container padding_div div_center">
-        <form method="" onSubmit={this.onSubmit}>
-          <div className="row">
-            {/* UPLOAD IMAGE IS HERE */}
-            <div className="col-md-4">
-              <div className="">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                  alt=""
-                />
-                <br />
-                <br />
-                <label className="btn btn-primary">
-                  Update Photo <input type="file" hidden />
-                </label>
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <div className="profile-head">
-                {/* FULL NAME IS HERE */}
-                <h5>
-                  {firstname} {lastname}
-                </h5>
-                <h6>Restaurant Cook</h6>
-                <p className="proile-rating">
-                  RATING : <span>8/10</span>
-                </p>
-                <ul className="nav nav-tabs" id="myTab" role="tablist">
-                  <li className="nav-item">
-                    <a
-                      className="nav-link active"
-                      id="home-tab"
-                      data-toggle="tab"
-                      href="#home"
-                      role="tab"
-                      aria-controls="home"
-                      aria-selected="true"
-                    >
-                      About
-                    </a>
-                  </li>
-                  {/* <li className="nav-item">
-                                    <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                </li> */}
-                </ul>
-              </div>
-            </div>
-            <div className="col-md-2" />
-          </div>
-          <br />
-          {/* LEFT SIDE */}
-          <div className="row">
-            <div className="col-md-4">
-              <div className="profile-work">
-                <p>Specialty Dishes</p>
-                <a href="/">Beef Wellington</a>
-                <br />
-                <a href="/">Key lime pie</a>
-                <br />
-                <a href="/">Tater tots</a>
-                <br />
-                <br />
-                <p>Experiences</p>
-                <a href="/">Working with a good manager</a>
-                <br />
-                <a href="/">Food pairing experience</a>
-                <br />
-                <a href="/">Getting to grips with the economics</a>
-                <br />
-                <a href="/"> Making a bad decision</a>
-                <br />
-                <a href="/">Quality control</a>
-                <br />
-              </div>
-            </div>
-            {/* EDIT USER'S INFORMATION */}
-            <div className="col-md-8">
-              <div className="tab-content profile-tab" id="myTabContent">
-                <div
-                  className="tab-pane fade show active"
-                  id="home"
-                  role="tabpanel"
-                  aria-labelledby="home-tab"
-                >
-                  <div className="row">
-                    <div className="col-md-6">
-                      <label>Username</label>
-                    </div>
-                    <div className="col-md-6">
-                      <input
-                        className="form-control text-center"
-                        name="username"
-                        onChange={this.onChange}
-                        value={username}
-                      />
-                    </div>
+      
+      <div className="padding_div bottom_space container" >
+      <form className="row" onSubmit={this.onSubmit}>
+            <div className="col-xs-12 col-sm-9">
+              
+              {/* <!-- User profile --> */}
+              <div className="panel panel-default">
+                <div className="panel-heading">
+                <h4 className="panel-title">User profile</h4>
+                </div>
+                <div className="panel-body">
+                  <div className="profile__avatar">
+                    <img src={require('../../img/onlineimg/johndoe.png')} alt="..." />
                   </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <label>First Name</label>
-                    </div>
-                    <div className="col-md-6">
-                      <input
-                        className="form-control text-center"
-                        name="firstname"
-                        onChange={this.onChange}
-                        value={firstname}
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <label>Last Name</label>
-                    </div>
-                    <div className="col-md-6">
-                      <input
-                        className="form-control text-center"
-                        name="lastname"
-                        onChange={this.onChange}
-                        value={lastname}
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <label>Email</label>
-                    </div>
-                    <div className="col-md-6">
-                      <input
-                        className="form-control text-center"
-                        name="email"
-                        onChange={this.onChange}
-                        value={email}
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <label>Date of Birth</label>
-                    </div>
-                    <div className="col-md-6">
-                      <input
-                        type="date"
-                        className="form-control text-center"
-                        name="birthday"
-                        onChange={this.onChange}
-                        value={birthday}
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-md-6">
-                      <label>Gender</label>
-                    </div>
-                    <div className="col-md-6">
-                      <select
-                        className="form-control form-control-sm"
-                        id="dropDown"
-                        name="gender"
-                        value={gender}
-                        onChange={this.onChange}
-                      >
-                        <option>Select Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Other</option>
-                      </select>
-                    </div>
-                  </div>
-                  <br />
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      checked={chef}
-                      name="chef"
-                      id="defaultCheck1"
-                      onChange={this.changegChef}
-                    />
-                    This user is a chef.
-                  </div>
-                  {/* BUTTONS GO HERE */}
-                  <div>
-                    <br />
-                    <button
-                      type="submit"
-                      className="active1 btn-success btn btn-block"
-                    >
-                      Save Changes
-                    </button>
-                    <Link to="/profile" className="btn btn-danger btn-block">
-                      Cancel
-                    </Link>
-                    <button
-                      type="submit"
-                      className="active1 btn-warning btn btn-block"
-                    >
-                      Delete Account
-                    </button>
+                  <div className="profile__header">
+                    <h4>{firstname} {lastname} <small>Administrator</small></h4>
+                    <p className="text-muted">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
+                    </p>
+                    <p>
+                      <button className="btn">Upload</button>
+                    </p>
                   </div>
                 </div>
-                {/* TAB 2 */}
-                {/* <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Experience</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
-                            </div> */}
               </div>
+      
+              {/* <!-- User info --> */}
+              <div className="panel panel-default">
+                <div className="panel-heading">
+                <h4 className="panel-title">User info</h4>
+                </div>
+                <br/>
+                <div className="panel-body">
+                  <table className="table profile__table">
+                    <tbody>
+                      <tr>
+                        <th><strong>Username</strong></th>
+                          <td>
+                            <input className="form-control" name="username" onChange={this.onChange} value={username}/>
+                          </td>
+                      </tr>
+                      <tr>
+                        <th><strong>First Name</strong></th>
+                          <td>
+                            <input className="form-control" name="firstname" onChange={this.onChange} value={firstname} />
+                          </td>
+                      </tr>
+                      <tr>
+                        <th><strong>Last Name</strong></th>
+                          <td>
+                            <input className="form-control" name="lastname" onChange={this.onChange} value={lastname} />                          
+                          </td>
+                      </tr>
+                      <tr>
+                        <th><strong>Email</strong></th>
+                          <td>
+                            <input className="form-control" name="email" onChange={this.onChange} value={email} />                          
+                          </td>
+                      </tr>
+                      <tr>
+                        <th><strong>Gender</strong></th>
+                          <td>
+                            <select className="form-control form-control-sm" id="dropDown" name="gender" value={gender} onChange={this.onChange} >
+                              <option>Select Gender</option>
+                              <option>Male</option>
+                              <option>Female</option>
+                              <option>Other</option>
+                            </select>
+                          </td>                          
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="form-check text-center">
+
+                    <br/>
+                    
+                    <div className="chef_box container">
+                    <h6>Chef Application</h6>
+                    <p onChange={this.onChange} value={experience}>{experience}</p>
+                    </div>
+
+                    <div className="">
+                    <input className="form-check-input " type="checkbox" checked={chef} value={chef} name="chef" id="defaultCheck1" onChange={this.handleChecked} />                    
+                    </div>
+                    <br/>
+                    <div className="">
+                    <h5>Register as Chef?</h5>
+                    </div>
+                    
+                    
+                    
+                  </div>
+              <br/>
+      
             </div>
-          </div>
-        </form>
-      </div>
+            <div className="col-xs-12 col-sm-3">
+              
+              {/* <!-- Contact user --> */}
+              <p>
+                <button type="submit" className="btn-block btn-lg btn-success btn">
+                  Save Changes
+                </button>
+              </p>
+              <p>
+                <Link to="/profile" href="#" className="btn btn-lg btn-block btn-secondary">
+                  Cancel
+                </Link>
+              </p>
+      
+            </div>
+            
+          </form>
+      </div>       
     );
   }
 }

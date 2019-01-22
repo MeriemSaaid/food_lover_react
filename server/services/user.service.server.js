@@ -16,6 +16,8 @@ module.exports = function(app) {
   app.get("/api/user/:uid", findUserById);
   // get user
   app.get("/api/user", findUser);
+  //get All users
+  app.get("/api/users", findAllUsers);
   //update a user
   app.put("/api/user", updateUser);
   //
@@ -30,6 +32,11 @@ module.exports = function(app) {
 
   // Find all Users
   app.get("/api/users", findAllUsers);
+
+  // Delete a user by id
+  app.delete("/api/user/:id", deleteUser);
+
+
 
   async function register(req, res) {
     var user = req.body;
@@ -124,10 +131,9 @@ module.exports = function(app) {
     res.send(200);
   }
   //
+  async function deleteUser(req, res) {
+    const id = req.params["id"];
+    const data = await UserModel.deleteUser(id)
+    res.json(data);
+  }
 };
-
-// Delete Account
-
-// function deleteWebsite(wid){
-//   return WebsiteModel.remove({ _id: wid });
-// }

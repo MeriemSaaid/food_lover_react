@@ -9,9 +9,13 @@ var UserSchema = mongoose.Schema(
     email: { type: String, default: "" },
     birthday: { type: String, default: "" },
     gender: { type: String, default: ""},
-    dateCreated: { type: String, default: Date() },
+    experience: { type: String, default: "" },
+    dateCreated:{ type: String, default: "" },
     admin: { type: Boolean, default: false },
-    chef: { type: Boolean, default: false}
+    chef: { type: Boolean, default: false},
+    bio: { type: String, default: ""},
+    specialty: { type: String, default: ""}
+
   },
   { collection: "user" }
 );
