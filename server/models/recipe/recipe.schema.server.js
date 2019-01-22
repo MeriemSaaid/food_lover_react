@@ -8,6 +8,7 @@ var RecipesSchema = mongoose.Schema(
     picture: String,
     ingredients: String,
     category: String,
+    top : { type: Boolean, default: false },
     datePosted: { type: String, default: Date() }
   },
   { collection: "recipes" }

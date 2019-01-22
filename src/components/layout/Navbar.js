@@ -4,12 +4,30 @@ import { Link, withRouter } from "react-router-dom";
 class Navbar extends Component {
   constructor(props) {
     super(props);
+    // this.state={
+    //   logged :false
+    // }
   }
   redirect = type => {
     // this.props.changeType(type);
     this.props.history.push(`/list/${type}`);
   };
+  // async componentDidMount() {
+  //   const res = await this.props.loggedIn();
+  //   // console.log(res.data);
+  //   if (res.data === 0) {
+  //     // console.log("not connected");
+  //     this.setState({
+  //       logged: false
+  //     });
+  //   } else {
+  //     this.setState({
+  //       logged: true
+  //     });
+  //   }
+  // }
   render() {
+   
     return (
       <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
@@ -107,10 +125,10 @@ class Navbar extends Component {
                     Videos
                   </a>
                 </li>
-                <li className="nav-item dropdown">
+                <li className="nav-item">
                   <Link
-                    className="nav-link dropdown-toggle"
-                    to="/"
+                    className="nav-link"
+                    to="/chef"
                     id="navbarDropdown"
                     // role="button"
                     // data-toggle="dropdown"
@@ -119,23 +137,7 @@ class Navbar extends Component {
                   >
                     Our Chefs
                   </Link>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <a className="dropdown-item" href="property-single.html">
-                      Chicken
-                    </a>
-                    <a className="dropdown-item" href="blog-single.html">
-                      Pasta
-                    </a>
-                    <a className="dropdown-item" href="agents-grid.html">
-                      Desserts
-                    </a>
-                    <a className="dropdown-item" href="agent-single.html">
-                      Pizza
-                    </a>
-                  </div>
+                  
                 </li>
 
                 <li className="nav-item">
@@ -145,7 +147,8 @@ class Navbar extends Component {
                 </li>
               </ul>
             </div>
-            <Link
+{this.props.logged === false ? (
+  <Link
               to="/login"
               className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
               // data-toggle="collapse"
@@ -154,6 +157,16 @@ class Navbar extends Component {
             >
               Login
             </Link>
+) : (<Link
+  to="/login"
+  className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
+  // data-toggle="collapse"
+  // data-target="#navbarTogglerDemo01"
+  aria-expanded="false"
+>
+  Logout
+</Link>)}
+            
           </div>
         </nav>
       </div>

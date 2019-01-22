@@ -8,6 +8,7 @@ RecipeModel.findRecipeByUser = findRecipeByUser;
 RecipeModel.findAllRecipes = findAllRecipes;
 RecipeModel.updateRecipe = updateRecipe;
 RecipeModel.searchRecipes = searchRecipes;
+RecipeModel.findTopRecipe = findTopRecipe;
 
 //Create a recipe
 function createRecipe(user) {
@@ -45,5 +46,10 @@ function searchRecipes(val) {
     // $and: [{ category: { $regex: type, $options: "i" } }]
   };
   return RecipeModel.find(query);
+}
+
+//Find Top recipe
+function findTopRecipe() {
+  return RecipeModel.find({top:true}).sort("datePosted").limit(3);
 }
 module.exports = RecipeModel;

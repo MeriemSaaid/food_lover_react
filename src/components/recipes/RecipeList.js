@@ -72,10 +72,10 @@ export default class RecipeList extends Component {
     // console.log(this.props.type);
     const res = await this.props.loggedIn();
     // console.log(res.data);
-    if (res.data === 0) {
-      // console.log("not connected");
-      this.props.history.push("/login");
-    } else {
+    // if (res.data === 0) {
+    //   // console.log("not connected");
+    //   this.props.history.push("/login");
+    // } else {
       this.setState(
         {
           user: res.data,
@@ -85,7 +85,7 @@ export default class RecipeList extends Component {
           this.getRecipes();
         }
       );
-    }
+    // }
   }
 
   redirectAdd = e => {
@@ -103,7 +103,7 @@ export default class RecipeList extends Component {
 
   render() {
     const { recipes, user } = this.state;
-
+    console.log(user);
     return (
       <div className="container padding_div intro-single">
         <div className="row">

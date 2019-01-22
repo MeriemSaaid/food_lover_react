@@ -84,6 +84,7 @@ export default class RecipeAdd extends Component {
       ingredients,
       category
     };
+    // console.log(userId);
     this.addRecipe(recipe);
   };
 
@@ -95,7 +96,7 @@ export default class RecipeAdd extends Component {
       this.props.history.push("/login");
     } else {
       this.setState({
-        userId: res.data.userId
+        userId: res.data._id
       });
     }
   }

@@ -13,32 +13,42 @@ export default class RecipeDetail extends Component {
     recipeId: "",
     comments: [],
     editingComment: "",
-    editingContent: ""
+    editingContent: "",
+    topRecipes :[]
   };
   //Function to get recipes
   getRecipe = async id => {
     const res = await axios.get(`/api/recipe/${id}`);
     const { name, picture, description, datePosted, ingredients } = res.data;
-    console.log(res.data.userId.username);
+    // console.log(res.data.userId.username);
     // const {username } = res.data.userId.username;
     this.setState({
       name,
       picture,
       description,
       ingredients,
-      username: res.data.userId.username,
+      username:res.data.userId.username,
       datePosted
+      
     });
   };
   //Call function on load
-  componentDidMount() {
+ async componentDidMount() {
+  const res = await axios.get(`/api/top`);
+  this.setState({
+    topRecipes : res.data
+    
+  });
+  // console.log(this.state.topRecipes);
+  
     const id = this.props.location.state.id;
-    console.log(id);
+    
     this.setState({
       recipeId: id
     });
     this.getRecipe(id);
     this.getComments(id);
+ 
   }
   //
   onChange = e => {
@@ -50,11 +60,13 @@ export default class RecipeDetail extends Component {
   //Post a comment
   postComment = async comment => {
     const res = await axios.post("/api/comment", comment);
-    console.log(res.data);
+    // console.log(res.data);
     this.setState({
       comments: [...this.state.comments, res.data],
-      content: ""
+      content: "",
     });
+    const id = this.props.location.state.id;
+    this.getComments(id);
   };
 
   //Get All comments for a recipe
@@ -115,6 +127,12 @@ export default class RecipeDetail extends Component {
       editingComment: ""
     });
   };
+
+  //Consult details
+  showDetail = id => {
+   this.getRecipe(id);
+    
+  };
   render() {
     const {
       name,
@@ -147,13 +165,13 @@ export default class RecipeDetail extends Component {
 
             <h1>Description</h1>
             <pre
-              className="lead"
+              className="lead font_pop"
               dangerouslySetInnerHTML={createMarkup(description)}
             />
             <h1>Ingredients</h1>
 
             <pre
-              className="lead"
+              className="lead font_pop"
               dangerouslySetInnerHTML={createMarkup(ingredients)}
             />
             <hr />
@@ -243,34 +261,42 @@ export default class RecipeDetail extends Component {
           </div>
 
           <div className="col-md-4">
-            <div className="card my-4">
-              <h5 className="card-header">Search</h5>
-              <div className="card-body">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search for..."
-                  />
-                  <span className="input-group-btn">
-                    <button className="btn btn-secondary" type="button">
-                      Go!
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="card my-4">
+             <div className="card my-4">
               <h5 className="card-header">Top Recipes</h5>
-              <div className="card-body">
-                <img
-                  className="card-img-top"
-                  src="https://2.bp.blogspot.com/-vvG5hMTFOro/W6RaoxdAikI/AAAAAAAAK1k/jezYdP7fvfYvt15Jv8a0agrGQE2lMU8YgCKgBGAs/s1600/MASAI-2.jpg"
-                  alt="Card"
-                />
-              </div>
+              
+              <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+                <ol className="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+              <div className="carousel-inner"> 
+            
+      {this.state.topRecipes.map((recipe, i) => {
+        if(i===0){
+          return (<div className="carousel-item active card-body"  key={recipe._id} >
+          <img
+              className="card-img-top fixed_size cursor_pointer"
+              src={recipe.picture}
+              alt={recipe.name}
+              onClick={this.showDetail.bind(this, recipe._id)}
+            />
+        </div>)
+        }
+        else{
+          return (<div className="carousel-item card-body"  key={recipe._id} >
+          <img
+              className="card-img-top fixed_size cursor_pointer"
+              src={recipe.picture}
+              alt={recipe.name}
+              onClick={this.showDetail.bind(this, recipe._id)}
+            />
+        </div>)
+        }
+      })}
             </div>
+          </div>
+       </div>
 
             <div className="card my-4">
               <h5 className="card-header">Our videos</h5>

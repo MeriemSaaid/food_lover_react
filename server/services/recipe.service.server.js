@@ -8,6 +8,8 @@ module.exports = function(app) {
   app.get("/api/recipe/:id", findRecipeById);
   // find  recipe by id
   app.get("/api/recipe/list/:val", searchRecipes);
+  // find  top recipe 
+   app.get("/api/top", findTopRecipe);
   //Function to create recipe
   async function createRecipe(req, res) {
     var recipe = req.body;
@@ -36,17 +38,9 @@ module.exports = function(app) {
     res.json(recipes);
   }
 
-  // //Update Website
-  // async function updatePage(req, res) {
-  //   const page = req.body;
-  //   const pid = page._id;
-  //   const data = await PageModel.updatePage(pid, page);
-  //   res.json(data);
-  // }
-  // //Delete a page
-  // async function deletePage(req, res) {
-  //   const pid = req.params["pid"];
-  //   const data = await PageModel.deletePage(pid);
-  //   res.json(data);
-  // }
+  //Function to find website by website id
+  async function findTopRecipe(req, res) {
+    const recipes = await RecipeModel.findTopRecipe();
+    res.json(recipes);
+  }
 };
