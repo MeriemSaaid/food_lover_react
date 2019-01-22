@@ -15,7 +15,7 @@ import ProfileEdit from "./components/user/ProfileEdit";
 import Admin from "./components/user/Admin";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Contact from './components/Contact';
-import About1 from './components/About1';
+import About from './components/About';
 
 class App extends Component {
   render() {
@@ -25,7 +25,7 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path="/contact" component={Contact}/>
-            <Route exact path="/about" component={About1}/>
+            <Route exact path="/about" component={About}/>
             <Route exact path="/" component={Home} />
             <Route exact path="/add" component={RecipeAdd} />
             <Route exact path="/list/:type" component={RecipeList} />
