@@ -3,7 +3,6 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Home from "./components/Home";
-
 import RecipeAdd from "./components/recipes/RecipeAdd";
 import RecipeList from "./components/recipes/RecipeList";
 import RecipeDetail from "./components/recipes/RecipeDetail";
@@ -15,6 +14,8 @@ import Profile from "./components/user/Profile";
 import ProfileEdit from "./components/user/ProfileEdit";
 import Admin from "./components/user/Admin";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Contact from './components/Contact';
+import About1 from './components/About1';
 
 class App extends Component {
   render() {
@@ -23,7 +24,9 @@ class App extends Component {
         <div>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={Home} />,
+            <Route exact path="/contact" component={Contact}/>
+            <Route exact path="/about" component={About1}/>
+            <Route exact path="/" component={Home} />
             <Route exact path="/add" component={RecipeAdd} />
             <Route exact path="/list/:type" component={RecipeList} />
             <Route exact path="/login" component={Login} />

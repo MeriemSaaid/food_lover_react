@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import {Spring } from 'react-spring';
 
 export default class Navbar extends Component {
   render() {
     return (
-      <div>
+      <Spring
+          from ={{opacity: 0, marginTop: -500}}
+          to ={{opacity: 1, marginTop: 0 }}
+      > 
+        {props => (
+            <div style = {props}>
+         // Animate Navbar
+         <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
           <div className="container">
             <button
@@ -30,7 +38,7 @@ export default class Navbar extends Component {
               data-target="#navbarTogglerDemo01"
               aria-expanded="false"
             >
-              <span className="fa fa-search" aria-hidden="true" />
+              <span className="fa fa-search" aria-hidden="true"> </span>
             </button>
             <div
               className="navbar-collapse collapse justify-content-center"
@@ -43,13 +51,14 @@ export default class Navbar extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="about.html">
+                  < Link to ="/about" className="nav-link" href="about.html">
                     About
-                  </a>
+                  </Link>
+
                 </li>
                 <li className="nav-item dropdown">
                   <Link
-                    className="nav-link dropdown-toggle"
+                    className="nav-li  oggle"
                     to="/"
                     id="navbarDropdown"
                     // role="button"
@@ -117,9 +126,9 @@ export default class Navbar extends Component {
                 </li>
 
                 <li className="nav-item">
-                  <a className="nav-link" href="contact.html">
+                  <Link to ="/contact"className="nav-link" href="contact.html">
                     Contact
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -135,6 +144,11 @@ export default class Navbar extends Component {
           </div>
         </nav>
       </div>
+
+            </div>
+
+        )}
+        </Spring>
     );
   }
 }
