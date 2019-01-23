@@ -128,6 +128,15 @@ class Navbar extends Component {
                     Contact
                   </a>
                 </li>
+              
+                <li className="nav-item">
+                 <Link to="/listUsers"  className="nav-link" > Manage users</Link>
+                 
+                </li>
+                <li className="nav-item">
+                 <Link to="/profile"  className="nav-link" >Profile</Link>
+                 
+                </li>
               </ul>
             </div>
             {!this.props.logged ? (

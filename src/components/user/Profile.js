@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -10,9 +11,11 @@ export default class Profile extends Component {
       firstname: "",
       lastname: "",
       email: "",
-      birthday: "",
       gender: "",
+      bio:"",
+      specialty:"",
       _id: "",
+      dateCreated: new Date().toLocaleDateString(),
       admin: false,
       chef: false
     };
@@ -45,35 +48,35 @@ export default class Profile extends Component {
         firstname,
         lastname,
         email,
-        birthday,
         gender,
         admin,
-        chef
+        chef,
+        dateCreated,
+        bio,
+        specialty
       } = res.data;
       this.setState({
         username,
         firstname,
         lastname,
         email,
-        birthday,
         gender,
         admin,
-        chef
+        chef,
+        dateCreated,   bio,
+        specialty
       });
     }
   };
 
-  //   fullname = function() {
-  //     var first = document.getElementById("firstname").value;
-  //     var second = document.getElementById("lastname").value;
-  //     // var fullname = first + second;
-
-  //     document.getElementById("fullname").innerHTML = first + " " + second;
-  //   };
-
   updateUser = async newUser => {
     await axios.put("/api/user", newUser);
   };
+
+  logout = async () => {
+    await axios.post("/api/logout")
+    this.props.history.push("/login");
+};
 
   render() {
     const {
@@ -81,213 +84,230 @@ export default class Profile extends Component {
       firstname,
       lastname,
       email,
-      birthday,
-      gender
+      bio,
+      specialty,
+      dateCreated,
+      gender,
+      admin
     } = this.state;
     return (
-      <div>
-        <div className="container padding_div div_center">
-          <form method="post">
-            <div className="row">
-              {/* Profile PHOTO is here */}
-              <div className="col-md-4">
-                <div className="profile-img">
-                  <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="profile-head">
-                  {/* FULL NAME IS HERE */}
-                  <h5>
-                    {firstname} {lastname}
-                  </h5>
-                  {/* <h6>
-                                        Restaurant Cook
-                                    </h6>
-                                    <p className="proile-rating">RATING : <span>8/10</span></p> */}
-                  <ul className="nav nav-tabs" id="myTab" role="tablist">
-                    <li className="nav-item">
-                      <a
-                        className="nav-link active"
-                        id="home-tab"
-                        data-toggle="tab"
-                        href="#home"
-                        role="tab"
-                        aria-controls="home"
-                        aria-selected="true"
-                      >
-                        About
-                      </a>
-                    </li>
-                    {/* <li className="nav-item">
-                                    <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                                </li> */}
-                  </ul>
-                </div>
-              </div>
-              {/* Edit profile and Admin page goes here */}
-              <div className="col-md-2">
-                <div>
-                  <Link
-                    to="/profileedit"
-                    className="far float-right editicon"
-                    id=""
-                  >
-                    <i className="fas fa-edit" />
-                  </Link>
-                </div>
-                <br />
-                <br />
-                <div>
-                  <Link to="/admin" className="far float-right editicon" id="">
-                    <i className="fas fa-user-secret" />
-                  </Link>
-                </div>
-              </div>
+        <div className="padding_div bottom_space container">
+          <div className="row">
+            <div className="col-xs-12 col-sm-9">
+        {/* <!-- User profile --> */}
+        <div className="panel panel-default">
+          <div className="panel-heading">
+          <h4 className="panel-title">User profile</h4>
+          </div>
+          <div className="panel-body">
+            <div className="profile__avatar">
+              <img src={require('../../img/onlineimg/johndoe.png')} alt="..." />
             </div>
-            <br />
-            {/* Left side of profile page */}
-            <div className="row">
-              <div className="col-md-4">
-                <div className="profile-work">
-                  <p>Specialty Dishes</p>
-                  <a href="/">Beef Wellington</a>
-                  <br />
-                  <a href="/">Key lime pie</a>
-                  <br />
-                  <a href="/">Tater tots</a>
-                  <br />
-                  <br />
-                  <p>Experiences</p>
-                  <a href="/">Working with a good manager</a>
-                  <br />
-                  <a href="/">Food pairing experience</a>
-                  <br />
-                  <a href="/">Getting to grips with the economics</a>
-                  <br />
-                  <a href="/"> Making a bad decision</a>
-                  <br />
-                  <a href="/">Quality control</a>
-                  <br />
-                </div>
-              </div>
-              {/* USER INFORMATION */}
-              <div className="col-md-8">
-                {/* TAB 1 */}
-                <div className="tab-content profile-tab" id="myTabContent">
-                  <div
-                    className="tab-pane fade show active"
-                    id="home"
-                    role="tabpanel"
-                    aria-labelledby="home-tab"
-                  >
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Username</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{username}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>First Name</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{firstname}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Last Name</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{lastname}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Email</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{email}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Date of Birth</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{birthday}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Gender</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{gender}</p>
-                      </div>
-                    </div>
-                  </div>
-                  {/* TAB 2 */}
-                  {/* <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Experience</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
-                            </div> */}
-                </div>
-              </div>
+            <div className="profile__header">
+              <h4>{firstname} {lastname} <small>Administrator</small></h4>
+              <p className="text-muted"  >{bio}</p>
+              <p>
+                <a   >{specialty}</a>
+              </p>
             </div>
-          </form>
+          </div>
         </div>
+
+        {/* <!-- User info --> */}
+        <div className="panel panel-default">
+          <div className="panel-heading">
+          <h4 className="panel-title">User info</h4>
+          </div>
+          <br/>
+          <div className="panel-body">
+            <table className="table profile__table">
+              <tbody>
+                <tr>
+                  <th><strong>Username</strong></th>
+                  <td>{username}</td>
+                </tr>
+                <tr>
+                  <th><strong>First Name</strong></th>
+                  <td>{firstname}</td>
+                </tr>
+                <tr>
+                  <th><strong>Last Name</strong></th>
+                  <td>{lastname}</td>
+                </tr>
+                <tr>
+                  <th><strong>Gender</strong></th>
+                  <td>{gender}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br/>
+
+        {/* <!-- Community --> */}
+        <div className="panel panel-default">
+          <div className="panel-heading">
+          <h4 className="panel-title">Community</h4>
+          </div>
+          <br/>
+          <div className="panel-body">
+            <table className="table profile__table">
+              <tbody>
+                <tr>
+                  <th><strong>Comments</strong></th>
+                  <td>58584</td>
+                </tr>
+                <tr>
+                  <th><strong>Member since</strong></th>
+                  <td>{dateCreated}</td>
+                </tr>
+                <tr>
+                  <th><strong>Last login</strong></th>
+                  <td>1 day ago</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <br/>
+
+        {/* <!-- Latest posts --> */}
+        <div className="panel panel-default">
+          <div className="panel-heading">
+          <h4 className="panel-title">Latest posts</h4>
+          </div>
+          <br/>
+          <div className="panel-body">
+            <div className="profile__comments">
+              <div className="profile-comments__item">
+                <div className="profile-comments__controls">
+                  <a href="#"><i className="fa fa-share-square-o"></i></a>
+                  <a href="#"><i className="fa fa-edit"></i></a>
+                  <a href="#"><i className="fa fa-trash-o"></i></a>
+                </div>
+                <div className="profile-comments__avatar">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="..." />
+                </div>
+                <div className="profile-comments__body">
+                  <h5 className="profile-comments__sender">
+                    Richard Roe <small>2 hours ago</small>
+                  </h5>
+                  <div className="profile-comments__content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
+                  </div>
+                </div>
+              </div>
+              <div className="profile-comments__item">
+                <div className="profile-comments__controls">
+                  <a href="#"><i className="fa fa-share-square-o"></i></a>
+                  <a href="#"><i className="fa fa-edit"></i></a>
+                  <a href="#"><i className="fa fa-trash-o"></i></a>
+                </div>
+                <div className="profile-comments__avatar">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." />
+                </div>
+                <div className="profile-comments__body">
+                  <h5 className="profile-comments__sender">
+                    Richard Roe <small>5 hours ago</small>
+                  </h5>
+                  <div className="profile-comments__content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
+                  </div>
+                </div>
+              </div>
+              <div className="profile-comments__item">
+                <div className="profile-comments__controls">
+                  <a href="#"><i className="fa fa-share-square-o"></i></a>
+                  <a href="#"><i className="fa fa-edit"></i></a>
+                  <a href="#"><i className="fa fa-trash-o"></i></a>
+                </div>
+                <div className="profile-comments__avatar">
+                  <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="..." />
+                </div>
+                <div className="profile-comments__body">
+                  <h5 className="profile-comments__sender">
+                    Richard Roe <small>1 day ago</small>
+                  </h5>
+                  <div className="profile-comments__content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+      <div className="col-xs-12 col-sm-3">
+        
+        {/* <!-- Contact user --> */}
+        {admin===false && (
+        <p>
+          <Link to="/profileedit" href="#" className="profile__contact-btn btn btn-lg btn-block btn-info">
+            Edit Profile
+          </Link>
+        </p>
+        )}
+        {admin===true && (
+        <p>
+          <Link to="/admin" href="#" className="profile__contact-btn btn btn-lg btn-block btn-warning">
+            Admin
+          </Link>
+        </p>
+        )}
+        <p>
+          <button onClick={this.logout} className="profile__contact-btn btn btn-lg btn-block btn-danger">
+            Log Out
+          </button>
+        </p>
+
+        {/* <hr className="profile__contact-hr" /> */}
+        <hr/>
+        <br/>
+        
+        {/* <!-- Contact info --> */}
+        <div className="profile__contact-info">
+          <div className="profile__contact-info-item">
+            <div className="profile__contact-info-icon">
+              <i className="fa fa-phone"></i>
+            </div>
+            <div className="profile__contact-info-body">
+              <h5 className="profile__contact-info-heading">Work number</h5>
+              (000)987-65-43
+            </div>
+          </div>
+          <div className="profile__contact-info-item">
+            <div className="profile__contact-info-icon">
+              <i className="fa fa-phone"></i>
+            </div>
+            <div className="profile__contact-info-body">
+              <h5 className="profile__contact-info-heading">Mobile number</h5>
+              (000)987-65-43
+            </div>
+          </div>
+          <div className="profile__contact-info-item">
+            <div className="profile__contact-info-icon">
+              <i className="fa fa-envelope-square"></i>
+            </div>
+            <div className="profile__contact-info-body">
+              <h5 className="profile__contact-info-heading">E-mail address</h5>
+              <a href="mailto:admin@domain.com">{email}</a>
+            </div>
+          </div>
+          <div className="profile__contact-info-item">
+            <div className="profile__contact-info-icon">
+              <i className="fa fa-map-marker"></i>
+            </div>
+            <div className="profile__contact-info-body">
+              <h5 className="profile__contact-info-heading">Work address</h5>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>       
     );
   }
 }
