@@ -34,7 +34,7 @@ module.exports = function(app) {
   app.get("/api/users", findAllUsers);
 
   // Delete a user by id
-  app.delete("/api/user/:id", deleteUser);
+  app.delete("/api/delete/:id", deleteUser);
 
 
 

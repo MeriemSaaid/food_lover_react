@@ -21,6 +21,12 @@ export default class Profile extends Component {
     };
   }
 
+  redirectAdmin = (id)=> {
+    this.props.history.push({
+      pathname: `/admin`,
+      state :{id :id}
+    });
+  };
   getFormattedDate(param) {
     var date = new Date(param);
     var year = date.getFullYear();
@@ -53,7 +59,8 @@ export default class Profile extends Component {
         chef,
         dateCreated,
         bio,
-        specialty
+        specialty,
+        _id
       } = res.data;
       this.setState({
         username,
@@ -63,8 +70,10 @@ export default class Profile extends Component {
         gender,
         admin,
         chef,
-        dateCreated,   bio,
-        specialty
+        dateCreated,
+        bio,
+        specialty,
+        _id
       });
     }
   };
@@ -85,10 +94,11 @@ export default class Profile extends Component {
       lastname,
       email,
       bio,
+      chef,
       specialty,
-      dateCreated,
       gender,
-      admin
+      admin,
+      _id
     } = this.state;
     return (
         <div className="padding_div bottom_space container">
@@ -103,15 +113,44 @@ export default class Profile extends Component {
             <div className="profile__avatar">
               <img src={require('../../img/onlineimg/johndoe.png')} alt="..." />
             </div>
-            <div className="profile__header">
-              <h4>{firstname} {lastname} <small>Administrator</small></h4>
-              <p className="text-muted"  >{bio}</p>
-              <p>
-                <a   >{specialty}</a>
-              </p>
+            <div className="profile__header" >
+              <h4>{firstname} {lastname}
+              {admin === true && (<small style={{color:"green"}}> Administrator</small>)}
+              {chef === true && (<small style={{color:"green"}}> Chef</small>)}
+              </h4>
+              {/* User's Bio */}
+              <div className="d-block">
+              {chef === false && (
+              <a>About me:</a>
+              )}
+              {chef === false && (
+              <span className="text-muted"> {bio}</span>
+              )}
+              </div>
+              {/* Chef's Bio */}
+              <div className="d-block">
+              {chef === true && (
+              <medium>Bio:</medium>
+              )}
+              {chef === true && (
+              <a className="text-muted"> {bio}</a>
+              )}
+              </div>
+              <br/>
+              <div>
+              {/* Chef's Specialties */}
+              {chef === true && (
+              <medium>Specialties:</medium>
+              )}
+              {chef === true && (
+                <a placeholder="specialties"> {specialty}</a>
+              )}
+              </div>
             </div>
           </div>
         </div>
+        <br/>
+        <br/>
 
         {/* <!-- User info --> */}
         <div className="panel panel-default">
@@ -154,17 +193,17 @@ export default class Profile extends Component {
             <table className="table profile__table">
               <tbody>
                 <tr>
-                  <th><strong>Comments</strong></th>
+                  <th><strong>Followers</strong></th>
                   <td>58584</td>
                 </tr>
-                <tr>
+                {/* <tr>
                   <th><strong>Member since</strong></th>
                   <td>{dateCreated}</td>
-                </tr>
-                <tr>
-                  <th><strong>Last login</strong></th>
-                  <td>1 day ago</td>
-                </tr>
+                </tr> */}
+                {/* <tr>
+                  <th><strong>Recipes</strong></th>
+                  <td>6</td>
+                </tr> */}
               </tbody>
             </table>
           </div>
@@ -172,9 +211,9 @@ export default class Profile extends Component {
         <br/>
 
         {/* <!-- Latest posts --> */}
-        <div className="panel panel-default">
+        {/* <div className="panel panel-default">
           <div className="panel-heading">
-          <h4 className="panel-title">Latest posts</h4>
+          <h4 className="panel-title">Latest Activity</h4>
           </div>
           <br/>
           <div className="panel-body">
@@ -190,7 +229,7 @@ export default class Profile extends Component {
                 </div>
                 <div className="profile-comments__body">
                   <h5 className="profile-comments__sender">
-                    Richard Roe <small>2 hours ago</small>
+                    {username} <small>2 hours ago</small>
                   </h5>
                   <div className="profile-comments__content">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
@@ -208,7 +247,7 @@ export default class Profile extends Component {
                 </div>
                 <div className="profile-comments__body">
                   <h5 className="profile-comments__sender">
-                    Richard Roe <small>5 hours ago</small>
+                  {username} <small>5 hours ago</small>
                   </h5>
                   <div className="profile-comments__content">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
@@ -226,7 +265,7 @@ export default class Profile extends Component {
                 </div>
                 <div className="profile-comments__body">
                   <h5 className="profile-comments__sender">
-                    Richard Roe <small>1 day ago</small>
+                  {username} <small>1 day ago</small>
                   </h5>
                   <div className="profile-comments__content">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
@@ -235,7 +274,7 @@ export default class Profile extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
       </div>
       <div className="col-xs-12 col-sm-3">
@@ -249,11 +288,14 @@ export default class Profile extends Component {
         </p>
         )}
         {admin===true && (
-        <p>
-          <Link to="/admin" href="#" className="profile__contact-btn btn btn-lg btn-block btn-warning">
-            Admin
+        // <p>
+        //   <button onClick={this.redirectAdmin.bind(this,_id)}  className="profile__contact-btn btn btn-lg btn-block btn-info">
+        //     Edit Profile
+        //   </button>
+        // </p>
+        <Link to="/profileedit" href="#" className="profile__contact-btn btn btn-lg btn-block btn-info">
+            Edit Profile
           </Link>
-        </p>
         )}
         <p>
           <button onClick={this.logout} className="profile__contact-btn btn btn-lg btn-block btn-danger">
@@ -267,7 +309,7 @@ export default class Profile extends Component {
         
         {/* <!-- Contact info --> */}
         <div className="profile__contact-info">
-          <div className="profile__contact-info-item">
+          {/* <div className="profile__contact-info-item">
             <div className="profile__contact-info-icon">
               <i className="fa fa-phone"></i>
             </div>
@@ -275,8 +317,8 @@ export default class Profile extends Component {
               <h5 className="profile__contact-info-heading">Work number</h5>
               (000)987-65-43
             </div>
-          </div>
-          <div className="profile__contact-info-item">
+          </div> */}
+          {/* <div className="profile__contact-info-item">
             <div className="profile__contact-info-icon">
               <i className="fa fa-phone"></i>
             </div>
@@ -284,7 +326,7 @@ export default class Profile extends Component {
               <h5 className="profile__contact-info-heading">Mobile number</h5>
               (000)987-65-43
             </div>
-          </div>
+          </div> */}
           <div className="profile__contact-info-item">
             <div className="profile__contact-info-icon">
               <i className="fa fa-envelope-square"></i>
@@ -294,7 +336,7 @@ export default class Profile extends Component {
               <a href="mailto:admin@domain.com">{email}</a>
             </div>
           </div>
-          <div className="profile__contact-info-item">
+          {/* <div className="profile__contact-info-item">
             <div className="profile__contact-info-icon">
               <i className="fa fa-map-marker"></i>
             </div>
@@ -302,7 +344,7 @@ export default class Profile extends Component {
               <h5 className="profile__contact-info-heading">Work address</h5>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             </div>
-          </div>
+          </div> */}
         </div>
 
       </div>
