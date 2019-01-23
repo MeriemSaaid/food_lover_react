@@ -4,70 +4,8 @@ import { Link } from 'react-router-dom';
  class About extends Component {
   render() {
     return (
-      <div>
-        <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
-          <div className="container">
-            <button
-              className="navbar-toggler collapsed"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarDefault"
-              aria-controls="navbarDefault"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            />
-            <a className="navbar-brand text-brand" href="/">
-              FoodLover<span className="color-b">Recipe</span>
-            </a>
-
-            <div
-              className="navbar-collapse collapse justify-content-center"
-              id="navbarDefault"
-            >
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link" href="index.html">
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  {/* <a className="nav-link active" href="about.html">
-                    About
-                  </a> */}
-                  <Link to =""></Link>
-                </li>
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Pages
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="contact.html">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <button
-              type="button"
-              className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
-              data-toggle="collapse"
-              data-target="#navbarTogglerDemo01"
-              aria-expanded="false"
-            >
-              <span className="fa fa-search" aria-hidden="true" />
-            </button>
-          </div>
-        </nav>
-
+    
+     <div>
         <section className="intro-single">
           <div className="container">
             <div className="row">
@@ -86,7 +24,7 @@ import { Link } from 'react-router-dom';
                 >
                   <ol className="breadcrumb">
                     <li className="breadcrumb-item">
-                      <a href="#">Home</a>
+                      <Link to="/">Home</Link>
                     </li>
                     <li className="breadcrumb-item active" aria-current="page">
                       About
@@ -108,7 +46,7 @@ import { Link } from 'react-router-dom';
                     className="HaitianLunch"
                   />
                 </div>
-                <div className="sinse-box">
+                {/* <div className="sinse-box">
                   <span />
                   <span />
                   <span />
@@ -118,7 +56,7 @@ import { Link } from 'react-router-dom';
                     <br /> December 2018
                   </h3>
                   <p>Blend of Recipes</p>
-                </div>
+                </div> */}
               </div>
               <div className="col-md-12 section-t8">
                 <div className="row">
@@ -127,33 +65,31 @@ import { Link } from 'react-router-dom';
                   </div>
                   <div className="col-lg-2  d-none d-lg-block">
                     <div className="title-vertical d-flex justify-content-start">
-                      <span>FoodLover A blend of food recipes</span>
+                      <span>FoodLover Recipes </span> <span></span>
                     </div>
                   </div>
                   <div className="col-md-6 col-lg-5 section-md-t3">
                     <div className="title-box-d">
                       <span />
                       <h3 className="title-d">
-                        Sed
-                        <span className="color-d">porttitor</span> lectus
-                        <br /> nibh.
+                        Blend
+                        <span className="color-d">of</span> international
+                        <br /> recipes.
                       </h3>
                     </div>
                     <p className="color-text-a">
-                      Mauris blandit aliquet elit, eget tincidunt nibh pulvinar
-                      a. Vivamus magna justo, lacinia eget consectetur sed,
-                      convallis at tellus. Praesent sapien massa, convallis a
-                      pellentesque nec, egestas non nisi. Vestibulum ante ipsum
-                      primis in faucibus orci luctus et ultrices posuere cubilia
-                      Curae; Donec velit neque, auctor sit amet aliquam vel,
-                      ullamcorper sit amet ligula.
+                      Three MSIMBO Bootcamp students from international background
+                      teams up and decides to shared light on variety of dishes from diverse 
+                      countries as final project for front web development.
+                      It started as just simple as random day-to-day food connoisseur preferences 
+                      conversation to a big idea as suggestion from Mr. Shiyu Wang our instructor.
+                      Along the way, the team decide to enlight those whose enjoy fine dining with
+                      friends and family whether in a restaurant or in a cozy place.
                     </p>
                     <p className="color-text-a">
-                      Sed porttitor lectus nibh. Vivamus magna justo, lacinia
-                      eget consectetur sed, convallis at tellus. Mauris blandit
-                      aliquet elit, eget tincidunt nibh pulvinar a. Vivamus
-                      magna justo, lacinia eget consectetur sed, convallis at
-                      tellus.
+                      FoodLover Recipe bring you an exquisite list of fine recipe dishes idea from well reknown local and or international chefs for any occasions.
+                      Whether you dine alone or with family and friends, take a seat back in your cozy place, enjoy making those delicious dishes and have a great time!
+                      
                     </p>
                   </div>
                 </div>
@@ -299,11 +235,12 @@ import { Link } from 'react-router-dom';
                     <h3 class="w-title-a text-brand">FoodLover Recipe</h3>
                   </div>
                   <div class="w-body-a">
-                    <p class="w-text-a color-text-a">
-                      Enim minim veniam quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip exea commodo consequat duis sed
-                      aute irure.
+                    <p class="w-text-a color-text-a ">
+                     To those who love fine dishes  whether in a restaurant, at a cozy place or at home with family, and friends, FoodLover Recipe bring you an exquisite list of
+                     fine dishes from well known local and or international chefs ideas of 
+                     dishes for any occasions! 
                     </p>
+                    <span> </span>
                   </div>
                   <div class="w-footer-a">
                     <ul class="list-unstyled">
@@ -322,43 +259,6 @@ import { Link } from 'react-router-dom';
             </div>
           </div>
         </section>
-        <footer>
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <nav class="nav-footer">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#">Home</a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#">About</a>
-                    </li>
-                    <li class="list-inline-item">
-                      <a href="#">Contact</a>
-                    </li>
-                  </ul>
-                </nav>
-                <div class="socials-a">
-                  <ul class="list-inline">
-                    <li class="list-inline-item">
-                      <a href="#">
-                        <i class="fa fa-facebook" aria-hidden="true" />
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="copyright-footer">
-                  <p class="copyright color-text-a">
-                    &copy; Copyright
-                    <span class="color-a">FoodLoverRecipe</span> All Rights
-                    Reserved.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     );
   }

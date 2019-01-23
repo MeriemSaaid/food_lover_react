@@ -11,7 +11,7 @@ export default class Footer extends Component {
               <nav className="nav-footer">
                 <ul className="list-inline">
                   <li className="list-inline-item">
-                    <Link to="/home">Home</Link>
+                    <Link to="/">Home</Link>
                   </li>
                   <li className="list-inline-item">
                     <Link to="/about">About </Link>
@@ -39,7 +39,7 @@ export default class Footer extends Component {
                 </p>
               </div>
               <div className="credits">
-                Designed by <Link to="/">MWG</Link>
+                Designed by Boostrapmade
               </div>
             </div>
           </div>

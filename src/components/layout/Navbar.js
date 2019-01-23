@@ -10,7 +10,7 @@ export default class Navbar extends Component {
           to ={{opacity: 1, marginTop: 0 }}
       > 
         {props => (
-            <div style = {props}>
+            <div style = {{props}}>
          // Animate Navbar
          <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
@@ -51,14 +51,14 @@ export default class Navbar extends Component {
                   </a>
                 </li>
                 <li className="nav-item">
-                  < Link to ="/about" className="nav-link" href="about.html">
+                  < Link to ="/about" className="nav-link">
                     About
                   </Link>
 
                 </li>
                 <li className="nav-item dropdown">
                   <Link
-                    className="nav-li  oggle"
+                    className="nav-li  toggle"
                     to="/"
                     id="navbarDropdown"
                     // role="button"
@@ -126,7 +126,7 @@ export default class Navbar extends Component {
                 </li>
 
                 <li className="nav-item">
-                  <Link to ="/contact"className="nav-link" href="contact.html">
+                  <Link to ="/contact" className="nav-link" href="contact.html">
                     Contact
                   </Link>
                 </li>
@@ -135,8 +135,6 @@ export default class Navbar extends Component {
             <Link
               to="/login"
               className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
-              // data-toggle="collapse"
-              // data-target="#navbarTogglerDemo01"
               aria-expanded="false"
             >
               Login

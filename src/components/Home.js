@@ -35,7 +35,7 @@ export default class Home extends Component {
                                 items={this.LOVE} keys={(item)=> item.key}
                                 from={{ transform: 'translate3d(0,-40px,0)', opacity: 0 }}
                                 to={{ transform: 'translate3d(0,0px,0)', opacity: 1 }}
-                                config={{delay: 500, duration: 500}}
+                                config={{delay: 170, duration: 180}}
                                 >
                                 {item => props => 
                                   <div className="color-b" style={props}> 
@@ -48,7 +48,7 @@ export default class Home extends Component {
                                 items={this.WHAT} keys={(item)=> item.key}
                                 from={{ transform: 'translate3d(0,-40px,0)', opacity: 0 }}
                                 to={{ transform: 'translate3d(0,0px,0)', opacity: 1 }}
-                                config={{delay: 650, duration: 650}}
+                                config={{delay: 200, duration: 240}}
                                 >
                                 {item => props => 
                                   <div className="color-w" style={props}> 
@@ -64,7 +64,7 @@ export default class Home extends Component {
                               items={this.YOU} keys={(item)=> item.key}
                               from={{ transform: 'translate3d(0,-40px,0)', opacity: 0 }}
                               to={{ transform: 'translate3d(0,0px,0)', opacity: 1 }}
-                              config={{delay: 750, duration: 750}}
+                              config={{delay: 250, duration: 300}}
                               >
                               {item => props => 
                                 <div className="color-w" style={props}> 
@@ -77,7 +77,7 @@ export default class Home extends Component {
                               items={this.COOK} keys={(item)=> item.key}
                               from={{ transform: 'translate3d(0,-40px,0)', opacity: 0 }}
                               to={{ transform: 'translate3d(0,0px,0)', opacity: 1 }}
-                              config={{delay: 850, duration: 850}}
+                              config={{delay: 300, duration: 340}}
                               >
                               {item => props => 
                                 <div className="color-w" style={props}> 
@@ -92,7 +92,7 @@ export default class Home extends Component {
                                 items={this.EVERYDAY} keys={(item)=> item.key}
                                 from={{ transform: 'translate3d(0,-40px,0)', opacity: 0 }}
                                 to={{ transform: 'translate3d(0,0px,0)', opacity: 1 }}
-                                config={{delay: 950, duration: 950}}
+                                config={{delay: 340, duration: 400}}
                                 >
                                 {item => props => 
                                   <div className="color-w" style={props}> 
@@ -106,7 +106,7 @@ export default class Home extends Component {
                           <Spring 
                             from={{opacity: 0}}
                             to={{opacity: 1}}
-                            config={{delay: 5000, duration: 3000}}>
+                            config={{delay: 400, duration: 500}}>
                             {props => (
                               <p className="intro-subtitle intro-price" style={props}>
                                 <a href="/">
