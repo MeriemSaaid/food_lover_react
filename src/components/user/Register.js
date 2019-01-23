@@ -177,12 +177,13 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                   <input
-                    type="text"
+                    type="email"
                     placeholder="Email"
                     className="form-control"
                     name="email"
                     onChange={this.onChange}
                     value={email}
+                    require
                   />
                 </div>
                 <div className="form-group">

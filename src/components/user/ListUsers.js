@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 export default class ListUsers extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {
+        this.state = {  
           users :[]
         };
       }
@@ -24,8 +23,11 @@ export default class ListUsers extends Component {
       }
 
       onDelete = (id) => {
-          // Delete from database
-          axios.delete("/api/user/" + id);
+          window.$(`#delete${id}`).modal("hide")
+        //   Delete from database
+          
+        //  alert(id);
+          axios.delete("/api/delete/" + id);
           // Delete from state
           this.setState({
               users: this.state.users.filter(
@@ -45,6 +47,7 @@ export default class ListUsers extends Component {
   render() {
     //   console.log(this.state.users);
       const {users} = this.state;
+      console.log(users);
     return (
         <div className="container padding_div div_center">
         {/* <h1 >List of all users</h1>
@@ -101,7 +104,27 @@ export default class ListUsers extends Component {
                                 {/* <Link to="/admin" className='btn btn-info btn-xs"' href="#"><i className="far fa-edit"></i></Link> */}
                                 <button onClick={this.onUpdate.bind(this, user._id)} className="btn btn-info btn-xs"><i className="far fa-edit"></i></button>
                             {/* Delete User Button */}
-                                <button onClick={this.onDelete.bind(this, user._id)} className="btn btn-danger btn-xs btnSpace"><i className="far fa-trash-alt"></i></button></td>
+                                <button type="button" data-toggle="modal" data-target={`#delete${user._id}`}  className="btn btn-danger btn-xs btnSpace"><i className="far fa-trash-alt"></i></button>
+                                <div className="modal fade" id={`delete${user._id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                <div className="modal-header">
+                                        <h5 className="modal-title">Modal title</h5>
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <p>Are you sure you want to <strong>delete</strong> this user?</p>
+                                        </div>
+                                        <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button onClick={this.onDelete.bind(this, user._id)} type="button" className="btn btn-danger">Delete</button>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </td>
                             </tr>
                                 );
                             })}

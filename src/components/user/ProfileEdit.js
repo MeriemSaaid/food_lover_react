@@ -12,6 +12,8 @@ export default class EditProfile extends Component {
       email: "",
       bio: "",
       specialty: "",
+      chef: false,
+      admin: false,
       dateCreated: new Date().toLocaleDateString(),
       gender: "",
       _id: ""
@@ -39,20 +41,28 @@ export default class EditProfile extends Component {
         confirmPassword,
         firstname,
         lastname,
+        bio,
+        admin,
+        specialty,
         email,
         birthday,
         gender,
         _id,
+        chef,
         dateCreated
       } = res.data;
       this.setState({
         _id,
         username,
         password,
+        bio,
+        admin,
+        specialty,
         confirmPassword,
         firstname,
         lastname,
         email,
+        chef,
         birthday,
         gender,
         dateCreated
@@ -68,6 +78,7 @@ export default class EditProfile extends Component {
       password,
       confirmPassword,
       bio,
+      admin,
       specialty,
       firstname,
       lastname,
@@ -83,6 +94,7 @@ export default class EditProfile extends Component {
       password,
       confirmPassword,
       bio,
+      admin,
       specialty,
       firstname,
       lastname,
@@ -107,8 +119,10 @@ export default class EditProfile extends Component {
       lastname,
       email,
       bio,
+      chef,
       specialty,
-      gender
+      gender,
+      admin
     } = this.state;
     return (
       <div className="padding_div bottom_space container">
@@ -128,24 +142,41 @@ export default class EditProfile extends Component {
                 </div>
                 <div className="profile__header">
                   <h4>
-                    {firstname} {lastname} <small>Administrator</small>
+                    {firstname} {lastname}
+                    {admin === true && (
+                      <small style={{ color: "green" }}> Administrator</small>
+                    )}
+                    {chef === true && (
+                      <small style={{ color: "green" }}> Chef</small>
+                    )}
                   </h4>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="bio"
-                    onChange={this.onChange}
-                    value={bio}
-                    placeholder="Edit Bio"
-                  />
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="specialty"
-                    onChange={this.onChange}
-                    value={specialty}
-                    placeholder="Add Specialties"
-                  />
+                  {chef === false && (
+                    <input
+                      className="form-control"
+                      name="bio"
+                      onChange={this.onChange}
+                      value={bio}
+                      placeholder="A little bit about myself.."
+                    />
+                  )}
+                  {chef === true && (
+                    <input
+                      className="form-control"
+                      name="bio"
+                      onChange={this.onChange}
+                      value={bio}
+                      placeholder="Edit Bio"
+                    />
+                  )}
+                  {chef === true && (
+                    <input
+                      className="form-control"
+                      name="specialty"
+                      onChange={this.onChange}
+                      value={specialty}
+                      placeholder="Add Specialties"
+                    />
+                  )}
                   <p>
                     <button type="file" className="btn">
                       Update Photo

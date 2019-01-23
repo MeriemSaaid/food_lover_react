@@ -34,6 +34,7 @@ export default class EditProfile extends Component {
     this.loggedIn();
   }
 
+ 
 
 
   loggedIn = async () => {
@@ -41,7 +42,7 @@ export default class EditProfile extends Component {
     if (res.data === 0) {
       this.props.history.push("/login");
     } else {
-      const id =this.props.location.state.id;
+      const id = this.props.location.state.id;
       const res = await axios.get(`/api/user/${id}`);
       const {
         username,
@@ -236,7 +237,7 @@ export default class EditProfile extends Component {
                 </button>
               </p>
               <p>
-                <Link to="/profile" href="#" className="btn btn-lg btn-block btn-secondary">
+                <Link to="/listUsers" href="#" className="btn btn-lg btn-block btn-secondary">
                   Cancel
                 </Link>
               </p>
