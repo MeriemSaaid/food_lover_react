@@ -108,11 +108,7 @@ class Navbar extends Component {
                     </button>
                   </div>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="about.html">
-                    Videos
-                  </a>
-                </li>
+
                 <li className="nav-item">
                   <Link
                     className="nav-link"

@@ -96,7 +96,8 @@ export default class RecipeAdd extends Component {
       this.props.history.push("/login");
     } else {
       this.setState({
-        userId: res.data._id
+        userId: res.data._id,
+        category: this.props.match.params.type.toLowerCase()
       });
     }
   }

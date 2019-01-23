@@ -960,7 +960,7 @@ a:hover {
 /*------/ Intro Single /------*/
 
 .intro-single {
-  padding: 12rem 0 3rem;
+  padding: 6rem 0 3rem;
 }
 
 .intro-single .title-single-box {
@@ -2261,6 +2261,7 @@ hr {
 }
 .font_pop {
   font-family: "Poppins", sans-serif;
+  white-space: pre-wrap;
 }
 
 /* Chefs css */
@@ -2611,4 +2612,38 @@ Chef links
   line-height: 1.2em;
   height: 5.6em;
   overflow: hidden;
+}
+
+.caption div {
+  box-shadow: 0 0 5px #c8c8c8;
+  transition: all 0.3s ease 0s;
+}
+.img-circle {
+  border-radius: 50%;
+}
+.img-circle {
+  border-radius: 0;
+}
+
+.ratio {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  width: 100%;
+}
+.img-circle {
+  border-radius: 50%;
+}
+.img-responsive {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+.agent-single {
+  width: 100%;
+  background-color: #e8e8e8;
 }

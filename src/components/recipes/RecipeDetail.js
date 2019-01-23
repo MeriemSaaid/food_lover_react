@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default class RecipeDetail extends Component {
   state = {
@@ -14,7 +15,9 @@ export default class RecipeDetail extends Component {
     comments: [],
     editingComment: "",
     editingContent: "",
-    topRecipes :[]
+    topRecipes: [],
+    user: "",
+    userId: ""
   };
   //Function to get recipes
   getRecipe = async id => {
@@ -27,28 +30,34 @@ export default class RecipeDetail extends Component {
       picture,
       description,
       ingredients,
-      username:res.data.userId.username,
+      username: res.data.userId.username,
+      userId: res.data.userId._id,
       datePosted
-      
     });
   };
   //Call function on load
- async componentDidMount() {
-  const res = await axios.get(`/api/top`);
-  this.setState({
-    topRecipes : res.data
-    
-  });
-  // console.log(this.state.topRecipes);
-  
-    const id = this.props.location.state.id;
-    
-    this.setState({
-      recipeId: id
-    });
-    this.getRecipe(id);
-    this.getComments(id);
- 
+  async componentDidMount() {
+    const user = await this.props.loggedIn();
+    // console.log(res.data);
+    if (user.data === 0) {
+      // console.log("not connected");
+      this.props.history.push("/login");
+    } else {
+      const res = await axios.get(`/api/top`);
+      this.setState({
+        topRecipes: res.data
+      });
+      // console.log(this.state.topRecipes);
+
+      const id = this.props.location.state.id;
+
+      this.setState({
+        recipeId: id,
+        user: user.data._id
+      });
+      this.getRecipe(id);
+      this.getComments(id);
+    }
   }
   //
   onChange = e => {
@@ -63,7 +72,7 @@ export default class RecipeDetail extends Component {
     // console.log(res.data);
     this.setState({
       comments: [...this.state.comments, res.data],
-      content: "",
+      content: ""
     });
     const id = this.props.location.state.id;
     this.getComments(id);
@@ -75,6 +84,7 @@ export default class RecipeDetail extends Component {
     this.setState({
       comments: res.data
     });
+    console.log("this.state.comments");
   };
 
   //Fuction to submit form
@@ -84,7 +94,7 @@ export default class RecipeDetail extends Component {
     const comment = {
       content: this.state.content,
       recipeId: this.state.recipeId,
-      userId: "5c376658f5768e0950a5b669"
+      userId: this.state.user
     };
     this.postComment(comment);
   };
@@ -130,8 +140,7 @@ export default class RecipeDetail extends Component {
 
   //Consult details
   showDetail = id => {
-   this.getRecipe(id);
-    
+    this.getRecipe(id);
   };
   render() {
     const {
@@ -142,9 +151,12 @@ export default class RecipeDetail extends Component {
       datePosted,
       username,
       content,
-      comments
+      comments,
+      user,
+      userId
     } = this.state;
-    // console.log(comments);
+
+    console.log(comments);
     return (
       <div className="container padding_div">
         <div className="row">
@@ -152,7 +164,7 @@ export default class RecipeDetail extends Component {
             <h1 className="mt-4">{name}</h1>
             <p className="lead">
               by
-              <a href="/">&nbsp;{username}</a>
+              <Link to={`/chefdetail/${userId}`}>&nbsp;{username}</Link>
             </p>
             <hr />
             <p>Posted on {datePosted}</p>
@@ -240,19 +252,21 @@ export default class RecipeDetail extends Component {
                   ) : (
                     <div>
                       <p>{comment.content}</p>
-                      <p className="text-right">
-                        <button
-                          type="button"
-                          className="btn btn-default btn-sm"
-                          onClick={this.editComment.bind(
-                            this,
-                            comment._id,
-                            comment.content
-                          )}
-                        >
-                          <i className="fa fa-edit" /> edit
-                        </button>
-                      </p>
+                      {comment.userId._id === user && (
+                        <p className="text-right">
+                          <button
+                            type="button"
+                            className="btn btn-default btn-sm"
+                            onClick={this.editComment.bind(
+                              this,
+                              comment._id,
+                              comment.content
+                            )}
+                          >
+                            <i className="fa fa-edit" /> edit
+                          </button>
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -261,42 +275,64 @@ export default class RecipeDetail extends Component {
           </div>
 
           <div className="col-md-4">
-             <div className="card my-4">
+            <div className="card my-4">
               <h5 className="card-header">Top Recipes</h5>
-              
-              <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+
+              <div
+                id="carouselExampleIndicators"
+                className="carousel slide"
+                data-ride="carousel"
+              >
                 <ol className="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="0"
+                    className="active"
+                  />
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="1"
+                  />
+                  <li
+                    data-target="#carouselExampleIndicators"
+                    data-slide-to="2"
+                  />
                 </ol>
-              <div className="carousel-inner"> 
-            
-      {this.state.topRecipes.map((recipe, i) => {
-        if(i===0){
-          return (<div className="carousel-item active card-body"  key={recipe._id} >
-          <img
-              className="card-img-top fixed_size cursor_pointer"
-              src={recipe.picture}
-              alt={recipe.name}
-              onClick={this.showDetail.bind(this, recipe._id)}
-            />
-        </div>)
-        }
-        else{
-          return (<div className="carousel-item card-body"  key={recipe._id} >
-          <img
-              className="card-img-top fixed_size cursor_pointer"
-              src={recipe.picture}
-              alt={recipe.name}
-              onClick={this.showDetail.bind(this, recipe._id)}
-            />
-        </div>)
-        }
-      })}
+                <div className="carousel-inner">
+                  {this.state.topRecipes.map((recipe, i) => {
+                    if (i === 0) {
+                      return (
+                        <div
+                          className="carousel-item active card-body"
+                          key={recipe._id}
+                        >
+                          <img
+                            className="card-img-top fixed_size cursor_pointer"
+                            src={recipe.picture}
+                            alt={recipe.name}
+                            onClick={this.showDetail.bind(this, recipe._id)}
+                          />
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <div
+                          className="carousel-item card-body"
+                          key={recipe._id}
+                        >
+                          <img
+                            className="card-img-top fixed_size cursor_pointer"
+                            src={recipe.picture}
+                            alt={recipe.name}
+                            onClick={this.showDetail.bind(this, recipe._id)}
+                          />
+                        </div>
+                      );
+                    }
+                  })}
+                </div>
+              </div>
             </div>
-          </div>
-       </div>
 
             <div className="card my-4">
               <h5 className="card-header">Our videos</h5>

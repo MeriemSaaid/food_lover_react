@@ -97,92 +97,143 @@ export default class ChefDetail extends Component {
   };
   render() {
     const { chef, follower, followers, nbFollowers, recipes } = this.state;
-    console.log(this.handleCheck(follower));
+    // console.log(this.handleCheck(follower));
     return (
-      <div className="container padding_div">
-        <div className="detail">
-          <div className="wrapper row">
-            <div className="preview col-md-6">
-              <div className="tab-pane active" id="pic-1">
-                <img src="http://placekitten.com/400/252" />
-              </div>
-            </div>
-            <div className="details col-md-6">
-              <h4 className="price">
-                First name: <span>{chef.firstname}</span>
-              </h4>
-              <h4 className="price">
-                Last name: <span>{chef.lastname}</span>
-              </h4>
-              <h4 className="price">
-                Email: <span>{chef.email}</span>
-              </h4>
-              <h4 className="price">
-                Publications: <span>{recipes.length}</span>
-              </h4>
-              <h4 className="price">
-                Followers: <span>{followers.length}</span>
-              </h4>
-              <div className="action">
-                {!this.handleCheck(follower) && (
-                  <button
-                    className="add-to-cart btn btn-default"
-                    type="button"
-                    onClick={this.addfollow.bind(this, follower, chef._id)}
-                  >
-                    Follow
-                  </button>
-                )}
-                &nbsp;
-                {this.handleCheck(follower) && (
-                  <button
-                    className="add-to-cart btn btn-default"
-                    type="button"
-                    onClick={this.Unfollow.bind(this, follower, chef._id)}
-                  >
-                    UnFollow
-                  </button>
-                )}
+      <div className="container padding_div intro-single">
+        <div className="agent-single padding_div border">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="agent-avatar-box">
+                      <img
+                        src="http://placekitten.com/400/252"
+                        alt=""
+                        className="rounded-circle float-right fixed_width_heigth_chef_detail"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-5 section-md-t3">
+                    <div className="agent-info-box">
+                      {/* <div className="agent-title"> */}
+                      {/* <div className="title-box-d">
+                        <h3 className="title-d">
+                          {chef.firstname}
+                          <br /> {chef.lastname}
+                        </h3>
+                      </div> */}
+                      {/* </div> */}
+                      <div className="agent-content mb-3">
+                        <p className="content-d color-text-a">fff{chef.bio}</p>
+                        <div className="info-agents color-a">
+                          <p>
+                            <strong>Email: </strong>
+                            <span className="color-text-a"> {chef.email}</span>
+                          </p>
+                          <p>
+                            <strong>Publications: </strong>
+                            <span className="color-text-a">
+                              {recipes.length}
+                            </span>
+                          </p>
+                          <p>
+                            <strong>Experience: </strong>
+                            <span className="color-text-a">
+                              {chef.experience}
+                            </span>
+                          </p>
+
+                          <p>
+                            <strong>Followers: </strong>
+                            <span className="color-text-a">
+                              {followers.length}
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                      <div className="socials-footer">
+                        <ul className="list-inline">
+                          {!this.handleCheck(follower) && (
+                            <li className="list-inline-item">
+                              <button
+                                className="link-one"
+                                onClick={this.addfollow.bind(
+                                  this,
+                                  follower,
+                                  chef._id
+                                )}
+                              >
+                                Follow{" "}
+                                <i
+                                  className="fa fa-facebook"
+                                  aria-hidden="true"
+                                />
+                              </button>
+                            </li>
+                          )}
+                          {this.handleCheck(follower) && (
+                            <li className="list-inline-item">
+                              <button
+                                className="link-one"
+                                onClick={this.Unfollow.bind(
+                                  this,
+                                  follower,
+                                  chef._id
+                                )}
+                              >
+                                Unfollow
+                                <i
+                                  className="fa fa-twitter"
+                                  aria-hidden="true"
+                                />
+                              </button>
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        {/* <section className="col-xs-12 col-sm-6 col-md-12"> */}
-        {recipes.map((recipe, i) => {
-          // console.log(recipe);
-          return (
-            <div className="search-result row" key={recipe._id}>
-              <div className="col-xs-12 col-sm-12 col-md-3">
-                {/* <Link to="#" alt={recipe.name} className="thumbnail"> */}
-                <img
-                  src={recipe.picture}
-                  alt={recipe.name}
-                  className="thumbnail fixed_width_heigth_chef_detail cursor_pointer"
-                  onClick={this.showDetail.bind(this, recipe._id)}
-                  //   className="cursor_pointer"
-                />
-                {/* </Link> */}
-              </div>
 
-              <div className="col-xs-12 col-sm-12 col-md-7 excerpet">
-                <h3
-                  onClick={this.showDetail.bind(this, recipe._id)}
-                  className="cursor_pointer"
-                >
-                  {recipe.name}
-                </h3>
-                <p className="limit_p_detail">{recipe.description}</p>
-                {/* <span className="plus">
-                <a href="#" title="Lorem ipsum">
-                  <i className="glyphicon glyphicon-plus" />
-                </a>
-              </span> */}
+        <div id="products" className="row view-group padding_div">
+          {recipes.map((recipe, i) => {
+            // console.log(recipe);
+            return (
+              <div className="item col-xs-4 col-lg-4" key={recipe._id}>
+                <div className="thumbnail card">
+                  <div className="img-event">
+                    <img
+                      className="group list-group-image img-fluid fixed_width_heigth cursor_pointer"
+                      src={recipe.picture}
+                      alt={recipe.name}
+                      onClick={this.showDetail.bind(this, recipe._id)}
+                    />
+                  </div>
+                  <div className="caption card-body">
+                    <h4 className="group card-title inner list-group-item-heading">
+                      {recipe.name}
+                    </h4>
+                    <p className="group inner list-group-item-text limit_p">
+                      {recipe.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <span className="clearfix borda" />
-            </div>
-          );
-        })}
-        {/* </section> */}
+            );
+          })}
+          {/* <Pagination
+            activePage={this.state.activePage}
+            itemsCountPerPage={10}
+            totalItemsCount={450}
+            pageRangeDisplayed={5}
+            onChange={this.handlePageChange}
+          /> */}
+        </div>
       </div>
     );
   }
