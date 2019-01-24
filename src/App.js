@@ -42,7 +42,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const res = await this.loggedIn();
+    await this.loggedIn();
   }
 
   // componentDidUpdate(prevProps, prevState) {

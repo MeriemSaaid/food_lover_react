@@ -13,7 +13,7 @@ export default class Profile extends Component {
       gender: "",
       bio: "",
       specialty: "",
-      _id: "",
+
       dateCreated: new Date().toLocaleDateString(),
       admin: false,
       chef: false
@@ -58,8 +58,7 @@ export default class Profile extends Component {
         chef,
         dateCreated,
         bio,
-        specialty,
-        _id
+        specialty
       } = res.data;
       this.setState({
         username,
@@ -71,8 +70,7 @@ export default class Profile extends Component {
         chef,
         dateCreated,
         bio,
-        specialty,
-        _id
+        specialty
       });
     }
   };
@@ -96,8 +94,7 @@ export default class Profile extends Component {
       chef,
       specialty,
       gender,
-      admin,
-      _id
+      admin
     } = this.state;
     return (
       <div className="padding_div bottom_space container">
@@ -127,14 +124,14 @@ export default class Profile extends Component {
                   </h4>
                   {/* User's Bio */}
                   <div className="d-block">
-                    {chef === false && <a>About me:</a>}
+                    {chef === false && <span>About me:</span>}
                     {chef === false && (
                       <span className="text-muted"> {bio}</span>
                     )}
                   </div>
                   {/* Chef's Bio */}
                   <div className="d-block">
-                    {chef === true && <a>Bio:</a>}
+                    {chef === true && <span>Bio:</span>}
                     {chef === true && (
                       <span className="text-muted"> {bio}</span>
                     )}
@@ -142,7 +139,7 @@ export default class Profile extends Component {
                   <br />
                   <div>
                     {/* Chef's Specialties */}
-                    {chef === true && <a>Specialties:</a>}
+                    {chef === true && <span>Specialties:</span>}
                     {chef === true && (
                       <span placeholder="specialties"> {specialty}</span>
                     )}

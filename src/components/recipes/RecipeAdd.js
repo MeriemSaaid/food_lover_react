@@ -80,7 +80,6 @@ export default class RecipeAdd extends Component {
       name,
       picture,
       description,
-      picture,
       ingredients,
       category
     };

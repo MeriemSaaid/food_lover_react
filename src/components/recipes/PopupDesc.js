@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import RecipeAdd from "./RecipeAdd";
 
 export default class PopupDesc extends Component {
   render() {

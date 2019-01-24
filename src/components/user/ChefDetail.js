@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import { Link } from "react-router-dom";
-
 export default class ChefDetail extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +8,7 @@ export default class ChefDetail extends Component {
       follower: "",
       chef: [],
       followers: [],
-      nbFollowers: 0,
+
       recipes: []
     };
   }
@@ -45,7 +43,7 @@ export default class ChefDetail extends Component {
       nbFollowers: res.data.length
     });
 
-    const idFollower = this.props.match.params.id;
+    // const idFollower = this.props.match.params.id;
     // console.log(this.handleCheck(idFollower));
   }
   async addfollow(followerId, followedId) {
@@ -60,7 +58,7 @@ export default class ChefDetail extends Component {
   }
   //Unfollow
   async Unfollow(followerId, followedId) {
-    const res = await axios.delete(`/api/unfollow/${followerId}/${followedId}`);
+    await axios.delete(`/api/unfollow/${followerId}/${followedId}`);
     // console.log(res.data);
     // const id = this.props.match.params.id;
     // this.getFollowers(id);
@@ -96,7 +94,7 @@ export default class ChefDetail extends Component {
     });
   };
   render() {
-    const { chef, follower, followers, nbFollowers, recipes } = this.state;
+    const { chef, follower, followers, recipes } = this.state;
     // console.log(this.handleCheck(follower));
     return (
       <div className="container padding_div intro-single">

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
+
 class Navbar extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,7 @@ class Navbar extends Component {
     this.props.history.push(`/list/${type}`);
   };
   loggeOut = async () => {
-    const res = await axios.post("/api/logout");
+    await axios.post("/api/logout");
     this.props.loggedIn();
     this.props.history.push(`/login`);
   };
@@ -24,7 +25,6 @@ class Navbar extends Component {
   //   });
   // }
   render() {
-    console.log(this.state.user);
     return (
       <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
