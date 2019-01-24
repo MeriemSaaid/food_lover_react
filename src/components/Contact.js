@@ -121,98 +121,91 @@ export class Contact extends Component {
                 <div className="col-sm-12 section-t8">
                   <div className="row">
                     <div className="col-md-7">
-                      <form
-                        className="form-a contactForm"
-                        action=""
-                        method="post"
-                        role="form"
-                      >
-                        {this.state.sendMessage && (
-                          <div>
-                            Your message has been sent. Thank you for notify us!
-                          </div>
-                        )}
-                        <div className="row">
-                          <div className="col-md-6 mb-3">
-                            {this.state.errors.fullname && (
-                              <div className="alert alert-warning">
-                                {this.state.errors.fullname}
-                              </div>
-                            )}
-                            <div class="form-group">
-                              <input
-                                type="text"
-                                name="fullname"
-                                className="form-control form-control-lg form-control-a"
-                                placeholder="Your Full Name"
-                                value={this.state.fullname}
-                                onChange={this.onChange}
-                              />
+                      {this.state.sendMessage && (
+                        <div>
+                          Your message has been sent. Thank you for notify us!
+                        </div>
+                      )}
+                      <div className="row">
+                        <div className="col-md-6 mb-3">
+                          {this.state.errors.fullname && (
+                            <div className="alert alert-warning">
+                              {this.state.errors.fullname}
                             </div>
-                          </div>
-                          <div className="col-md-6 mb-3">
-                            <div className="form-group">
-                              <input
-                                name="email"
-                                type="email"
-                                className="form-control form-control-lg form-control-a"
-                                placeholder="Your Email"
-                                value={this.state.email}
-                                onChange={this.onChange}
-                              />
-                              {this.state.errors.email && (
-                                <div className="alert alert-warning">
-                                  {this.state.errors.email}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                          <div className="col-md-12 mb-3">
-                            <div className="form-group">
-                              <input
-                                type="text"
-                                name="subject"
-                                className="form-control form-control-lg form-control-a"
-                                placeholder="Subject"
-                                value={this.state.subject}
-                                onChange={this.onChange}
-                              />
-                            </div>
-                            {this.state.errors.subject && (
-                              <div className="alert alert-warning">
-                                {this.state.errors.subject}
-                              </div>
-                            )}
-                          </div>
-                          <div className="col-md-12 mb-3">
-                            <div className="form-group">
-                              <textarea
-                                name="message"
-                                className="form-control"
-                                cols="45"
-                                rows="8"
-                                value={this.state.message}
-                                onChange={this.onChange}
-                                placeholder="Message or Description"
-                              />
-                            </div>
-                            {this.state.errors.message && (
-                              <div className="alert alert-warning">
-                                {this.state.errors.message}
-                              </div>
-                            )}
-                          </div>
-                          <div className="col-md-12">
-                            <button
-                              type="submit"
-                              className="btn btn-a"
-                              // onClick={this.submitMessage}
-                            >
-                              Send Message{" "}
-                            </button>
+                          )}
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              name="fullname"
+                              className="form-control form-control-lg form-control-a"
+                              placeholder="Your Full Name"
+                              value={this.state.fullname}
+                              onChange={this.onChange}
+                            />
                           </div>
                         </div>
-                      </form>
+                        <div className="col-md-6 mb-3">
+                          <div className="form-group">
+                            <input
+                              name="email"
+                              type="email"
+                              className="form-control form-control-lg form-control-a"
+                              placeholder="Your Email"
+                              value={this.state.email}
+                              onChange={this.onChange}
+                            />
+                            {this.state.errors.email && (
+                              <div className="alert alert-warning">
+                                {this.state.errors.email}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="col-md-12 mb-3">
+                          <div className="form-group">
+                            <input
+                              type="text"
+                              name="subject"
+                              className="form-control form-control-lg form-control-a"
+                              placeholder="Subject"
+                              value={this.state.subject}
+                              onChange={this.onChange}
+                            />
+                          </div>
+                          {this.state.errors.subject && (
+                            <div className="alert alert-warning">
+                              {this.state.errors.subject}
+                            </div>
+                          )}
+                        </div>
+                        <div className="col-md-12 mb-3">
+                          <div className="form-group">
+                            <textarea
+                              name="message"
+                              className="form-control"
+                              cols="45"
+                              rows="8"
+                              value={this.state.message}
+                              onChange={this.onChange}
+                              placeholder="Message or Description"
+                            />
+                          </div>
+                          {this.state.errors.message && (
+                            <div className="alert alert-warning">
+                              {this.state.errors.message}
+                            </div>
+                          )}
+                        </div>
+                        <div className="col-md-12">
+                          <button
+                            type="submit"
+                            className="btn btn-a"
+                            // onClick={this.submitMessage}
+                          >
+                            Send Message{" "}
+                          </button>
+                        </div>
+                      </div>
                     </div>
                     <div className="col-md-5 section-md-t3">
                       <div className="icon-box section-b2">

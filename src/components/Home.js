@@ -5,9 +5,58 @@ export default class Home extends Component {
   LOVE = "LOVE".split("");
   WHAT = "WHAT".split("");
   YOU = "YOU".split("");
-  COOK = "COOK".split("");
-  EVERYDAY = "EVERYDAY".split("");
-
+  COOK = [
+    {
+      id: 1,
+      letter: "C"
+    },
+    {
+      id: 2,
+      letter: "O"
+    },
+    {
+      id: 3,
+      letter: "O"
+    },
+    {
+      id: 4,
+      letter: "K"
+    }
+  ];
+  EVERYDAY = [
+    {
+      id: 1,
+      letter: "E"
+    },
+    {
+      id: 2,
+      letter: "V"
+    },
+    {
+      id: 3,
+      letter: "E"
+    },
+    {
+      id: 4,
+      letter: "R"
+    },
+    {
+      id: 5,
+      letter: "Y"
+    },
+    {
+      id: 6,
+      letter: "D"
+    },
+    {
+      id: 7,
+      letter: "A"
+    },
+    {
+      id: 8,
+      letter: "Y"
+    }
+  ];
   render() {
     const divStyle1 = {
       backgroundImage: "url(../logo.jpg)"
@@ -34,7 +83,7 @@ export default class Home extends Component {
                             >
                               <Trail
                                 items={this.LOVE}
-                                keys={item => item.key}
+                                key={item => item.key}
                                 from={{
                                   transform: "translate3d(0,-40px,0)",
                                   opacity: 0
@@ -46,7 +95,11 @@ export default class Home extends Component {
                                 config={{ delay: 170, duration: 180 }}
                               >
                                 {item => props => (
-                                  <div className="color-b" style={props}>
+                                  <div
+                                    className="color-b"
+                                    style={props}
+                                    key={item}
+                                  >
                                     {item}
                                   </div>
                                 )}
@@ -54,7 +107,7 @@ export default class Home extends Component {
                             </div>
                             <Trail
                               items={this.WHAT}
-                              keys={item => item.key}
+                              key={item => item.key}
                               from={{
                                 transform: "translate3d(0,-40px,0)",
                                 opacity: 0
@@ -66,7 +119,7 @@ export default class Home extends Component {
                               config={{ delay: 200, duration: 240 }}
                             >
                               {item => props => (
-                                <div className="color-w" style={props}>
+                                <div className="color-w" style={props} key="2">
                                   {item}
                                 </div>
                               )}
@@ -76,7 +129,7 @@ export default class Home extends Component {
                           <div style={{ display: "flex" }}>
                             <Trail
                               items={this.YOU}
-                              keys={item => item.key}
+                              key={item => item.key}
                               from={{
                                 transform: "translate3d(0,-40px,0)",
                                 opacity: 0
@@ -88,7 +141,11 @@ export default class Home extends Component {
                               config={{ delay: 250, duration: 300 }}
                             >
                               {item => props => (
-                                <div className="color-w" style={props}>
+                                <div
+                                  className="color-w"
+                                  style={props}
+                                  key={item.key}
+                                >
                                   {item}
                                 </div>
                               )}
@@ -96,7 +153,7 @@ export default class Home extends Component {
 
                             <Trail
                               items={this.COOK}
-                              keys={item => item.key}
+                              keys={item => item.id}
                               from={{
                                 transform: "translate3d(0,-40px,0)",
                                 opacity: 0
@@ -108,8 +165,12 @@ export default class Home extends Component {
                               config={{ delay: 300, duration: 340 }}
                             >
                               {item => props => (
-                                <div className="color-w" style={props}>
-                                  {item}
+                                <div
+                                  className="color-w"
+                                  style={props}
+                                  key={item.id}
+                                >
+                                  {item.letter}
                                 </div>
                               )}
                             </Trail>
@@ -117,7 +178,7 @@ export default class Home extends Component {
                           <div style={{ display: "flex" }}>
                             <Trail
                               items={this.EVERYDAY}
-                              keys={item => item.key}
+                              keys={item => item.id}
                               from={{
                                 transform: "translate3d(0,-40px,0)",
                                 opacity: 0
@@ -128,9 +189,13 @@ export default class Home extends Component {
                               }}
                               config={{ delay: 340, duration: 400 }}
                             >
-                              {item => props => (
-                                <div className="color-w" style={props}>
-                                  {item}
+                              {(item, i) => props => (
+                                <div
+                                  className="color-w"
+                                  style={props}
+                                  key={item.id}
+                                >
+                                  {item.letter}
                                 </div>
                               )}
                             </Trail>

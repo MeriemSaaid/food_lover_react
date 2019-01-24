@@ -131,26 +131,6 @@ class About extends Component {
                     <i className="fa fa-facebook" aria-hidden="true" />
                   </Link>
                 </li>
-                <li className="list-inline-item">
-                  <a href="#" className="link-one">
-                    <i class="fa fa-twitter" aria-hidden="true" />
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="#" className="link-one">
-                    <i class="fa fa-instagram" aria-hidden="true" />
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="#" className="link-one">
-                    <i className="fa fa-pinterest-p" aria-hidden="true" />
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="#" className="link-one">
-                    <i class="fa fa-dribbble" aria-hidden="true" />
-                  </a>
-                </li>
               </ul>
             </div>
           </div>
@@ -180,9 +160,7 @@ class About extends Component {
               <div className="socials-footer d-flex justify-content-center">
                 <ul className="list-inline">
                   <li className="list-inline-item">
-                    <a href="#" className="link-one">
-                      <i className="fa fa-facebook" aria-hidden="true" />
-                    </a>
+                    <i className="fa fa-facebook" aria-hidden="true" />
                   </li>
                 </ul>
               </div>
@@ -224,9 +202,7 @@ class About extends Component {
                 <div className="socials-footer d-flex justify-content-center">
                   <ul className="list-inline">
                     <li cclassName="list-inline-item">
-                      <a href="#" class="link-one">
-                        <i class="fa fa-facebook" aria-hidden="true" />
-                      </a>
+                      <i class="fa fa-facebook" aria-hidden="true" />
                     </li>
                   </ul>
                 </div>
