@@ -19,10 +19,14 @@ import Chef from "./components/user/Chef";
 import ChefDetail from "./components/user/ChefDetail";
 import axios from "axios";
 
+import Contact from "./components/Contact";
+import About from "./components/About";
+
 // import Home from "./components/Home";
 
 import ListUsers from "./components/user/ListUsers";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+// import EditRecipe from "./components/recipes/EditRecipe";
 
 class App extends Component {
   state = {
@@ -91,6 +95,7 @@ class App extends Component {
                 />
               )}
             />
+            {/* <Route exact path="/edit" component={EditRecipe} /> */}
             {/* <Route exact path="/login" component={Login} /> */}
             <Route
               exact
@@ -140,6 +145,8 @@ class App extends Component {
             />
             <Route exact path="/detail/:id" component={RecipeDetail} />
             <Route exact path="/listUsers" component={ListUsers} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/about" component={About} />
           </Switch>
           <footer>{<Footer />}</footer>
         </div>
