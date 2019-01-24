@@ -22,7 +22,7 @@ class About extends Component {
                   className="breadcrumb-box d-flex justify-content-lg-end"
                 >
                   <ol className="breadcrumb">
-                    <li className="breadcrumb-item active">
+                    <li className="breadcrumb-item">
                       <Link to="/">Home</Link>
                     </li>
                     <li className="breadcrumb-item active" aria-current="page">
@@ -38,7 +38,7 @@ class About extends Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-12">
-                <div className="about-img-box">
+                <div className="about-img-box" style={{ opacity: ".9" }}>
                   <img
                     src={require("../img/Foodloverlogo.png")}
                     alt=""
@@ -59,8 +59,12 @@ class About extends Component {
               </div>
               <div className="col-md-12 section-t8">
                 <div className="row">
-                  <div className="col-md-6 col-lg-5">
-                    {/* <img src="img/about-2.jpg" alt="" className="img-fluid" /> */}
+                  <div className="col-md-6 col-lg-5" style={{ opacity: "1" }}>
+                    <img
+                      src={require("../img/chefResize.jpg")}
+                      alt=""
+                      className="img-fluid"
+                    />
                   </div>
                   <div className="col-lg-2  d-none d-lg-block">
                     <div className="title-vertical d-flex justify-content-start">
@@ -123,18 +127,18 @@ class About extends Component {
             <div className="socials-footer d-flex justify-content-center">
               <ul className="list-inline">
                 <li className="list-inline-item">
-                  <a className="#" className="link-one">
+                  <Link to="#" class="link-one">
                     <i className="fa fa-facebook" aria-hidden="true" />
+                  </Link>
+                </li>
+                <li className="list-inline-item">
+                  <a href="#" className="link-one">
+                    <i class="fa fa-twitter" aria-hidden="true" />
                   </a>
                 </li>
                 <li className="list-inline-item">
                   <a href="#" className="link-one">
-                    <i className="fa fa-twitter" aria-hidden="true" />
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="#" className="link-one">
-                    <i className="fa fa-instagram" aria-hidden="true" />
+                    <i class="fa fa-instagram" aria-hidden="true" />
                   </a>
                 </li>
                 <li className="list-inline-item">
@@ -144,7 +148,7 @@ class About extends Component {
                 </li>
                 <li className="list-inline-item">
                   <a href="#" className="link-one">
-                    <i className="fa fa-dribbble" aria-hidden="true" />
+                    <i class="fa fa-dribbble" aria-hidden="true" />
                   </a>
                 </li>
               </ul>
@@ -155,7 +159,7 @@ class About extends Component {
         <div className="col-md-4">
           <div className="card-box-d">
             <div className="card-img-d">
-              {/* <img src="img/agent-6.jpg" alt="" className="img-d img-fluid" /> */}
+              <img src="img/agent-6.jpg" alt="" className="img-d img-fluid" />
             </div>
 
             <div className="card-body-d">
@@ -186,16 +190,60 @@ class About extends Component {
           </div>
         </div>
 
-        <section className="section-footer">
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-12 col-md-4">
-                <div className="widget-a">
-                  <div className="w-header-a">
-                    <h3 className="w-title-a text-brand">FoodLover Recipe</h3>
+        <div className="col-md-4">
+          <div className="card-box-d">
+            <div className="card-img-d">
+              <img src="img/agent-5.jpg" alt="" className="img-d img-fluid" />
+            </div>
+            <div class="card-overlay card-overlay-hover">
+              <div class="card-header-d">
+                <div class="card-title-d align-self-center">
+                  <h3 class="title-d">
+                    <a href="agent-single.html" class="link-two">
+                      Emma Toledo
+                      <br /> Cascada
+                    </a>
+                  </h3>
+                </div>
+              </div>
+              <div className="card-body-d">
+                <p className="content-d color-text-a">
+                  Sed porttitor lectus nibh, Cras ultricies ligula sed magna
+                  dictum porta two.
+                </p>
+                <div className="info-agents color-a">
+                  <p>
+                    <strong>Phone: </strong> +54 356 945234
+                  </p>
+                  <p>
+                    <strong>Email: </strong> agents@example.com
+                  </p>
+                </div>
+              </div>
+              <div className="card-footer-d">
+                <div className="socials-footer d-flex justify-content-center">
+                  <ul className="list-inline">
+                    <li cclassName="list-inline-item">
+                      <a href="#" class="link-one">
+                        <i class="fa fa-facebook" aria-hidden="true" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <section class="section-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-12 col-md-4">
+                <div class="widget-a">
+                  <div class="w-header-a">
+                    <h3 class="w-title-a text-brand">FoodLover Recipe</h3>
                   </div>
-                  <div className="w-body-a">
-                    <p className="w-text-a color-text-a ">
+                  <div class="w-body-a">
+                    <p class="w-text-a color-text-a ">
                       To those who love fine dishes whether in a restaurant, at
                       a cozy place or at home with family, and friends,
                       FoodLover Recipe bring you an exquisite list of fine
@@ -204,14 +252,14 @@ class About extends Component {
                     </p>
                     <span> </span>
                   </div>
-                  <div className="w-footer-a">
-                    <ul className="list-unstyled">
-                      <li className="color-a">
-                        <span className="color-text-a">Phone .</span> +1 800 222
+                  <div class="w-footer-a">
+                    <ul class="list-unstyled">
+                      <li class="color-a">
+                        <span class="color-text-a">Phone .</span> +1 800 222
                         1212
                       </li>
-                      <li className="color-a">
-                        <span className="color-text-a">Email .</span>
+                      <li class="color-a">
+                        <span class="color-text-a">Email .</span>
                         msimbo2018@gmail.com
                       </li>
                     </ul>

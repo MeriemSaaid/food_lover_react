@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class Contact extends Component {
   constructor(props) {
@@ -54,7 +55,7 @@ export class Contact extends Component {
   };
   render() {
     return (
-      <div className="padding_div">
+      <div>
         <form onSubmit={this.onSubmit}>
           {this.state.errors.sendMessage && (
             <div>
@@ -62,8 +63,42 @@ export class Contact extends Component {
               Thank you for your concern. We'll notify you as soon possible!
             </div>
           )}
-
-          <section className="contact padding_div">
+          <section className="intro-single">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12 col-lg-8">
+                  <div className="title-single-box">
+                    <h1 className="title-single">Contact US</h1>
+                    <span className="color-text-a">
+                      Need to learn more about FoodLover Recipe or have any
+                      subjection! Please feel free to fill out this form or
+                      contact us at the toll free below and we will get back to
+                      you as soon as possible.
+                    </span>
+                  </div>
+                </div>
+                <div className="col-md-12 col-lg-4">
+                  <nav
+                    aria-label="breadcrumb"
+                    className="breadcrumb-box d-flex justify-content-lg-end"
+                  >
+                    <ol className="breadcrumb">
+                      <li className="breadcrumb-item">
+                        <Link to="/">Home</Link>
+                      </li>
+                      <li
+                        className="breadcrumb-item active"
+                        aria-current="page"
+                      >
+                        Contact
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="contact">
             <div className="container">
               <div className="row">
                 <div className="col-sm-12">
@@ -71,6 +106,7 @@ export class Contact extends Component {
                     <div id="map" className="contact-map">
                       <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.6868084692733!2d-71.08501898454476!3d42.32787837918902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37a307f4c2e1d%3A0x9d13b52f5a486d1e!2sUrban+League+of+Eastern+Massachusetts+(ULEM)!5e0!3m2!1sen!2sus!4v1547671600068"
+                        title="company location"
                         style={{
                           border: 0,
                           frameborder: 0,
@@ -85,99 +121,98 @@ export class Contact extends Component {
                 <div className="col-sm-12 section-t8">
                   <div className="row">
                     <div className="col-md-7">
-                      {/* <form
+                      <form
                         className="form-a contactForm"
                         action=""
                         method="post"
                         role="form"
-                      > */}
-                      {this.state.sendMessage && (
-                        <div>
-                          Your message has been sent. Thank you for notify us!
-                        </div>
-                      )}
-                      <div className="row">
-                        <div className="col-md-6 mb-3">
-                          {this.state.errors.fullname && (
-                            <div className="alert alert-warning">
-                              {this.state.errors.fullname}
-                            </div>
-                          )}
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              name="fullname"
-                              className="form-control form-control-lg form-control-a"
-                              placeholder="Your Full Name"
-                              value={this.state.fullname}
-                              onChange={this.onChange}
-                            />
+                      >
+                        {this.state.sendMessage && (
+                          <div>
+                            Your message has been sent. Thank you for notify us!
                           </div>
-                        </div>
-                        <div className="col-md-6 mb-3">
-                          <div className="form-group">
-                            <input
-                              name="email"
-                              type="email"
-                              className="form-control form-control-lg form-control-a"
-                              placeholder="Your Email"
-                              value={this.state.email}
-                              onChange={this.onChange}
-                            />
-
-                            {this.state.errors.email && (
+                        )}
+                        <div className="row">
+                          <div className="col-md-6 mb-3">
+                            {this.state.errors.fullname && (
                               <div className="alert alert-warning">
-                                {this.state.errors.email}
+                                {this.state.errors.fullname}
+                              </div>
+                            )}
+                            <div class="form-group">
+                              <input
+                                type="text"
+                                name="fullname"
+                                className="form-control form-control-lg form-control-a"
+                                placeholder="Your Full Name"
+                                value={this.state.fullname}
+                                onChange={this.onChange}
+                              />
+                            </div>
+                          </div>
+                          <div className="col-md-6 mb-3">
+                            <div className="form-group">
+                              <input
+                                name="email"
+                                type="email"
+                                className="form-control form-control-lg form-control-a"
+                                placeholder="Your Email"
+                                value={this.state.email}
+                                onChange={this.onChange}
+                              />
+                              {this.state.errors.email && (
+                                <div className="alert alert-warning">
+                                  {this.state.errors.email}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                          <div className="col-md-12 mb-3">
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                name="subject"
+                                className="form-control form-control-lg form-control-a"
+                                placeholder="Subject"
+                                value={this.state.subject}
+                                onChange={this.onChange}
+                              />
+                            </div>
+                            {this.state.errors.subject && (
+                              <div className="alert alert-warning">
+                                {this.state.errors.subject}
                               </div>
                             )}
                           </div>
-                        </div>
-                        <div className="col-md-12 mb-3">
-                          <div className="form-group">
-                            <input
-                              type="text"
-                              name="subject"
-                              className="form-control form-control-lg form-control-a"
-                              placeholder="Subject"
-                              value={this.state.subject}
-                              onChange={this.onChange}
-                            />
-                          </div>
-                          {this.state.errors.subject && (
-                            <div className="alert alert-warning">
-                              {this.state.errors.subject}
+                          <div className="col-md-12 mb-3">
+                            <div className="form-group">
+                              <textarea
+                                name="message"
+                                className="form-control"
+                                cols="45"
+                                rows="8"
+                                value={this.state.message}
+                                onChange={this.onChange}
+                                placeholder="Message or Description"
+                              />
                             </div>
-                          )}
-                        </div>
-                        <div className="col-md-12 mb-3">
-                          <div className="form-group">
-                            <textarea
-                              name="message"
-                              className="form-control"
-                              cols="45"
-                              rows="8"
-                              value={this.state.message}
-                              onChange={this.onChange}
-                              placeholder="Message or Description"
-                            />
+                            {this.state.errors.message && (
+                              <div className="alert alert-warning">
+                                {this.state.errors.message}
+                              </div>
+                            )}
                           </div>
-                          {this.state.errors.message && (
-                            <div className="alert alert-warning">
-                              {this.state.errors.message}
-                            </div>
-                          )}
+                          <div className="col-md-12">
+                            <button
+                              type="submit"
+                              className="btn btn-a"
+                              // onClick={this.submitMessage}
+                            >
+                              Send Message{" "}
+                            </button>
+                          </div>
                         </div>
-                        <div className="col-md-12">
-                          <button
-                            type="submit"
-                            className="btn btn-a"
-                            // onClick={this.submitMessage}
-                          >
-                            Send Message{" "}
-                          </button>
-                        </div>
-                      </div>
-                      {/* </form> */}
+                      </form>
                     </div>
                     <div className="col-md-5 section-md-t3">
                       <div className="icon-box section-b2">
@@ -256,5 +291,4 @@ export class Contact extends Component {
     );
   }
 }
-
 export default Contact;
