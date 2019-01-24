@@ -11,7 +11,6 @@ export default class Navbar extends Component {
       > 
         {props => (
             <div style = {{props}}>
-         // Animate Navbar
          <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
           <div className="container">

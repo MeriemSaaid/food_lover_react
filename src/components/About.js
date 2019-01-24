@@ -22,14 +22,17 @@ import { Link } from 'react-router-dom';
                   aria-label="breadcrumb"
                   className="breadcrumb-box d-flex justify-content-lg-end"
                 >
-                  <ol className="breadcrumb">
-                    <li className="breadcrumb-item">
-                      <Link to="/">Home</Link>
-                    </li>
-                    <li className="breadcrumb-item active" aria-current="page">
-                      About
-                    </li>
-                  </ol>
+                <ol className="breadcrumb">
+                      <li className="breadcrumb-item">
+                        <Link to="/">Home</Link>
+                      </li>
+                      <li
+                        className="breadcrumb-item active"
+                        aria-current="page"
+                      >
+                        About
+                      </li>
+                    </ol>
                 </nav>
               </div>
             </div>
@@ -39,7 +42,7 @@ import { Link } from 'react-router-dom';
           <div className="container">
             <div className="row">
               <div className="col-sm-12">
-                <div className="about-img-box">
+                <div className="about-img-box" style={{opacity:'.9'}}>
                   <img
                     src={require("../img/Foodloverlogo.png")}
                     alt=""
@@ -60,8 +63,8 @@ import { Link } from 'react-router-dom';
               </div>
               <div className="col-md-12 section-t8">
                 <div className="row">
-                  <div className="col-md-6 col-lg-5">
-                    <img src="img/about-2.jpg" alt="" className="img-fluid" />
+                  <div className="col-md-6 col-lg-5" style={{opacity:'1'}}>
+                    <img src={require("../img/chefResize.jpg")} alt="" className="img-fluid" />
                   </div>
                   <div className="col-lg-2  d-none d-lg-block">
                     <div className="title-vertical d-flex justify-content-start">
@@ -119,9 +122,9 @@ import { Link } from 'react-router-dom';
             <div className="socials-footer d-flex justify-content-center">
               <ul className="list-inline">
                 <li className="list-inline-item">
-                  <a className="#" class="link-one">
+                  <Link to="#" class="link-one">
                     <i className="fa fa-facebook" aria-hidden="true" />
-                  </a>
+                  </Link>
                 </li>
                 <li className="list-inline-item">
                   <a href="#" className="link-one">

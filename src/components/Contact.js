@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 
 export class Contact extends Component {
   constructor(props) {
@@ -63,6 +64,42 @@ export class Contact extends Component {
             </div>
           )}
 
+          <section className="intro-single">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12 col-lg-8">
+                  <div className="title-single-box">
+                    <h1 className="title-single">Contact US</h1>
+                    <span className="color-text-a">
+                      Need to learn more about FoodLover Recipe or have any
+                      subjection! Please feel free to fill out this form or
+                      contact us at the toll free below and we will get back to
+                      you as soon as possible.
+                    </span>
+                  </div>
+                </div>
+                <div className="col-md-12 col-lg-4">
+                  <nav
+                    aria-label="breadcrumb"
+                    className="breadcrumb-box d-flex justify-content-lg-end"
+                  >
+                    <ol className="breadcrumb">
+                      <li className="breadcrumb-item">
+                        <Link to="/">Home</Link>
+                      </li>
+                      <li
+                        className="breadcrumb-item active"
+                        aria-current="page"
+                      >
+                        Contact
+                      </li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <section className="contact">
             <div className="container">
               <div className="row">
@@ -71,13 +108,14 @@ export class Contact extends Component {
                     <div id="map" className="contact-map">
                       <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.6868084692733!2d-71.08501898454476!3d42.32787837918902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37a307f4c2e1d%3A0x9d13b52f5a486d1e!2sUrban+League+of+Eastern+Massachusetts+(ULEM)!5e0!3m2!1sen!2sus!4v1547671600068"
+                        title='company location'
                         style={{
                           border: 0,
                           frameborder: 0,
                           width: 600,
                           height: 450
                         }}
-                        allowfullscreen
+                        allowFullScreen
                       />
                     </div>
                   </div>

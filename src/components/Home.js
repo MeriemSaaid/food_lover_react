@@ -21,7 +21,7 @@ export default class Home extends Component {
               style={divStyle1}
               // id="back"
             >
-              <div className="overlay overlay-a" />
+              <div className="overlay overlay-a"></div>
               <div className="intro-content display-table">
                 <div className="table-cell">
                   <div className="container">
