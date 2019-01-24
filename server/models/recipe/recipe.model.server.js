@@ -29,8 +29,8 @@ function findAllRecipes() {
   return RecipeModel.find();
 }
 //Update Recipe
-function updateRecipe(recId, receipe) {
-  return UserModel.updateOne({ _id: recId }, receipe);
+function updateRecipe(recId, recipe) {
+  return RecipeModel.updateOne({ _id: recId }, recipe);
 }
 
 //Search recipe
@@ -50,6 +50,8 @@ function searchRecipes(val) {
 
 //Find Top recipe
 function findTopRecipe() {
-  return RecipeModel.find({top:true}).sort("datePosted").limit(3);
+  return RecipeModel.find({ top: true })
+    .sort("datePosted")
+    .limit(3);
 }
 module.exports = RecipeModel;

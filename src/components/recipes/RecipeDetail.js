@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import YouTube from "react-youtube";
 
 export default class RecipeDetail extends Component {
   state = {
@@ -142,6 +143,19 @@ export default class RecipeDetail extends Component {
   showDetail = id => {
     this.getRecipe(id);
   };
+
+  redirectEdit = e => {
+    this.props.history.push({
+      pathname: `/edit`,
+      // type: this.state.category,
+      state: { recipeId: this.state.recipeId }
+    });
+  };
+  _onReady(event) {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  }
+
   render() {
     const {
       name,
@@ -156,7 +170,14 @@ export default class RecipeDetail extends Component {
       userId
     } = this.state;
 
-    console.log(comments);
+    const opts = {
+      height: "390",
+      width: "640",
+      playerVars: {
+        autoplay: 1
+      }
+    };
+
     return (
       <div className="container padding_div">
         <div className="row">
@@ -212,8 +233,8 @@ export default class RecipeDetail extends Component {
             comments.map((comment, i) => (
               <div className="media mb-4" key={comment._id}>
                 <img
-                  className="d-flex mr-3 rounded-circle"
-                  src="http://placehold.it/50x50"
+                  className="d-flex mr-3 rounded-circle fixed_picture"
+                  src={comment.userId.picture}
                   alt=""
                 />
                 <div className="media-body">
@@ -275,7 +296,14 @@ export default class RecipeDetail extends Component {
           </div>
 
           <div className="col-md-4">
-            <div className="card my-4">
+            {/* <div class="card my-4"> */}
+
+            <button className="btn btn-info btn-xs" onClick={this.redirectEdit}>
+              <i className="far fa-edit" title="dd" />
+            </button>
+
+            {/* </div> */}
+            <div className="card my-3">
               <h5 className="card-header">Top Recipes</h5>
 
               <div
@@ -337,10 +365,11 @@ export default class RecipeDetail extends Component {
             <div className="card my-4">
               <h5 className="card-header">Our videos</h5>
               <div className="card-body">
-                <img
-                  className="card-img-top"
-                  src="https://2.bp.blogspot.com/-vvG5hMTFOro/W6RaoxdAikI/AAAAAAAAK1k/jezYdP7fvfYvt15Jv8a0agrGQE2lMU8YgCKgBGAs/s1600/MASAI-2.jpg"
-                  alt="Card"
+                <YouTube
+                  videoId="mETMmqQcN3k"
+                  className="card-img-top fixed_size"
+                  opts={opts}
+                  onReady={this._onReady}
                 />
               </div>
             </div>

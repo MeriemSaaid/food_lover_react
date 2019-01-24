@@ -287,17 +287,19 @@ a:hover {
 .title-box-d .title-d {
   font-weight: 600;
   font-size: 2rem;
+  text-align: center;
 }
 
-.title-box-d .title-d:after {
+/* .title-box-d .title-d:after {
   content: "";
   position: absolute;
-  width: 70px;
+  width: 80px;
   height: 4px;
   background-color: #2eca6a;
   bottom: 20px;
-  left: 0;
-}
+  left: 600px;
+  right: 0px;
+} */
 
 /*------/ Display Table & Table Cell /------*/
 
@@ -2279,25 +2281,25 @@ hr {
 }
 .clrd-font {
   background: #2eca6a;
-  background: -webkit-linear-gradient(to right, #f09819, #2eca6a);
-  background: linear-gradient(to right, #f09819, #2eca6a);
+  background: -webkit-linear-gradient(to right, #2eca6a, #2eca6a);
+  /* background: linear-gradient(to right, #2eca6a, #2eca6a); */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-/* .btn-primary {
-	background-color:transparent;
-	color: #fff;
-	border: 2px solid #fff;
-	font-size:20px;
-	text-transform: uppercase;
-	border-radius: 0px;	
+.btn-click {
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 20px;
+  text-transform: uppercase;
+  border-radius: 0px;
 }
 .btn-primary:hover {
-	background-color:transparent;
-	border-color: #d6962c;
-	color: #d6962c;
-	border-radius: 20px;
-} */
+  background-color: transparent;
+  border-color: #2eca6a;
+  color: #2eca6a;
+  border-radius: 20px;
+}
 
 .single_portfolio_text {
   display: inline-block;
@@ -2928,4 +2930,8 @@ body.modal-open div.modal-backdrop {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
+}
+.fixed_picture {
+  width: 50px;
+  height: 50px;
 }

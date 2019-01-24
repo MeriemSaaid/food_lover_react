@@ -45,15 +45,28 @@ class Navbar extends Component {
             <a className="navbar-brand text-brand" href="index.html">
               Food<span className="color-b">Lover</span>
             </a>
-            <button
-              type="button"
-              className="btn btn-link nav-search navbar-toggle-box-collapse d-md-none"
-              data-toggle="collapse"
-              data-target="#navbarTogglerDemo01"
-              aria-expanded="false"
-            >
-              <span className="fa fa-search" aria-hidden="true" />
-            </button>
+            {!this.props.logged ? (
+              <Link
+                to="/login"
+                className="btn btn-b-n nav-search navbar-toggle-box-collapse d-md-none"
+                data-toggle="collapse"
+                data-target="#navbarTogglerDemo01"
+                aria-expanded="false"
+              >
+                Login
+              </Link>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-b-n nav-search navbar-toggle-box-collapse d-md-none"
+                data-toggle="collapse"
+                data-target="#navbarTogglerDemo01"
+                aria-expanded="false"
+                onClick={this.loggeOut}
+              >
+                Logout
+              </button>
+            )}
             <div
               className="navbar-collapse collapse justify-content-center"
               id="navbarDefault"
@@ -70,17 +83,17 @@ class Navbar extends Component {
                   </a>
                 </li>
                 <li className="nav-item dropdown">
-                  <Link
+                  <a
                     className="nav-link dropdown-toggle"
-                    to="/"
+                    href="#"
                     id="navbarDropdown"
-                    // role="button"
-                    // data-toggle="dropdown"
-                    // aria-haspopup="true"
-                    // aria-expanded="false"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                   >
                     Recipes
-                  </Link>
+                  </a>
                   <div
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
@@ -119,15 +132,7 @@ class Navbar extends Component {
                 </li>
 
                 <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    to="/chef"
-                    id="navbarDropdown"
-                    // role="button"
-                    // data-toggle="dropdown"
-                    // aria-haspopup="true"
-                    aria-expanded="false"
-                  >
+                  <Link to="/chef" className="nav-link">
                     Our Chefs
                   </Link>
                 </li>

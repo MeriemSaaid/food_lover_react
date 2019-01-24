@@ -23,6 +23,7 @@ import axios from "axios";
 
 import ListUsers from "./components/user/ListUsers";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import EditRecipe from "./components/recipes/EditRecipe";
 
 class App extends Component {
   state = {
@@ -91,6 +92,7 @@ class App extends Component {
                 />
               )}
             />
+            <Route exact path="/edit" component={EditRecipe} />
             {/* <Route exact path="/login" component={Login} /> */}
             <Route
               exact

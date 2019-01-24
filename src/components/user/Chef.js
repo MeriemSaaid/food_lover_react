@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 export default class Chef extends Component {
   state = {
-    chefs: []
+    chefs: [],
+    userId: ""
   };
 
   //Get chefs
@@ -17,13 +18,25 @@ export default class Chef extends Component {
     // });
     this.setState({
       chefs: res.data.filter(chef => {
-        return chef.chef && chef.chef === true;
+        return (
+          chef.chef && chef.chef === true && chef._id !== this.state.userId
+        );
       })
     });
   };
 
-  componentDidMount() {
-    this.getChefs();
+  async componentDidMount() {
+    const res = await this.props.loggedIn();
+    // console.log(res.data);
+    if (res.data === 0) {
+      // console.log("not connected");
+      this.props.history.push("/login");
+    } else {
+      this.setState({
+        userId: res.data._id
+      });
+      this.getChefs();
+    }
   }
 
   render() {
@@ -34,7 +47,7 @@ export default class Chef extends Component {
         <div className="row">
           <div className="col-md-12 col-lg-8">
             <div className="title-single-box">
-              <h1 className="title-single">Our Amazing Agents</h1>
+              <h1 className="title-single">Our Amazing Chefs</h1>
             </div>
           </div>
         </div>
@@ -57,12 +70,12 @@ export default class Chef extends Component {
                     />
                     <div className="portfolio_images_overlay text-center">
                       <h6 className="clrd-font">
-                        Chef {chef.firstname + " " + chef.lastname}
+                        {chef.firstname + " " + chef.lastname}
                       </h6>
 
                       <Link
                         to={`/chefdetail/${chef._id}`}
-                        className="btn btn-primary"
+                        className="btn btn-primary btn-click"
                       >
                         Click here
                       </Link>
