@@ -13,6 +13,7 @@ export default class Profile extends Component {
       gender: "",
       bio: "",
       specialty: "",
+      _id: "",
       dateCreated: new Date().toLocaleDateString(),
       admin: false,
       chef: false
@@ -95,7 +96,8 @@ export default class Profile extends Component {
       chef,
       specialty,
       gender,
-      admin
+      admin,
+      _id
     } = this.state;
     return (
       <div className="padding_div bottom_space container">
@@ -125,14 +127,14 @@ export default class Profile extends Component {
                   </h4>
                   {/* User's Bio */}
                   <div className="d-block">
-                    {chef === false && <span>About me:</span>}
+                    {chef === false && <a>About me:</a>}
                     {chef === false && (
                       <span className="text-muted"> {bio}</span>
                     )}
                   </div>
                   {/* Chef's Bio */}
                   <div className="d-block">
-                    {chef === true && <span>pBio:</span>}
+                    {chef === true && <a>Bio:</a>}
                     {chef === true && (
                       <span className="text-muted"> {bio}</span>
                     )}
@@ -142,7 +144,7 @@ export default class Profile extends Component {
                     {/* Chef's Specialties */}
                     {chef === true && <a>Specialties:</a>}
                     {chef === true && (
-                      <a placeholder="specialties"> {specialty}</a>
+                      <span placeholder="specialties"> {specialty}</span>
                     )}
                   </div>
                 </div>
@@ -150,7 +152,6 @@ export default class Profile extends Component {
             </div>
             <br />
             <br />
-
             {/* <!-- User info --> */}
             <div className="panel panel-default">
               <div className="panel-heading">
@@ -189,7 +190,6 @@ export default class Profile extends Component {
               </div>
             </div>
             <br />
-
             {/* <!-- Community --> */}
             <div className="panel panel-default">
               <div className="panel-heading">
@@ -206,13 +206,13 @@ export default class Profile extends Component {
                       <td>58584</td>
                     </tr>
                     {/* <tr>
-                  <th><strong>Member since</strong></th>
-                  <td>{dateCreated}</td>
-                </tr> */}
+                      <th><strong>Member since</strong></th>
+                      <td>{dateCreated}</td>
+                    </tr> */}
                     {/* <tr>
-                  <th><strong>Recipes</strong></th>
-                  <td>6</td>
-                </tr> */}
+                      <th><strong>Recipes</strong></th>
+                      <td>6</td>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
@@ -286,7 +286,7 @@ export default class Profile extends Component {
         </div> */}
           </div>
           <div className="col-xs-12 col-sm-3">
-            {/* <!-- Contact user --> */}
+            {/* BUTTONS ARE HERE */}
             {admin === false && (
               <p>
                 <Link
@@ -299,11 +299,6 @@ export default class Profile extends Component {
               </p>
             )}
             {admin === true && (
-              // <p>
-              //   <button onClick={this.redirectAdmin.bind(this,_id)}  className="profile__contact-btn btn btn-lg btn-block btn-info">
-              //     Edit Profile
-              //   </button>
-              // </p>
               <Link
                 to="/profileedit"
                 href="#"
@@ -314,37 +309,62 @@ export default class Profile extends Component {
             )}
             <p>
               <button
-                onClick={this.logout}
+                data-toggle="modal"
+                data-target="#exampleModal"
                 className="profile__contact-btn btn btn-lg btn-block btn-danger"
               >
                 Log Out
               </button>
             </p>
-
-            {/* <hr className="profile__contact-hr" /> */}
+            {/* MODAL IS HERE */}
+            <div
+              className="modal fade"
+              id="exampleModal"
+              tabIndex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">
+                      Do you wish to log out?
+                    </h5>
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {/* Modal Buttons */}
+                  <div className="modal-footer">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={this.logout}
+                      type="button"
+                      className="btn btn-warning"
+                      data-dismiss="modal"
+                    >
+                      Yes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <hr />
             <br />
-
             {/* <!-- Contact info --> */}
             <div className="profile__contact-info">
-              {/* <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-phone"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">Work number</h5>
-              (000)987-65-43
-            </div>
-          </div> */}
-              {/* <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-phone"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">Mobile number</h5>
-              (000)987-65-43
-            </div>
-          </div> */}
               <div className="profile__contact-info-item">
                 <div className="profile__contact-info-icon">
                   <i className="fa fa-envelope-square" />
@@ -356,15 +376,6 @@ export default class Profile extends Component {
                   <a href="mailto:admin@domain.com">{email}</a>
                 </div>
               </div>
-              {/* <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-map-marker"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">Work address</h5>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </div>
-          </div> */}
             </div>
           </div>
         </div>

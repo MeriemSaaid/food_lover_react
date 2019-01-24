@@ -117,9 +117,9 @@ export default class EditProfile extends Component {
       email,
       gender,
       experience,
+      admin,
       chef
     } = this.state;
-
     return (
       <div className="padding_div bottom_space container">
         <form className="row" onSubmit={this.onSubmit}>
@@ -138,13 +138,14 @@ export default class EditProfile extends Component {
                 </div>
                 <div className="profile__header">
                   <h4>
-                    {firstname} {lastname} <small>Administrator</small>
+                    {firstname} {lastname}
+                    {admin === true && (
+                      <small style={{ color: "green" }}> Administrator</small>
+                    )}
+                    {chef === true && (
+                      <small style={{ color: "green" }}> Chef</small>
+                    )}
                   </h4>
-                  <p className="text-muted">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Non nostrum odio cum repellat veniam eligendi rem cumque
-                    magnam autem delectus qui.
-                  </p>
                   <p>
                     <button className="btn">Upload</button>
                   </p>
@@ -236,18 +237,16 @@ export default class EditProfile extends Component {
                 </table>
               </div>
             </div>
-
+            {/* CHEF APPLICATON AREA*/}
             <div className="form-check text-center">
               <br />
-
               <div className="chef_box container">
                 <h6>Chef Application</h6>
                 <p onChange={this.onChange} value={experience}>
                   {experience}
                 </p>
               </div>
-
-              <div className="">
+              <div>
                 <input
                   className="form-check-input "
                   type="checkbox"
@@ -259,14 +258,14 @@ export default class EditProfile extends Component {
                 />
               </div>
               <br />
-              <div className="">
+              <div>
                 <h5>Register as Chef?</h5>
               </div>
             </div>
             <br />
           </div>
           <div className="col-xs-12 col-sm-3">
-            {/* <!-- Contact user --> */}
+            {/* BUTTONS are here */}
             <p>
               <button
                 type="submit"
