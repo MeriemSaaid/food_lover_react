@@ -27,14 +27,16 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 class App extends Component {
   state = {
     logged: false,
-    loggedOut: false
+    loggedOut: false,
+    admin: false
   };
 
   loggedIn = async () => {
     const res = await axios.post("/api/loggedIn");
     // console.log("not connected");
     this.setState({
-      logged: !(res.data === 0)
+      logged: !(res.data === 0),
+      admin: res.data.admin
     });
     return res;
   };
@@ -65,6 +67,7 @@ class App extends Component {
             // changeType={this.changeType}
             logged={this.state.logged}
             loggedIn={this.loggedIn}
+            admin={this.state.admin}
           />
           <Switch>
             <Route exact path="/" component={Home} />,

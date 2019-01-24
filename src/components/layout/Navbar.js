@@ -4,6 +4,9 @@ import axios from "axios";
 class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: []
+    };
   }
   redirect = type => {
     // this.props.changeType(type);
@@ -14,8 +17,14 @@ class Navbar extends Component {
     this.props.loggedIn();
     this.props.history.push(`/login`);
   };
-
+  // async componentDidMount() {
+  //   const res = await this.props.loggedIn();
+  //   this.setState({
+  //     user: res.data
+  //   });
+  // }
   render() {
+    console.log(this.state.user);
     return (
       <div>
         <nav className="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
@@ -128,15 +137,22 @@ class Navbar extends Component {
                     Contact
                   </a>
                 </li>
-              
+
                 <li className="nav-item">
-                 <Link to="/listUsers"  className="nav-link" > Manage users</Link>
-                 
+                  {this.props.admin && (
+                    <Link to="/listUsers" className="nav-link">
+                      {" "}
+                      Manage users
+                    </Link>
+                  )}
                 </li>
-                <li className="nav-item">
-                 <Link to="/profile"  className="nav-link" >Profile</Link>
-                 
-                </li>
+                {this.props.logged && (
+                  <li className="nav-item">
+                    <Link to="/profile" className="nav-link">
+                      Profile
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
             {!this.props.logged ? (

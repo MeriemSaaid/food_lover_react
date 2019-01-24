@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
 export default class Profile extends Component {
   constructor(props) {
     super(props);
@@ -12,19 +11,18 @@ export default class Profile extends Component {
       lastname: "",
       email: "",
       gender: "",
-      bio:"",
-      specialty:"",
-      _id: "",
+      bio: "",
+      specialty: "",
       dateCreated: new Date().toLocaleDateString(),
       admin: false,
       chef: false
     };
   }
 
-  redirectAdmin = (id)=> {
+  redirectAdmin = id => {
     this.props.history.push({
       pathname: `/admin`,
-      state :{id :id}
+      state: { id: id }
     });
   };
   getFormattedDate(param) {
@@ -83,9 +81,9 @@ export default class Profile extends Component {
   };
 
   logout = async () => {
-    await axios.post("/api/logout")
+    await axios.post("/api/logout");
     this.props.history.push("/login");
-};
+  };
 
   render() {
     const {
@@ -97,121 +95,132 @@ export default class Profile extends Component {
       chef,
       specialty,
       gender,
-      admin,
-      _id
+      admin
     } = this.state;
     return (
-        <div className="padding_div bottom_space container">
-          <div className="row">
-            <div className="col-xs-12 col-sm-9">
-        {/* <!-- User profile --> */}
-        <div className="panel panel-default">
-          <div className="panel-heading">
-          <h4 className="panel-title">User profile</h4>
-          </div>
-          <div className="panel-body">
-            <div className="profile__avatar">
-              <img src={require('../../img/onlineimg/johndoe.png')} alt="..." />
+      <div className="padding_div bottom_space container">
+        <div className="row">
+          <div className="col-xs-12 col-sm-9">
+            {/* <!-- User profile --> */}
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h4 className="panel-title">User profile</h4>
+              </div>
+              <div className="panel-body">
+                <div className="profile__avatar">
+                  <img
+                    src={require("../../img/onlineimg/johndoe.png")}
+                    alt="..."
+                  />
+                </div>
+                <div className="profile__header">
+                  <h4>
+                    {firstname} {lastname}
+                    {admin === true && (
+                      <small style={{ color: "green" }}> Administrator</small>
+                    )}
+                    {chef === true && (
+                      <small style={{ color: "green" }}> Chef</small>
+                    )}
+                  </h4>
+                  {/* User's Bio */}
+                  <div className="d-block">
+                    {chef === false && <span>About me:</span>}
+                    {chef === false && (
+                      <span className="text-muted"> {bio}</span>
+                    )}
+                  </div>
+                  {/* Chef's Bio */}
+                  <div className="d-block">
+                    {chef === true && <span>pBio:</span>}
+                    {chef === true && (
+                      <span className="text-muted"> {bio}</span>
+                    )}
+                  </div>
+                  <br />
+                  <div>
+                    {/* Chef's Specialties */}
+                    {chef === true && <a>Specialties:</a>}
+                    {chef === true && (
+                      <a placeholder="specialties"> {specialty}</a>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="profile__header" >
-              <h4>{firstname} {lastname}
-              {admin === true && (<small style={{color:"green"}}> Administrator</small>)}
-              {chef === true && (<small style={{color:"green"}}> Chef</small>)}
-              </h4>
-              {/* User's Bio */}
-              <div className="d-block">
-              {chef === false && (
-              <a>About me:</a>
-              )}
-              {chef === false && (
-              <span className="text-muted"> {bio}</span>
-              )}
+            <br />
+            <br />
+
+            {/* <!-- User info --> */}
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h4 className="panel-title">User info</h4>
               </div>
-              {/* Chef's Bio */}
-              <div className="d-block">
-              {chef === true && (
-              <medium>Bio:</medium>
-              )}
-              {chef === true && (
-              <a className="text-muted"> {bio}</a>
-              )}
-              </div>
-              <br/>
-              <div>
-              {/* Chef's Specialties */}
-              {chef === true && (
-              <medium>Specialties:</medium>
-              )}
-              {chef === true && (
-                <a placeholder="specialties"> {specialty}</a>
-              )}
+              <br />
+              <div className="panel-body">
+                <table className="table profile__table">
+                  <tbody>
+                    <tr>
+                      <th>
+                        <strong>Username</strong>
+                      </th>
+                      <td>{username}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>First Name</strong>
+                      </th>
+                      <td>{firstname}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>Last Name</strong>
+                      </th>
+                      <td>{lastname}</td>
+                    </tr>
+                    <tr>
+                      <th>
+                        <strong>Gender</strong>
+                      </th>
+                      <td>{gender}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-          </div>
-        </div>
-        <br/>
-        <br/>
+            <br />
 
-        {/* <!-- User info --> */}
-        <div className="panel panel-default">
-          <div className="panel-heading">
-          <h4 className="panel-title">User info</h4>
-          </div>
-          <br/>
-          <div className="panel-body">
-            <table className="table profile__table">
-              <tbody>
-                <tr>
-                  <th><strong>Username</strong></th>
-                  <td>{username}</td>
-                </tr>
-                <tr>
-                  <th><strong>First Name</strong></th>
-                  <td>{firstname}</td>
-                </tr>
-                <tr>
-                  <th><strong>Last Name</strong></th>
-                  <td>{lastname}</td>
-                </tr>
-                <tr>
-                  <th><strong>Gender</strong></th>
-                  <td>{gender}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <br/>
-
-        {/* <!-- Community --> */}
-        <div className="panel panel-default">
-          <div className="panel-heading">
-          <h4 className="panel-title">Community</h4>
-          </div>
-          <br/>
-          <div className="panel-body">
-            <table className="table profile__table">
-              <tbody>
-                <tr>
-                  <th><strong>Followers</strong></th>
-                  <td>58584</td>
-                </tr>
-                {/* <tr>
+            {/* <!-- Community --> */}
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h4 className="panel-title">Community</h4>
+              </div>
+              <br />
+              <div className="panel-body">
+                <table className="table profile__table">
+                  <tbody>
+                    <tr>
+                      <th>
+                        <strong>Followers</strong>
+                      </th>
+                      <td>58584</td>
+                    </tr>
+                    {/* <tr>
                   <th><strong>Member since</strong></th>
                   <td>{dateCreated}</td>
                 </tr> */}
-                {/* <tr>
+                    {/* <tr>
                   <th><strong>Recipes</strong></th>
                   <td>6</td>
                 </tr> */}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <br/>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <br />
 
-        {/* <!-- Latest posts --> */}
-        {/* <div className="panel panel-default">
+            {/* <!-- Latest posts --> */}
+            {/* <div className="panel panel-default">
           <div className="panel-heading">
           <h4 className="panel-title">Latest Activity</h4>
           </div>
@@ -275,41 +284,50 @@ export default class Profile extends Component {
             </div>
           </div>
         </div> */}
+          </div>
+          <div className="col-xs-12 col-sm-3">
+            {/* <!-- Contact user --> */}
+            {admin === false && (
+              <p>
+                <Link
+                  to="/profileedit"
+                  href="#"
+                  className="profile__contact-btn btn btn-lg btn-block btn-info"
+                >
+                  Edit Profile
+                </Link>
+              </p>
+            )}
+            {admin === true && (
+              // <p>
+              //   <button onClick={this.redirectAdmin.bind(this,_id)}  className="profile__contact-btn btn btn-lg btn-block btn-info">
+              //     Edit Profile
+              //   </button>
+              // </p>
+              <Link
+                to="/profileedit"
+                href="#"
+                className="profile__contact-btn btn btn-lg btn-block btn-info"
+              >
+                Edit Profile
+              </Link>
+            )}
+            <p>
+              <button
+                onClick={this.logout}
+                className="profile__contact-btn btn btn-lg btn-block btn-danger"
+              >
+                Log Out
+              </button>
+            </p>
 
-      </div>
-      <div className="col-xs-12 col-sm-3">
-        
-        {/* <!-- Contact user --> */}
-        {admin===false && (
-        <p>
-          <Link to="/profileedit" href="#" className="profile__contact-btn btn btn-lg btn-block btn-info">
-            Edit Profile
-          </Link>
-        </p>
-        )}
-        {admin===true && (
-        // <p>
-        //   <button onClick={this.redirectAdmin.bind(this,_id)}  className="profile__contact-btn btn btn-lg btn-block btn-info">
-        //     Edit Profile
-        //   </button>
-        // </p>
-        <Link to="/profileedit" href="#" className="profile__contact-btn btn btn-lg btn-block btn-info">
-            Edit Profile
-          </Link>
-        )}
-        <p>
-          <button onClick={this.logout} className="profile__contact-btn btn btn-lg btn-block btn-danger">
-            Log Out
-          </button>
-        </p>
+            {/* <hr className="profile__contact-hr" /> */}
+            <hr />
+            <br />
 
-        {/* <hr className="profile__contact-hr" /> */}
-        <hr/>
-        <br/>
-        
-        {/* <!-- Contact info --> */}
-        <div className="profile__contact-info">
-          {/* <div className="profile__contact-info-item">
+            {/* <!-- Contact info --> */}
+            <div className="profile__contact-info">
+              {/* <div className="profile__contact-info-item">
             <div className="profile__contact-info-icon">
               <i className="fa fa-phone"></i>
             </div>
@@ -318,7 +336,7 @@ export default class Profile extends Component {
               (000)987-65-43
             </div>
           </div> */}
-          {/* <div className="profile__contact-info-item">
+              {/* <div className="profile__contact-info-item">
             <div className="profile__contact-info-icon">
               <i className="fa fa-phone"></i>
             </div>
@@ -327,16 +345,18 @@ export default class Profile extends Component {
               (000)987-65-43
             </div>
           </div> */}
-          <div className="profile__contact-info-item">
-            <div className="profile__contact-info-icon">
-              <i className="fa fa-envelope-square"></i>
-            </div>
-            <div className="profile__contact-info-body">
-              <h5 className="profile__contact-info-heading">E-mail address</h5>
-              <a href="mailto:admin@domain.com">{email}</a>
-            </div>
-          </div>
-          {/* <div className="profile__contact-info-item">
+              <div className="profile__contact-info-item">
+                <div className="profile__contact-info-icon">
+                  <i className="fa fa-envelope-square" />
+                </div>
+                <div className="profile__contact-info-body">
+                  <h5 className="profile__contact-info-heading">
+                    E-mail address
+                  </h5>
+                  <a href="mailto:admin@domain.com">{email}</a>
+                </div>
+              </div>
+              {/* <div className="profile__contact-info-item">
             <div className="profile__contact-info-icon">
               <i className="fa fa-map-marker"></i>
             </div>
@@ -345,11 +365,10 @@ export default class Profile extends Component {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             </div>
           </div> */}
+            </div>
+          </div>
         </div>
-
       </div>
-    </div>
-</div>       
     );
   }
 }
