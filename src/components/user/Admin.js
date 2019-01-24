@@ -34,9 +34,6 @@ export default class EditProfile extends Component {
     this.loggedIn();
   }
 
- 
-
-
   loggedIn = async () => {
     const res = await axios.post("/api/loggedIn");
     if (res.data === 0) {
@@ -121,20 +118,13 @@ export default class EditProfile extends Component {
       email,
       gender,
       experience,
+      admin,
       chef
     } = this.state;
-    var txt;
-    if (this.state.isChecked) {
-      txt = 'checked'
-    } else {
-      txt = 'unchecked'
-    }
     return (
-      
       <div className="padding_div bottom_space container" >
       <form className="row" onSubmit={this.onSubmit}>
             <div className="col-xs-12 col-sm-9">
-              
               {/* <!-- User profile --> */}
               <div className="panel panel-default">
                 <div className="panel-heading">
@@ -145,10 +135,10 @@ export default class EditProfile extends Component {
                     <img src={require('../../img/onlineimg/johndoe.png')} alt="..." />
                   </div>
                   <div className="profile__header">
-                    <h4>{firstname} {lastname} <small>Administrator</small></h4>
-                    <p className="text-muted">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem cumque magnam autem delectus qui.
-                    </p>
+                    <h4>{firstname} {lastname}
+                    {admin === true && (<small style={{color:"green"}}> Administrator</small>)}
+                      {chef === true && (<small style={{color:"green"}}> Chef</small>)}
+                    </h4>
                     <p>
                       <button className="btn">Upload</button>
                     </p>
@@ -204,33 +194,25 @@ export default class EditProfile extends Component {
                   </table>
                 </div>
               </div>
-
+              {/* CHEF APPLICATON AREA*/}
               <div className="form-check text-center">
-
-                    <br/>
-                    
+                  <br/>
                     <div className="chef_box container">
-                    <h6>Chef Application</h6>
-                    <p onChange={this.onChange} value={experience}>{experience}</p>
+                      <h6>Chef Application</h6>
+                        <p onChange={this.onChange} value={experience}>{experience}</p>
                     </div>
-
-                    <div className="">
-                    <input className="form-check-input " type="checkbox" checked={chef} value={chef} name="chef" id="defaultCheck1" onChange={this.handleChecked} />                    
+                    <div>
+                      <input className="form-check-input " type="checkbox" checked={chef} value={chef} name="chef" id="defaultCheck1" onChange={this.handleChecked} />                    
                     </div>
-                    <br/>
-                    <div className="">
-                    <h5>Register as Chef?</h5>
-                    </div>
-                    
-                    
-                    
-                  </div>
+                  <br/>
+                    <div>
+                      <h5>Register as Chef?</h5>
+                    </div>                    
+              </div>
               <br/>
-      
             </div>
             <div className="col-xs-12 col-sm-3">
-              
-              {/* <!-- Contact user --> */}
+              {/* BUTTONS are here */}
               <p>
                 <button type="submit" className="btn-block btn-lg btn-success btn">
                   Save Changes
@@ -241,9 +223,7 @@ export default class EditProfile extends Component {
                   Cancel
                 </Link>
               </p>
-      
             </div>
-            
           </form>
       </div>       
     );
