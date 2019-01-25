@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export class Contact extends Component {
   constructor(props) {
@@ -51,6 +52,15 @@ export class Contact extends Component {
   };
 
   submitMessage = e => {
+
+    const data = {
+    fullname: this.state.fullname,
+    email: this.state.email,
+    subject: this.state.subject,
+    message: this.state.message
+    }
+
+    axios.post('/api/contact', )
     this.setState({ sendMessage: true });
   };
   render() {
