@@ -12,8 +12,7 @@ class Register extends Component {
     email: "",
     experience: "",
     chef: false,
-    errors: {},
-    cook: false
+    errors: {}
   };
 
   onChange = e => {
@@ -42,7 +41,6 @@ class Register extends Component {
     } else {
       // Adding user to db
       res = await axios.post("/api/register", user);
-      this.props.loggedIn();
       this.props.history.push({
         pathname: `/profile`,
         state: { user: res.data }
@@ -51,11 +49,11 @@ class Register extends Component {
   }
 
   // showing whether the checkbox is checked or not
-  changeChef= (bol) => {
-     this.setState({
-      cook: bol
-    })
-  } 
+  yesnoCheck = e => {
+    if (document.getElementById("yesCheck").checked) {
+      document.getElementById("ifYes").style.visibility = "visible";
+    } else document.getElementById("ifYes").style.visibility = "hidden";
+  };
 
   onSubmit = async e => {
     e.preventDefault();
@@ -68,8 +66,7 @@ class Register extends Component {
       email,
       gender,
       experience,
-      chef,
-      cook
+      chef
     } = this.state;
     const user = {
       username,
@@ -80,8 +77,7 @@ class Register extends Component {
       email,
       gender,
       experience,
-      chef,
-      cook
+      chef
     };
     if (username === "") {
       this.setState({
@@ -125,7 +121,7 @@ class Register extends Component {
       email,
       gender,
       experience,
-      cook,
+      chef,
       errors
     } = this.state;
     return (
@@ -198,20 +194,19 @@ class Register extends Component {
                 <div>
                   <h6>Register as an online cook?</h6>
                   Yes{" "}
-                  <input type="radio" onClick={this.changeChef.bind(this, true)} required name="chef" value={cook} id="yesCheck" />
+                  <input type="radio" onClick={this.yesnoCheck} name="chef" value={chef} id="yesCheck" />
                   No{" "}
-                  <input type="radio" onClick={this.changeChef.bind(this, false)} required name="chef" value={cook} id="noCheck" />
+                  <input type="radio" onClick={this.yesnoCheck} name="chef" value={chef} id="noCheck" />
                   <br />
                   {/* User experience text area */}
-                  {this.state.cook &&
-                  <div id="ifYes">
+                  <div id="ifYes" style={{ visibility: "hidden" }}>
                     <fieldset>
                       <br />
                       <label>Tell us about your cooking experience:</label>
                       <br />
-                      <textarea placeholder="Share experience here..." required maxLength={500} name="experience" value={experience} onChange={this.onChange} />
+                      <textarea placeholder="Share experience here..." maxLength={500} name="experience" value={experience} onChange={this.onChange} />
                     </fieldset>
-                  </div>}
+                  </div>
                 </div>
                 <br />
                 {/* Terms of Service */}
@@ -296,3 +291,4 @@ class Register extends Component {
 }
 
 export default Register;
+
