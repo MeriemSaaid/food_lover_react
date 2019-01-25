@@ -85,7 +85,6 @@ export default class ChefDetail extends Component {
         return recipe.userId && recipe.userId === id;
       })
     });
-    console.log(this.state.recipes);
   };
   showDetail = id => {
     this.props.history.push({
@@ -98,6 +97,11 @@ export default class ChefDetail extends Component {
     // console.log(this.handleCheck(follower));
     return (
       <div className="container padding_div intro-single">
+        <div className="title-box-d">
+          <h3 className="title-d">
+            {chef.firstname} {chef.lastname}
+          </h3>
+        </div>
         <div className="agent-single padding_div border">
           <div className="container">
             <div className="row">
@@ -106,7 +110,7 @@ export default class ChefDetail extends Component {
                   <div className="col-md-6">
                     <div className="agent-avatar-box">
                       <img
-                        src="http://placekitten.com/400/252"
+                        src={chef.picture}
                         alt=""
                         className="rounded-circle float-right fixed_width_heigth_chef_detail"
                       />
@@ -123,7 +127,7 @@ export default class ChefDetail extends Component {
                       </div> */}
                       {/* </div> */}
                       <div className="agent-content mb-3">
-                        <p className="content-d color-text-a">fff{chef.bio}</p>
+                        <p className="content-d color-text-a">{chef.bio}</p>
                         <div className="info-agents color-a">
                           <p>
                             <strong>Email: </strong>
@@ -136,9 +140,9 @@ export default class ChefDetail extends Component {
                             </span>
                           </p>
                           <p>
-                            <strong>Experience: </strong>
+                            <strong>Specialty: </strong>
                             <span className="color-text-a">
-                              {chef.experience}
+                              {chef.specialty}
                             </span>
                           </p>
 
@@ -155,7 +159,7 @@ export default class ChefDetail extends Component {
                           {!this.handleCheck(follower) && (
                             <li className="list-inline-item">
                               <button
-                                className="link-one"
+                                className="link-one btn btn-b-n"
                                 onClick={this.addfollow.bind(
                                   this,
                                   follower,
@@ -163,17 +167,13 @@ export default class ChefDetail extends Component {
                                 )}
                               >
                                 Follow{" "}
-                                <i
-                                  className="fa fa-facebook"
-                                  aria-hidden="true"
-                                />
                               </button>
                             </li>
                           )}
                           {this.handleCheck(follower) && (
                             <li className="list-inline-item">
                               <button
-                                className="link-one"
+                                className="link-one btn btn-b-n"
                                 onClick={this.Unfollow.bind(
                                   this,
                                   follower,
@@ -181,10 +181,6 @@ export default class ChefDetail extends Component {
                                 )}
                               >
                                 Unfollow
-                                <i
-                                  className="fa fa-twitter"
-                                  aria-hidden="true"
-                                />
                               </button>
                             </li>
                           )}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class RecipeAdd extends Component {
+export default class EditRecipe extends Component {
   state = {
     userId: "",
     name: "",
@@ -9,6 +9,8 @@ export default class RecipeAdd extends Component {
     picture: "",
     ingredients: "",
     category: "",
+    recipeEdit: [],
+    _id: "",
     errors: {}
   };
 
@@ -18,9 +20,9 @@ export default class RecipeAdd extends Component {
     });
   };
 
-  addRecipe = async recipe => {
+  editRecipe = async recipe => {
     // try {
-    const res = await axios.post("/api/recipe", recipe);
+    const res = await axios.put("/api/recipe", recipe);
     this.props.history.push({
       pathname: `/list/${this.state.category}`,
       // type: this.state.category,
@@ -67,7 +69,7 @@ export default class RecipeAdd extends Component {
       return;
     }
     const {
-      userId,
+      _id,
       name,
       picture,
       description,
@@ -76,7 +78,7 @@ export default class RecipeAdd extends Component {
     } = this.state;
 
     const recipe = {
-      userId,
+      _id,
       name,
       picture,
       description,
@@ -84,23 +86,26 @@ export default class RecipeAdd extends Component {
       category
     };
     // console.log(userId);
-    this.addRecipe(recipe);
+    this.editRecipe(recipe);
   };
 
   async componentDidMount() {
-    const res = await this.props.loggedIn();
-    // console.log(res.data);
-    if (res.data === 0) {
-      // console.log("not connected");
-      this.props.history.push("/login");
-    } else {
-      this.setState({
-        userId: res.data._id,
-        category: this.props.match.params.type.toLowerCase()
-      });
-    }
+    const id = this.props.location.state.recipeId;
+    const res = await axios.get(`/api/recipe/${id}`);
+    this.setState({
+      // userId: res.data._id,
+      name: res.data.name,
+      picture: res.data.picture,
+      description: res.data.description,
+      ingredients: res.data.ingredients,
+      category: res.data.category,
+      _id: res.data._id
+    });
+    // console.log(res.data.category);
   }
   render() {
+    // const recipeEdit
+    const { recipeEdit } = this.state;
     return (
       <div className="container margin_top padding_div">
         <form onSubmit={this.onSubmit}>
@@ -112,7 +117,7 @@ export default class RecipeAdd extends Component {
                 src="http://www.nationalschools.com/wp-content/uploads/2016/07/ThinkstockPhotos-175004788.jpg"
                 alt="Alt"
               />
-              <h2 className="card-title">Add Your Recipe</h2>
+              <h2 className="card-title">Edit Your Recipe</h2>
 
               <div className="row">
                 <div className="form-group col-md-2 padding_half">
@@ -120,7 +125,7 @@ export default class RecipeAdd extends Component {
                     className="form-control"
                     name="category"
                     onChange={this.onChange}
-                    defaultValue={this.props.match.params.type.toLowerCase()}
+                    value={this.state.category}
                   >
                     <option value="">Select a category</option>
                     <option value="chicken">Chicken</option>
@@ -141,6 +146,7 @@ export default class RecipeAdd extends Component {
                     className="form-control"
                     placeholder="Recipe Name"
                     onChange={this.onChange}
+                    value={this.state.name}
                   />
                   {/* <div id="first_name_feedback" className="invalid-feedback" /> */}
                   {this.state.errors.name && (
@@ -156,6 +162,7 @@ export default class RecipeAdd extends Component {
                     className="form-control"
                     placeholder="Picture"
                     onChange={this.onChange}
+                    value={this.state.picture}
                   />
                   {/* <div id="last_name_feedback" className="invalid-feedback" /> */}
                   {this.state.errors.picture && (
@@ -180,6 +187,7 @@ export default class RecipeAdd extends Component {
                         placeholder="Describe your recipe"
                         rows="7"
                         onChange={this.onChange}
+                        value={this.state.description}
                       />
                       {this.state.errors.description && (
                         <div className="alert alert-warning">
@@ -204,6 +212,7 @@ export default class RecipeAdd extends Component {
                         placeholder="Add Ingredients"
                         rows="7"
                         onChange={this.onChange}
+                        value={this.state.ingredients}
                       />
                       {this.state.errors.ingredients && (
                         <div className="alert alert-warning">

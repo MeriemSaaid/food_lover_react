@@ -76,15 +76,15 @@ export default class RecipeList extends Component {
     //   // console.log("not connected");
     //   this.props.history.push("/login");
     // } else {
-      this.setState(
-        {
-          user: res.data,
-          type: this.props.match.params.type
-        },
-        () => {
-          this.getRecipes();
-        }
-      );
+    this.setState(
+      {
+        user: res.data,
+        type: this.props.match.params.type
+      },
+      () => {
+        this.getRecipes();
+      }
+    );
     // }
   }
 
@@ -103,7 +103,7 @@ export default class RecipeList extends Component {
 
   render() {
     const { recipes, user } = this.state;
-    console.log(user);
+    // console.log(user);
     return (
       <div className="container padding_div intro-single">
         <div className="row">

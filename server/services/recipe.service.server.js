@@ -8,8 +8,12 @@ module.exports = function(app) {
   app.get("/api/recipe/:id", findRecipeById);
   // find  recipe by id
   app.get("/api/recipe/list/:val", searchRecipes);
-  // find  top recipe 
-   app.get("/api/top", findTopRecipe);
+  // find  top recipe
+  app.get("/api/top", findTopRecipe);
+
+  // update a  page
+  app.put("/api/recipe", updateRecipe);
+
   //Function to create recipe
   async function createRecipe(req, res) {
     var recipe = req.body;
@@ -42,5 +46,13 @@ module.exports = function(app) {
   async function findTopRecipe(req, res) {
     const recipes = await RecipeModel.findTopRecipe();
     res.json(recipes);
+  }
+
+  //Update recipe
+  async function updateRecipe(req, res) {
+    const recipe = req.body;
+    const recId = recipe._id;
+    const data = await RecipeModel.updateRecipe(recId, recipe);
+    res.json(data);
   }
 };
