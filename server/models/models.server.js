@@ -3,15 +3,13 @@
 // if (process.env.MLAB_USERNAME_WEBDEV) {
 // check if running remotely
 
-// var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
-// var username = "admin";
-//var password = process.env.MLAB_PASSWORD_WEBDEV;
-// var password = "admin123";
+var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
 
-connectionString = "mongodb://admin:admin123";
+var password = process.env.MLAB_PASSWORD_WEBDEV;
 
-connectionString += "@ds115045.mlab.com:15045/food_lover"; // use yours
-// }
+connectionString = "mongodb://" + username + ":" + password;
+
+connectionString += "@ds115045.mlab.com:15045/food_loverr"; // use yours
 
 var mongoose = require("mongoose");
 
