@@ -134,7 +134,17 @@ class App extends Component {
             />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profileedit" component={ProfileEdit} />
-            <Route exact path="/admin" component={Admin} />
+            <Route
+              exact
+              path="/admin"
+              render={props => (
+                <Admin
+                  {...props}
+                  // type={this.state.recipeType}
+                  loggedIn={this.loggedIn}
+                />
+              )}
+            />
             {/* <Route exact path="/detail" component={RecipeDetail} /> */}
             <Route
               exact
@@ -170,7 +180,14 @@ class App extends Component {
             <Route exact path="/listUsers" component={ListUsers} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/about" component={About} />
-            <Route exact path="/managerecipe" component={ManageRecipe} />
+            {/* <Route exact path="/managerecipe" component={ManageRecipe} /> */}
+            <Route
+              exact
+              path="/managerecipe"
+              render={props => (
+                <ManageRecipe {...props} loggedIn={this.loggedIn} />
+              )}
+            />
           </Switch>
           <footer>{<Footer />}</footer>
         </div>

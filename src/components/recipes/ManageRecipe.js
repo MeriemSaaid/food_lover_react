@@ -14,8 +14,16 @@ export default class ManageRecipe extends Component {
       recipes: res.data
     });
   };
-  componentDidMount() {
-    this.getAllRecipes();
+
+  async componentDidMount() {
+    const res = await this.props.loggedIn();
+    // console.log(res.data);
+    if (res.data === 0) {
+      // console.log("not connected");
+      this.props.history.push("/login");
+    } else {
+      this.getAllRecipes();
+    }
   }
 
   onDelete = async id => {

@@ -140,6 +140,7 @@ export default class EditRecipe extends Component {
                       name="top"
                       onChange={this.onChange}
                       value={this.state.top}
+                      title="Top recipe"
                     >
                       <option value="true">Yes</option>
                       <option value="false">No</option>
@@ -152,6 +153,7 @@ export default class EditRecipe extends Component {
                     name="category"
                     onChange={this.onChange}
                     value={this.state.category}
+                    title="Category"
                   >
                     <option value="">Select a category</option>
                     <option value="chicken">Chicken</option>
@@ -173,6 +175,7 @@ export default class EditRecipe extends Component {
                     placeholder="Recipe Name"
                     onChange={this.onChange}
                     value={this.state.name}
+                    title="Recipe Name"
                   />
                   {/* <div id="first_name_feedback" className="invalid-feedback" /> */}
                   {this.state.errors.name && (
@@ -189,6 +192,7 @@ export default class EditRecipe extends Component {
                     placeholder="Picture"
                     onChange={this.onChange}
                     value={this.state.picture}
+                    title="Recipe picture"
                   />
                   {/* <div id="last_name_feedback" className="invalid-feedback" /> */}
                   {this.state.errors.picture && (

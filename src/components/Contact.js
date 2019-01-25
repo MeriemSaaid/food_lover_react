@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export class Contact extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export class Contact extends Component {
       subject: "",
       message: "",
       errors: {},
+      subject: "",
       sendMessage: false
     };
   }
@@ -47,10 +49,19 @@ export class Contact extends Component {
       });
       return;
     }
+
     this.submitMessage();
   };
 
-  submitMessage = e => {
+  submitMessage = async e => {
+    const content = {
+      name: this.state.fullname,
+      email: this.state.email,
+      subject: this.state.subject,
+      message: this.state.message
+    };
+
+    await axios.post("/api/contact", content);
     this.setState({ sendMessage: true });
   };
   render() {

@@ -38,6 +38,6 @@ function updateUser(uid, user) {
 
 // Delete user by id
 function deleteUser(id) {
-  return UserModel.deleteOne({_id: id});
+  return UserModel.deleteOne({ _id: id });
 }
 module.exports = UserModel;

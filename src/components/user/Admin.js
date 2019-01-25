@@ -29,8 +29,15 @@ export default class EditProfile extends Component {
     });
   };
 
-  componentDidMount() {
-    this.loggedIn();
+  async componentDidMount() {
+    const res = await this.props.loggedIn();
+    // console.log(res.data);
+    if (!res.data.admin) {
+      // console.log("not connected");
+      this.props.history.push("/");
+    } else {
+      this.loggedIn();
+    }
   }
 
   loggedIn = async () => {
