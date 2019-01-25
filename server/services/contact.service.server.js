@@ -9,7 +9,6 @@ module.exports = function(app) {
       API_KEY = process.env.MAILGUN_API_KEY;
       DOMAIN = process.env.MAILGUN_DOMAIN;
     }
-
     var mailgun = require("mailgun-js")({ apiKey: API_KEY, domain: DOMAIN });
 
     const data = {
@@ -19,12 +18,6 @@ module.exports = function(app) {
       text: req.body.message
     };
 
-    // const data = {
-    //   from: "Excited User <me@samples.mailgun.org>",
-    //   to: "msimbo2018@gmail.com",
-    //   subject: "Hello",
-    //   text: "Testing some Mailgun awesomeness!"
-    // };
     mailgun.messages().send(data, (error, body) => {
       console.log(body);
     });
