@@ -4,28 +4,24 @@ self.__precacheManifest = [
     "url": "/static/media/welcomeprofile.3ee0b53d.jpg"
   },
   {
-    "revision": "b803491a7da74b0b7500",
-    "url": "/static/css/main.63129d9f.chunk.css"
+    "revision": "cf21971f064e99104cff",
+    "url": "/static/css/main.f998f108.chunk.css"
   },
   {
-    "revision": "afadfced9a79a6ca7ade",
-    "url": "/static/js/1.afadfced.chunk.js"
+    "revision": "9f9008571748dd47498f",
+    "url": "/static/js/1.9f900857.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
     "url": "/static/js/runtime~main.229c360f.js"
   },
   {
-    "revision": "209bea8f65060d44020c61ed6ce8ec9d",
-    "url": "/static/media/johndoe.209bea8f.png"
-  },
-  {
     "revision": "16cf5d4df3fa6e4cd45c96366bd4d80b",
     "url": "/static/media/registerwelcome.16cf5d4d.jpeg"
   },
   {
-    "revision": "b803491a7da74b0b7500",
-    "url": "/static/js/main.b803491a.chunk.js"
+    "revision": "cf21971f064e99104cff",
+    "url": "/static/js/main.cf21971f.chunk.js"
   },
   {
     "revision": "e1c429047e5ffad0faf8e64ab39c48c2",
@@ -44,7 +40,7 @@ self.__precacheManifest = [
     "url": "/static/media/chefResize.a7573290.jpg"
   },
   {
-    "revision": "055cf7655b634420be4ec5f3b25f0266",
+    "revision": "b6aff33af98a10f17c7e21a85d4297ce",
     "url": "/index.html"
   }
 ];
