@@ -60,7 +60,7 @@ export class Contact extends Component {
       subject: this.state.subject,
       message: this.state.message
     };
-
+    console.log(content);
     await axios.post("/api/contact", content);
     this.setState({ sendMessage: true });
   };

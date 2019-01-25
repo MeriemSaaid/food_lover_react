@@ -3,11 +3,15 @@ module.exports = function(app) {
   app.post("/api/contact", sendMessage);
 
   async function sendMessage(req, res) {
-    var API_KEY = "8622f1254e879a6802c241eb2536ad8a-2d27312c-bbc5fe81";
-    var DOMAIN = "sandboxb658c0162ee44b4e8b552e1db2650714.mailgun.org";
+    var API_KEY = "";
+    var DOMAIN = "";
+    if (process.env.MLAB_USERNAME_WEBDEV) {
+      API_KEY = process.env.MAILGUN_API_KEY;
+      DOMAIN = process.env.MAILGUN_DOMAIN;
+    }
+
     var mailgun = require("mailgun-js")({ apiKey: API_KEY, domain: DOMAIN });
-    // const data = "asdsfsdf";
-    // console.log(req.body);
+
     const data = {
       from: req.body.email,
       to: "msimbo2018@gmail.com",
@@ -15,8 +19,14 @@ module.exports = function(app) {
       text: req.body.message
     };
 
+    // const data = {
+    //   from: "Excited User <me@samples.mailgun.org>",
+    //   to: "msimbo2018@gmail.com",
+    //   subject: "Hello",
+    //   text: "Testing some Mailgun awesomeness!"
+    // };
     mailgun.messages().send(data, (error, body) => {
-      // console.log(body);
+      console.log(body);
     });
   }
 };
