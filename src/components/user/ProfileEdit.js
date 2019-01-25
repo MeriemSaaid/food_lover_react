@@ -16,9 +16,17 @@ export default class EditProfile extends Component {
       admin: false,
       dateCreated: new Date().toLocaleDateString(),
       gender: "",
-      _id: ""
+      _id: "",
+      picture:""
     };
   }
+
+  removeSpace = e => {
+    const str = e.target.value;
+    this.setState({
+      [e.target.name]: str.replace( /\s/g, '')
+    });
+  };
 
   onChange = e => {
     this.setState({
@@ -49,7 +57,8 @@ export default class EditProfile extends Component {
         gender,
         _id,
         chef,
-        dateCreated
+        dateCreated,
+        picture
       } = res.data;
       this.setState({
         _id,
@@ -65,13 +74,13 @@ export default class EditProfile extends Component {
         chef,
         birthday,
         gender,
-        dateCreated
+        dateCreated,
+        picture
       });
     }
   };
 
   onSubmit = e => {
-    // alert('The submitted value: ' + this.state.value)
     e.preventDefault();
     const {
       username,
@@ -86,7 +95,8 @@ export default class EditProfile extends Component {
       birthday,
       gender,
       _id,
-      dateCreated
+      dateCreated,
+      picture
     } = this.state;
     const newUser = {
       _id,
@@ -101,9 +111,9 @@ export default class EditProfile extends Component {
       email,
       birthday,
       gender,
-      dateCreated
+      dateCreated,
+      picture
     };
-    // console.log(newUser);
     this.updateUser(newUser);
   };
 
@@ -122,7 +132,8 @@ export default class EditProfile extends Component {
       chef,
       specialty,
       gender,
-      admin
+      admin,
+      picture
     } = this.state;
     return (
       <div className="padding_div bottom_space container">
@@ -130,63 +141,37 @@ export default class EditProfile extends Component {
           <div className="col-xs-12 col-sm-9">
             {/* <!-- User profile --> */}
             <div className="panel panel-default">
-              <div className="panel-heading">
-                <h4 className="panel-title">User profile</h4>
-              </div>
               <div className="panel-body">
                 <div className="profile__avatar">
-                  <img
-                    src={require("../../img/onlineimg/johndoe.png")}
-                    alt="..."
-                  />
+                  <img src={picture} alt="..." />
                 </div>
                 <div className="profile__header">
                   <h4>
                     {firstname} {lastname}
-                    {admin === true && (
-                      <small style={{ color: "green" }}> Administrator</small>
-                    )}
-                    {chef === true && (
-                      <small style={{ color: "green" }}> Chef</small>
-                    )}
+                    {admin === true && ( <small className="user_title"> Administrator</small> )}
+                    {chef === true && ( <small className="user_title"> Chef</small> )}
                   </h4>
+                  {/* Edit Bio for Users */}
                   {chef === false && (
-                    <input
-                      className="form-control"
-                      name="bio"
-                      onChange={this.onChange}
-                      value={bio}
-                      placeholder="A little bit about myself.."
-                    />
+                    <input className="form-control" name="bio" onChange={this.onChange} value={bio} placeholder="A little bit about myself.." />
+                  )}
+                  {/* Edit Bio for Chefs & Admin */}
+                  {chef === true && (
+                    <input className="form-control" name="bio" onChange={this.onChange} value={bio} placeholder="Edit Bio" />
                   )}
                   {chef === true && (
-                    <input
-                      className="form-control"
-                      name="bio"
-                      onChange={this.onChange}
-                      value={bio}
-                      placeholder="Edit Bio"
-                    />
+                    <input className="form-control" name="specialty" onChange={this.onChange} value={specialty} placeholder="Add Specialties" />
                   )}
-                  {chef === true && (
-                    <input
-                      className="form-control"
-                      name="specialty"
-                      onChange={this.onChange}
-                      value={specialty}
-                      placeholder="Add Specialties"
-                    />
-                  )}
+                  {/* URL Paste Area for PROFILE IMAGE */}
                   <p>
-                    <button type="file" className="btn">
-                      Update Photo
-                    </button>
+                    <small className="notice_default"><strong>Link Online Image URL here: </strong><span>(Upload Button COMING SOON!)</span></small>
+                    <input className="form-control" name="picture" onChange={this.onChange} value={picture} placeholder="Paste Image URL here..." />
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* <!-- User info --> */}
+            {/* <!-- User Info Edit Area --> */}
             <div className="panel panel-default">
               <div className="panel-heading">
                 <h4 className="panel-title">User info</h4>
@@ -200,12 +185,7 @@ export default class EditProfile extends Component {
                         <strong>Username</strong>
                       </th>
                       <td>
-                        <input
-                          className="form-control"
-                          name="username"
-                          onChange={this.onChange}
-                          value={username}
-                        />
+                        <input className="form-control" name="username" value={username} maxLength={18} onChange={this.removeSpace} />
                       </td>
                     </tr>
                     <tr>
@@ -213,12 +193,7 @@ export default class EditProfile extends Component {
                         <strong>First Name</strong>
                       </th>
                       <td>
-                        <input
-                          className="form-control"
-                          name="firstname"
-                          onChange={this.onChange}
-                          value={firstname}
-                        />
+                        <input className="form-control" name="firstname" onChange={this.onChange} value={firstname} maxLength={30} required/>
                       </td>
                     </tr>
                     <tr>
@@ -226,12 +201,7 @@ export default class EditProfile extends Component {
                         <strong>Last Name</strong>
                       </th>
                       <td>
-                        <input
-                          className="form-control"
-                          name="lastname"
-                          onChange={this.onChange}
-                          value={lastname}
-                        />
+                        <input className="form-control" name="lastname" onChange={this.onChange} value={lastname} maxLength={30} required/>
                       </td>
                     </tr>
                     <tr>
@@ -239,12 +209,7 @@ export default class EditProfile extends Component {
                         <strong>Email</strong>
                       </th>
                       <td>
-                        <input
-                          className="form-control"
-                          name="email"
-                          onChange={this.onChange}
-                          value={email}
-                        />
+                        <input className="form-control" type="email" name="email" onChange={this.removeSpace} value={email} maxLength={50} />
                       </td>
                     </tr>
                     <tr>
@@ -252,13 +217,7 @@ export default class EditProfile extends Component {
                         <strong>Gender</strong>
                       </th>
                       <td>
-                        <select
-                          className="form-control form-control-sm"
-                          id="dropDown"
-                          name="gender"
-                          value={gender}
-                          onChange={this.onChange}
-                        >
+                        <select className="form-control form-control-sm" id="dropDown" name="gender" value={gender} onChange={this.onChange} >
                           <option>Select Gender</option>
                           <option>Male</option>
                           <option>Female</option>
@@ -275,19 +234,12 @@ export default class EditProfile extends Component {
           {/* BUTTONS ARE HERE */}
           <div className="col-xs-12 col-sm-3">
             <p>
-              <button
-                type="submit"
-                className="btn-block btn-lg btn-success btn"
-              >
+              <button type="submit" className="btn-block btn-lg btn-success btn" >
                 Save Changes
               </button>
             </p>
             <p>
-              <Link
-                to="/profile"
-                href="#"
-                className="btn btn-lg btn-block btn-secondary"
-              >
+              <Link to="/profile" href="#" className="btn btn-lg btn-block btn-secondary" >
                 Cancel
               </Link>
             </p>

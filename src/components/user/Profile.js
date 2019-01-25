@@ -13,7 +13,7 @@ export default class Profile extends Component {
       gender: "",
       bio: "",
       specialty: "",
-
+      picture:"",
       dateCreated: new Date().toLocaleDateString(),
       admin: false,
       chef: false
@@ -58,7 +58,8 @@ export default class Profile extends Component {
         chef,
         dateCreated,
         bio,
-        specialty
+        specialty,
+        picture,
       } = res.data;
       this.setState({
         username,
@@ -70,18 +71,14 @@ export default class Profile extends Component {
         chef,
         dateCreated,
         bio,
-        specialty
+        specialty,
+        picture,
       });
     }
   };
 
   updateUser = async newUser => {
     await axios.put("/api/user", newUser);
-  };
-
-  logout = async () => {
-    await axios.post("/api/logout");
-    this.props.history.push("/login");
   };
 
   render() {
@@ -94,7 +91,8 @@ export default class Profile extends Component {
       chef,
       specialty,
       gender,
-      admin
+      admin,
+      picture
     } = this.state;
     return (
       <div className="padding_div bottom_space container">
@@ -102,84 +100,62 @@ export default class Profile extends Component {
           <div className="col-xs-12 col-sm-9">
             {/* <!-- User profile --> */}
             <div className="panel panel-default">
-              <div className="panel-heading">
-                <h4 className="panel-title">User profile</h4>
-              </div>
               <div className="panel-body">
                 <div className="profile__avatar">
-                  <img
-                    src={require("../../img/onlineimg/johndoe.png")}
-                    alt="..."
-                  />
+                  <img src={picture} alt="..." />
                 </div>
                 <div className="profile__header">
                   <h4>
                     {firstname} {lastname}
-                    {admin === true && (
-                      <small style={{ color: "green" }}> Administrator</small>
-                    )}
-                    {chef === true && (
-                      <small style={{ color: "green" }}> Chef</small>
-                    )}
+                    {admin === true && (<small className="user_title"> Administrator </small>)}
+                    {chef === true && ( <small className="user_title"> Chef </small> )}
+                    {chef === false && admin === false && ( <small className="user_title"> User </small> )}
                   </h4>
                   {/* User's Bio */}
                   <div className="d-block">
                     {chef === false && <span>About me:</span>}
-                    {chef === false && (
-                      <span className="text-muted"> {bio}</span>
-                    )}
+                    {chef === false && ( <span className="text-muted"> {bio}</span> )}
                   </div>
                   {/* Chef's Bio */}
                   <div className="d-block">
                     {chef === true && <span>Bio:</span>}
-                    {chef === true && (
-                      <span className="text-muted"> {bio}</span>
-                    )}
+                    {chef === true && ( <span className="text-muted"> {bio}</span> )}
                   </div>
                   <br />
                   <div>
                     {/* Chef's Specialties */}
                     {chef === true && <span>Specialties:</span>}
-                    {chef === true && (
-                      <span placeholder="specialties"> {specialty}</span>
-                    )}
+                    {chef === true && ( <span placeholder="specialties"> {specialty}</span> )}
                   </div>
                 </div>
               </div>
             </div>
             <br />
             <br />
-            {/* <!-- User info --> */}
+            <hr className="hr_silver" />
+            {/* <!-- User Info Area --> */}
             <div className="panel panel-default">
               <div className="panel-heading">
-                <h4 className="panel-title">User info</h4>
+                <h4 className="panel-title">Information</h4>
               </div>
               <br />
               <div className="panel-body">
                 <table className="table profile__table">
                   <tbody>
                     <tr>
-                      <th>
-                        <strong>Username</strong>
-                      </th>
+                      <th> <strong>Username</strong> </th>
                       <td>{username}</td>
                     </tr>
                     <tr>
-                      <th>
-                        <strong>First Name</strong>
-                      </th>
+                      <th> <strong>First Name</strong> </th>
                       <td>{firstname}</td>
                     </tr>
                     <tr>
-                      <th>
-                        <strong>Last Name</strong>
-                      </th>
+                      <th> <strong>Last Name</strong> </th>
                       <td>{lastname}</td>
                     </tr>
                     <tr>
-                      <th>
-                        <strong>Gender</strong>
-                      </th>
+                      <th> <strong>Gender</strong> </th>
                       <td>{gender}</td>
                     </tr>
                   </tbody>
@@ -187,180 +163,17 @@ export default class Profile extends Component {
               </div>
             </div>
             <br />
-            {/* <!-- Community --> */}
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h4 className="panel-title">Community</h4>
-              </div>
-              <br />
-              <div className="panel-body">
-                <table className="table profile__table">
-                  <tbody>
-                    <tr>
-                      <th>
-                        <strong>Followers</strong>
-                      </th>
-                      <td>58584</td>
-                    </tr>
-                    {/* <tr>
-                      <th><strong>Member since</strong></th>
-                      <td>{dateCreated}</td>
-                    </tr> */}
-                    {/* <tr>
-                      <th><strong>Recipes</strong></th>
-                      <td>6</td>
-                    </tr> */}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <br />
-
-            {/* <!-- Latest posts --> */}
-            {/* <div className="panel panel-default">
-          <div className="panel-heading">
-          <h4 className="panel-title">Latest Activity</h4>
-          </div>
-          <br/>
-          <div className="panel-body">
-            <div className="profile__comments">
-              <div className="profile-comments__item">
-                <div className="profile-comments__controls">
-                  <a href="#"><i className="fa fa-share-square-o"></i></a>
-                  <a href="#"><i className="fa fa-edit"></i></a>
-                  <a href="#"><i className="fa fa-trash-o"></i></a>
-                </div>
-                <div className="profile-comments__avatar">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="..." />
-                </div>
-                <div className="profile-comments__body">
-                  <h5 className="profile-comments__sender">
-                    {username} <small>2 hours ago</small>
-                  </h5>
-                  <div className="profile-comments__content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, corporis. Voluptatibus odio perspiciatis non quisquam provident, quasi eaque officia.
-                  </div>
-                </div>
-              </div>
-              <div className="profile-comments__item">
-                <div className="profile-comments__controls">
-                  <a href="#"><i className="fa fa-share-square-o"></i></a>
-                  <a href="#"><i className="fa fa-edit"></i></a>
-                  <a href="#"><i className="fa fa-trash-o"></i></a>
-                </div>
-                <div className="profile-comments__avatar">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." />
-                </div>
-                <div className="profile-comments__body">
-                  <h5 className="profile-comments__sender">
-                  {username} <small>5 hours ago</small>
-                  </h5>
-                  <div className="profile-comments__content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque dolor laboriosam dolores magnam mollitia, voluptatibus inventore accusamus illo.
-                  </div>
-                </div>
-              </div>
-              <div className="profile-comments__item">
-                <div className="profile-comments__controls">
-                  <a href="#"><i className="fa fa-share-square-o"></i></a>
-                  <a href="#"><i className="fa fa-edit"></i></a>
-                  <a href="#"><i className="fa fa-trash-o"></i></a>
-                </div>
-                <div className="profile-comments__avatar">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="..." />
-                </div>
-                <div className="profile-comments__body">
-                  <h5 className="profile-comments__sender">
-                  {username} <small>1 day ago</small>
-                  </h5>
-                  <div className="profile-comments__content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, esse, magni aliquam quisquam modi delectus veritatis est ut culpa minus repellendus.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
           </div>
           <div className="col-xs-12 col-sm-3">
-            {/* BUTTONS ARE HERE */}
-            {admin === false && (
+            {/* Edit Profile Button */}
               <p>
-                <Link
-                  to="/profileedit"
-                  href="#"
-                  className="profile__contact-btn btn btn-lg btn-block btn-info"
-                >
+                <Link to="/profileedit" href="#" className="profile__contact-btn btn btn-lg btn-block btn-b-n" >
                   Edit Profile
                 </Link>
               </p>
-            )}
-            {admin === true && (
-              <Link
-                to="/profileedit"
-                href="#"
-                className="profile__contact-btn btn btn-lg btn-block btn-info"
-              >
-                Edit Profile
-              </Link>
-            )}
-            <p>
-              <button
-                data-toggle="modal"
-                data-target="#exampleModal"
-                className="profile__contact-btn btn btn-lg btn-block btn-danger"
-              >
-                Log Out
-              </button>
-            </p>
-            {/* MODAL IS HERE */}
-            <div
-              className="modal fade"
-              id="exampleModal"
-              tabIndex="-1"
-              role="dialog"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog" role="document">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">
-                      Do you wish to log out?
-                    </h5>
-                    <button
-                      type="button"
-                      className="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  {/* Modal Buttons */}
-                  <div className="modal-footer">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      data-dismiss="modal"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      onClick={this.logout}
-                      type="button"
-                      className="btn btn-warning"
-                      data-dismiss="modal"
-                    >
-                      Yes
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr />
+            <hr className="hr_silver" />
             <br />
-            {/* <!-- Contact info --> */}
+            {/* <!-- Contact Info --> */}
             <div className="profile__contact-info">
               <div className="profile__contact-info-item">
                 <div className="profile__contact-info-icon">

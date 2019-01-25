@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { Link } from "react-router-dom";
 export default class ListUsers extends Component {
     
     constructor(props) {
@@ -18,7 +17,40 @@ export default class ListUsers extends Component {
       }
       componentDidMount() {
         this.getAllUsers();
+        this.loggedIn();
       }
+
+      loggedIn = async () => {
+        const res = await axios.post("/api/loggedIn");
+        if (res.data === 0) {
+          this.props.history.push("/login");
+        } else {
+          const {
+            username,
+            firstname,
+            lastname,
+            email,
+            gender,
+            admin,
+            chef,
+            dateCreated,
+            bio,
+            specialty
+          } = res.data;
+          this.setState({
+            username,
+            firstname,
+            lastname,
+            email,
+            gender,
+            admin,
+            chef,
+            dateCreated,
+            bio,
+            specialty
+          });
+        }
+      };
 
       onDelete = (id) => {
           window.$(`#delete${id}`).modal("hide")
@@ -42,19 +74,17 @@ export default class ListUsers extends Component {
     
   render() {
       const {users} = this.state;
-      console.log(users);
     return (
         <div className="container padding_div div_center">
             <div className="row custyle">
-                <div>
-                <Link to="/register" href="#" className="btn btn-primary btn-xs"><b>+</b> Add new user</Link>
-                </div>
             <br/>
             <br/>
                 <div className="table-responsive">
+                {/* TABLE IS HERE */}
                     <table className="table table-striped custab">
                         <thead>
                             <tr>
+                                <th>Photo ID</th>
                                 <th>Username</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
@@ -68,6 +98,7 @@ export default class ListUsers extends Component {
                                 return(
                     // RECEIVED USER DATA
                             <tr key={user._id}>
+                                <td><img className="image_small" alt="empty" src={user.picture} /></td>
                                 <td>{user.username}</td>
                                 <td>{user.firstname}</td>
                                 <td>{user.lastname}</td>
@@ -77,7 +108,7 @@ export default class ListUsers extends Component {
                                 <button onClick={this.onUpdate.bind(this, user._id)} className="btn btn-info btn-xs"><i className="far fa-edit"></i></button>
                             {/* Delete User Button */}
                                 <button type="button" data-toggle="modal" data-target={`#delete${user._id}`}  className="btn btn-danger btn-xs btnSpace"><i className="far fa-trash-alt"></i></button>
-                                {/* MODAL is located here! */}
+                                {/* MODAL for delete is located here! */}
                                 <div className="modal fade" id={`delete${user._id}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div className="modal-dialog" role="document">
                                         <div className="modal-content">
@@ -87,6 +118,7 @@ export default class ListUsers extends Component {
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                             </div>
+                                            {/* Official 'Delete User' Button */}
                                             <div className="modal-body">
                                                 <p>Are you sure you want to <strong>delete</strong> this user?</p>
                                             </div>

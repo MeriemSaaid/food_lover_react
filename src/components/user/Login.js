@@ -6,7 +6,7 @@ class Login extends Component {
   state = {
     username: "",
     password: "",
-    errors: {}
+    errors: {},
   };
   onChange = e => {
     this.setState({
@@ -59,13 +59,7 @@ class Login extends Component {
     }
     this.login(username, password);
   };
-  // componentDidMount() {
-  //   // const loggedOut = this.props.location.state.loggedOut;
-  //   console.log(this.props);
-  //   if (this.props.loggedOut) {
-  //     this.props.loggedIn();
-  //   }
-  // }
+
   render() {
     const { errors } = this.state;
     return (
@@ -89,14 +83,14 @@ class Login extends Component {
                     <label htmlFor="exampleInputPassword1" className="text-uppercase" >Password</label>
                     <input type="password" className="form-control" placeholder="" onChange={this.onChange} name="password"/>
                   </div>
-                  {/* BUTTONS ARE HERE! */}
-                  {/* LOGIN */}
-                  <button type="submit" className="btn-success btn btn-block mt-4">Login</button>
+                    {/* BUTTONS ARE HERE! */}
+                        {/* LOGIN */}
+                    <button type="submit" className="btn-success btn btn-block mt-4">Login</button>
                   <div className="btn-group-sm mt-2">
-                  {/* LOGIN WITH FACEBOOK */}
-                  <button type="submit" className="btn btn-primary mr-1"><i className="fab fa-facebook" /> Login with Facebook</button>
-                  {/* LOGIN WITH GOOGLE */}
-                  <button type="submit" className="btn btn-danger"><i className="fab fa-google-plus-g" /> Login with Google+</button>
+                        {/* LOGIN WITH FACEBOOK */}
+                    <button type="submit" className="btn btn-primary mr-1"><i className="fab fa-facebook" /> Login with Facebook</button>
+                        {/* LOGIN WITH GOOGLE */}
+                    <button type="submit" className="btn btn-danger"><i className="fab fa-google-plus-g" /> Login with Google+</button>
                   </div>
               <br />
                   <h6>Haven't registered yet? <Link to="/register">Sign Up here!</Link></h6>
@@ -118,7 +112,7 @@ class Login extends Component {
                         <div className="carousel-caption d-none d-md-block">
                           <div className="banner-text">
                             <h2>Be one of our Online Cook!</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>        
+                            <p>Click register as a chef to send a request and we'd like to hear about your cooking experience!</p>        
                           </div>
                         </div>
                     </div>
@@ -128,7 +122,7 @@ class Login extends Component {
                         <div className="carousel-caption d-none d-md-block">
                           <div className="banner-text">
                             <h2>Discover recipes from around the world!</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                            <p>Explore different recipes made by our top chefs from different parts of the world.</p>
                           </div>	
                         </div>
                     </div>
@@ -138,7 +132,7 @@ class Login extends Component {
                         <div className="carousel-caption d-none d-md-block">
                           <div className="banner-text">
                             <h2>Learn from our Top Chefs!</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                            <p>Tons of new recipes available to learn everyday!</p>
                           </div>	
                         </div>
                     </div>

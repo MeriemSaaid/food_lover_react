@@ -52,7 +52,7 @@ class Register extends Component {
   // showing whether the checkbox is checked or not
   changeChef= (bol) => {
      this.setState({
-      cook: bol
+      chef: bol
     })
   } 
 
@@ -67,8 +67,7 @@ class Register extends Component {
       email,
       gender,
       experience,
-      chef,
-      cook
+      chef
     } = this.state;
     const user = {
       username,
@@ -79,8 +78,7 @@ class Register extends Component {
       email,
       gender,
       experience,
-      chef,
-      cook
+      chef
     };
     if (username === "") {
       this.setState({
@@ -124,7 +122,7 @@ class Register extends Component {
       email,
       gender,
       experience,
-      cook,
+      chef,
       errors
     } = this.state;
     return (
@@ -202,7 +200,7 @@ class Register extends Component {
                   <input type="radio" onClick={this.changeChef.bind(this, false)} required name="chef" value={cook} id="noCheck" />
                   <br />
                   {/* User experience text area */}
-                  {this.state.cook &&
+                  {this.state.chef &&
                   <div id="ifYes">
                     <fieldset>
                       <br />

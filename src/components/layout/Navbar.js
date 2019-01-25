@@ -167,15 +167,65 @@ class Navbar extends Component {
               </Link>
             ) : (
               <button
-                onClick={this.loggeOut}
+                // onClick={this.loggeOut}
                 className="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block"
-                // data-toggle="collapse"
-                // data-target="#navbarTogglerDemo01"
+                data-toggle="modal"
+                data-target="#exampleModal"
+                // className="profile__contact-btn btn btn-lg btn-block btn-danger"
                 aria-expanded="false"
               >
                 Logout
               </button>
-            )}
+              )}
+             {/* MODAL IS HERE */}
+            <div
+              className="modal fade"
+              id="exampleModal"
+              tabIndex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">
+                      Do you wish to log out?
+                    </h5>
+                    <button
+                      type="button"
+                      className="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {/* Modal Buttons */}
+                  <div className="modal-footer">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={this.loggeOut}
+                      type="button"
+                      className="btn btn-warning"
+                      data-dismiss="modal"
+                    >
+                      Yes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            
           </div>
         </nav>
       </div>

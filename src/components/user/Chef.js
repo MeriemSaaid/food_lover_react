@@ -49,9 +49,9 @@ export default class Chef extends Component {
                 key={chef._id}
               >
                 <div className="thumbnail card">
-                  <div className="img-event">
+                  <div className="img-event ">
                     <img
-                      className="group list-group-image img-fluid fixed_width_heigth cursor_pointer"
+                      className="group list-group-image img-fluid cursor_pointer"
                       src={chef.picture}
                       alt={chef.firstname}
                     />

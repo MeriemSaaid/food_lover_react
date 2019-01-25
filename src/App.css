@@ -2101,6 +2101,8 @@ card {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
+  width: auto;
+  height: 250px;
 }
 .item.list-group-item {
   float: none;
@@ -2141,6 +2143,7 @@ card {
   width: 400px;
   height: 250px;
 }
+
 .loginForm {
   padding-top: 9vw;
 }
@@ -2302,7 +2305,7 @@ hr {
 .single_portfolio_text {
   display: inline-block;
   /* padding:0; */
-  position: relative;
+  position: cover;
   overflow: hidden;
 }
 .single_portfolio_text img {
@@ -2656,7 +2659,7 @@ Chef links
 
 .chef_box {
   width: auto;
-  border: 1px solid black;
+  border: 1px solid silver;
   padding: 25px;
   margin: 25px;
 }
@@ -2928,4 +2931,39 @@ body.modal-open div.modal-backdrop {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
+}
+
+span.highlight_modal:hover, span.highlight_modal:active {
+  color: #18d26e;
+  font-weight:bold;
+}
+
+.image_small {
+  height: 50px;
+  border-radius: 20px;
+}
+
+.image_medium {
+  height: 20px;
+  border-radius: 20px;
+  opacity: 0.8;
+}
+
+.icon_online {
+  font-size: 9px;
+  position: relative;
+  bottom: 1.8px;
+  color: #32aa32;
+}
+
+.user_title{
+  color: green;
+}
+
+.hr_silver {
+  border-color: silver;
+}
+
+.notice_default {
+  color: gray;
 }
