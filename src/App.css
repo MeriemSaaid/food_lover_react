@@ -2400,6 +2400,15 @@ hr {
 }
 /* Css Chef detail */
 
+#cards {
+  text-align: center;
+}
+#cards h5 {
+  text-align: center;
+}
+.margin_top {
+  margin-top: 15px;
+}
 .detail {
   /* margin-top: 50px; */
   /* background: #eee; */
@@ -2615,7 +2624,7 @@ Chef links
 }
 
 .fixed_width_heigth_chef_detail {
-  width: 250px;
+  width: 150px;
   height: 150px;
 }
 /* Limit line per paragraph */

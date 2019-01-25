@@ -13,7 +13,7 @@ function createComment(comment) {
 //Find comment by recipe
 function findCommentByRecipe(recipeId) {
   return CommentModel.find({ recipeId: recipeId })
-    .populate("userId", "firstname lastname picture")
+    .populate("userId", "firstname lastname picture as user_pic")
     .exec();
 }
 function updateComment(id, comment) {

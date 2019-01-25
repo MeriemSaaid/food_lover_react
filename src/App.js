@@ -8,6 +8,7 @@ import RecipeAdd from "./components/recipes/RecipeAdd";
 import RecipeList from "./components/recipes/RecipeList";
 import RecipeDetail from "./components/recipes/RecipeDetail";
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ManageRecipe from "./components/recipes/ManageRecipe";
 
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
@@ -95,7 +96,19 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/edit" component={EditRecipe} />
+            {/* <Route exact path="/edit" component={EditRecipe} /> */}
+            <Route
+              exact
+              path="/edit"
+              render={props => (
+                <EditRecipe
+                  {...props}
+                  loggedOut={this.state.loggedOut}
+                  loggedIn={this.loggedIn}
+                  admin={this.state.admin}
+                />
+              )}
+            />
             <Route
               exact
               path="/login"
@@ -107,7 +120,18 @@ class App extends Component {
                 />
               )}
             />
-            <Route exact path="/register" component={Register} />
+            {/* <Route exact path="/register" component={Register} /> */}
+            <Route
+              exact
+              path="/register"
+              render={props => (
+                <Register
+                  {...props}
+                  loggedOut={this.state.loggedOut}
+                  loggedIn={this.loggedIn}
+                />
+              )}
+            />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/profileedit" component={ProfileEdit} />
             <Route exact path="/admin" component={Admin} />
@@ -146,6 +170,7 @@ class App extends Component {
             <Route exact path="/listUsers" component={ListUsers} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/managerecipe" component={ManageRecipe} />
           </Switch>
           <footer>{<Footer />}</footer>
         </div>

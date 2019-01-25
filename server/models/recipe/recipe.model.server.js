@@ -9,6 +9,7 @@ RecipeModel.findAllRecipes = findAllRecipes;
 RecipeModel.updateRecipe = updateRecipe;
 RecipeModel.searchRecipes = searchRecipes;
 RecipeModel.findTopRecipe = findTopRecipe;
+RecipeModel.deleteRecipe = deleteRecipe;
 
 //Create a recipe
 function createRecipe(user) {
@@ -17,7 +18,7 @@ function createRecipe(user) {
 //Find recipe by Id
 function findRecipeById(recId) {
   return RecipeModel.findById(recId)
-    .populate("userId", "username")
+    .populate("userId", "username firstname lastname")
     .exec();
 }
 //Find recipe by user ID
@@ -26,7 +27,9 @@ function findRecipeByUser(userId) {
 }
 //Find all Recipe
 function findAllRecipes() {
-  return RecipeModel.find();
+  return RecipeModel.find()
+    .populate("userId", "username firstname lastname")
+    .exec();
 }
 //Update Recipe
 function updateRecipe(recId, recipe) {
@@ -53,5 +56,12 @@ function findTopRecipe() {
   return RecipeModel.find({ top: true })
     .sort("datePosted")
     .limit(3);
+}
+
+//Delete a follow
+function deleteRecipe(id) {
+  return RecipeModel.deleteOne({
+    _id: id
+  });
 }
 module.exports = RecipeModel;

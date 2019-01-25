@@ -127,7 +127,7 @@ class About extends Component {
             <div className="socials-footer d-flex justify-content-center">
               <ul className="list-inline">
                 <li className="list-inline-item">
-                  <Link to="#" class="link-one">
+                  <Link to="#" className="link-one">
                     <i className="fa fa-facebook" aria-hidden="true" />
                   </Link>
                 </li>
@@ -138,10 +138,6 @@ class About extends Component {
 
         <div className="col-md-4">
           <div className="card-box-d">
-            <div className="card-img-d">
-              <img src="img/agent-6.jpg" alt="" className="img-d img-fluid" />
-            </div>
-
             <div className="card-body-d">
               <p className="content-d color-text-a">
                 Sed porttitor lectus nibh, Cras ultricies ligula sed magna
@@ -170,14 +166,11 @@ class About extends Component {
 
         <div className="col-md-4">
           <div className="card-box-d">
-            <div className="card-img-d">
-              <img src="img/agent-5.jpg" alt="" className="img-d img-fluid" />
-            </div>
-            <div class="card-overlay card-overlay-hover">
-              <div class="card-header-d">
-                <div class="card-title-d align-self-center">
-                  <h3 class="title-d">
-                    <a href="agent-single.html" class="link-two">
+            <div className="card-overlay card-overlay-hover">
+              <div className="card-header-d">
+                <div className="card-title-d align-self-center">
+                  <h3 className="title-d">
+                    <a href="agent-single.html" className="link-two">
                       Emma Toledo
                       <br /> Cascada
                     </a>
@@ -201,8 +194,8 @@ class About extends Component {
               <div className="card-footer-d">
                 <div className="socials-footer d-flex justify-content-center">
                   <ul className="list-inline">
-                    <li cclassName="list-inline-item">
-                      <i class="fa fa-facebook" aria-hidden="true" />
+                    <li className="list-inline-item">
+                      <i className="fa fa-facebook" aria-hidden="true" />
                     </li>
                   </ul>
                 </div>
@@ -210,16 +203,16 @@ class About extends Component {
             </div>
           </div>
         </div>
-        <section class="section-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-12 col-md-4">
-                <div class="widget-a">
-                  <div class="w-header-a">
-                    <h3 class="w-title-a text-brand">FoodLover Recipe</h3>
+        <section className="section-footer">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12 col-md-4">
+                <div className="widget-a">
+                  <div className="w-header-a">
+                    <h3 className="w-title-a text-brand">FoodLover Recipe</h3>
                   </div>
-                  <div class="w-body-a">
-                    <p class="w-text-a color-text-a ">
+                  <div className="w-body-a">
+                    <p className="w-text-a color-text-a ">
                       To those who love fine dishes whether in a restaurant, at
                       a cozy place or at home with family, and friends,
                       FoodLover Recipe bring you an exquisite list of fine
@@ -228,14 +221,14 @@ class About extends Component {
                     </p>
                     <span> </span>
                   </div>
-                  <div class="w-footer-a">
-                    <ul class="list-unstyled">
-                      <li class="color-a">
-                        <span class="color-text-a">Phone .</span> +1 800 222
+                  <div className="w-footer-a">
+                    <ul className="list-unstyled">
+                      <li className="color-a">
+                        <span className="color-text-a">Phone .</span> +1 800 222
                         1212
                       </li>
-                      <li class="color-a">
-                        <span class="color-text-a">Email .</span>
+                      <li className="color-a">
+                        <span className="color-text-a">Email .</span>
                         msimbo2018@gmail.com
                       </li>
                     </ul>

@@ -96,12 +96,13 @@ export default class ChefDetail extends Component {
     const { chef, follower, followers, recipes } = this.state;
     // console.log(this.handleCheck(follower));
     return (
-      <div className="container padding_div intro-single">
+      <div className="container padding_div">
         <div className="title-box-d">
           <h3 className="title-d">
             {chef.firstname} {chef.lastname}
           </h3>
         </div>
+
         <div className="agent-single padding_div border">
           <div className="container">
             <div className="row">
@@ -111,8 +112,8 @@ export default class ChefDetail extends Component {
                     <div className="agent-avatar-box">
                       <img
                         src={chef.picture}
-                        alt=""
-                        className="rounded-circle float-right fixed_width_heigth_chef_detail"
+                        className="img-circle fixed_width_heigth_chef_detail border border-success"
+                        alt="Cinque Terre"
                       />
                     </div>
                   </div>

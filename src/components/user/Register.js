@@ -33,6 +33,7 @@ class Register extends Component {
     } else {
       // Adding user to db
       res = await axios.post("/api/register", user);
+      this.props.loggedIn();
       this.props.history.push({
         pathname: `/profile`,
         state: { user: res.data }

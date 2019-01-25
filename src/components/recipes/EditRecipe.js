@@ -11,6 +11,7 @@ export default class EditRecipe extends Component {
     category: "",
     recipeEdit: [],
     _id: "",
+    top: "",
     errors: {}
   };
 
@@ -23,11 +24,19 @@ export default class EditRecipe extends Component {
   editRecipe = async recipe => {
     // try {
     const res = await axios.put("/api/recipe", recipe);
-    this.props.history.push({
-      pathname: `/list/${this.state.category}`,
-      // type: this.state.category,
-      state: { recipe: res.data }
-    });
+
+    if (this.props.admin) {
+      this.props.history.push({
+        pathname: `manageRecipe`
+        // type: this.state.category,
+      });
+    } else {
+      this.props.history.push({
+        pathname: `/list/${this.state.category}`,
+        // type: this.state.category,
+        state: { recipe: res.data }
+      });
+    }
   };
   //Fuction to submit form
   onSubmit = async e => {
@@ -74,7 +83,8 @@ export default class EditRecipe extends Component {
       picture,
       description,
       ingredients,
-      category
+      category,
+      top
     } = this.state;
 
     const recipe = {
@@ -83,7 +93,8 @@ export default class EditRecipe extends Component {
       picture,
       description,
       ingredients,
-      category
+      category,
+      top
     };
     // console.log(userId);
     this.editRecipe(recipe);
@@ -92,6 +103,7 @@ export default class EditRecipe extends Component {
   async componentDidMount() {
     const id = this.props.location.state.recipeId;
     const res = await axios.get(`/api/recipe/${id}`);
+    //  this.props.loggedIn();
     this.setState({
       // userId: res.data._id,
       name: res.data.name,
@@ -99,13 +111,14 @@ export default class EditRecipe extends Component {
       description: res.data.description,
       ingredients: res.data.ingredients,
       category: res.data.category,
+      top: res.data.top,
       _id: res.data._id
     });
-    // console.log(res.data.category);
+    console.log(this.props.admin);
   }
   render() {
     // const recipeEdit
-    const { recipeEdit } = this.state;
+    // const { recipeEdit } = this.state;
     return (
       <div className="container margin_top padding_div">
         <form onSubmit={this.onSubmit}>
@@ -120,6 +133,19 @@ export default class EditRecipe extends Component {
               <h2 className="card-title">Edit Your Recipe</h2>
 
               <div className="row">
+                {this.props.admin && (
+                  <div className="form-group col-md-1 padding_half">
+                    <select
+                      className="form-control"
+                      name="top"
+                      onChange={this.onChange}
+                      value={this.state.top}
+                    >
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
+                  </div>
+                )}
                 <div className="form-group col-md-2 padding_half">
                   <select
                     className="form-control"
@@ -139,7 +165,7 @@ export default class EditRecipe extends Component {
                     </div>
                   )}
                 </div>
-                <div className="form-group col-md-5 padding_half">
+                <div className="form-group col-md-4 padding_half">
                   <input
                     name="name"
                     type="text"

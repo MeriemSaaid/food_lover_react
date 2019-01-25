@@ -182,47 +182,7 @@ export default class RecipeList extends Component {
               </div>
             );
           })}
-          {/* <Pagination
-            activePage={this.state.activePage}
-            itemsCountPerPage={10}
-            totalItemsCount={450}
-            pageRangeDisplayed={5}
-            onChange={this.handlePageChange}
-          /> */}
         </div>
-        {/* <div className="row">
-          <div className="col-sm-12">
-            <nav className="pagination-a">
-              <ul className="pagination justify-content-end">
-                <li className="page-item disabled">
-                  <a className="page-link" ="#">
-                    <span className="ion-ios-arrow-back" />
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" ="#">
-                    1
-                  </a>
-                </li>
-                <li className="page-item active">
-                  <a className="page-link" ="#">
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" ="#">
-                    3
-                  </a>
-                </li>
-                <li className="page-item next">
-                  <a className="page-link" ="#">
-                    <span className="ion-ios-arrow-forward">next</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div> */}
       </div>
     );
   }

@@ -14,6 +14,9 @@ module.exports = function(app) {
   // update a  page
   app.put("/api/recipe", updateRecipe);
 
+  // update a  page
+  app.delete("/api/recipe/delete/:id", deleteRecipe);
+
   //Function to create recipe
   async function createRecipe(req, res) {
     var recipe = req.body;
@@ -53,6 +56,13 @@ module.exports = function(app) {
     const recipe = req.body;
     const recId = recipe._id;
     const data = await RecipeModel.updateRecipe(recId, recipe);
+    res.json(data);
+  }
+
+  //Function to list all recipes
+  async function deleteRecipe(req, res) {
+    const id = req.params["id"];
+    const data = await RecipeModel.deleteRecipe(id);
     res.json(data);
   }
 };

@@ -10,7 +10,7 @@ export default class RecipeDetail extends Component {
     description: "",
     ingredients: "",
     datePosted: "",
-    username: "",
+    // username: "",
     content: "",
     recipeId: "",
     comments: [],
@@ -18,7 +18,9 @@ export default class RecipeDetail extends Component {
     editingContent: "",
     topRecipes: [],
     user: "",
-    userId: ""
+    userId: "",
+    firstname: "",
+    lastname: ""
   };
   //Function to get recipes
   getRecipe = async id => {
@@ -31,7 +33,9 @@ export default class RecipeDetail extends Component {
       picture,
       description,
       ingredients,
-      username: res.data.userId.username,
+      // username: res.data.userId.username,
+      firstname: res.data.userId.firstname,
+      lastname: res.data.userId.lastname,
       userId: res.data.userId._id,
       datePosted
     });
@@ -85,7 +89,6 @@ export default class RecipeDetail extends Component {
     this.setState({
       comments: res.data
     });
-    console.log("this.state.comments");
   };
 
   //Fuction to submit form
@@ -163,7 +166,9 @@ export default class RecipeDetail extends Component {
       description,
       ingredients,
       datePosted,
-      username,
+      // username,
+      firstname,
+      lastname,
       content,
       comments,
       user,
@@ -178,6 +183,8 @@ export default class RecipeDetail extends Component {
       }
     };
 
+    // console.log(comments);
+    // console.log(user);
     return (
       <div className="container padding_div">
         <div className="row">
@@ -185,7 +192,9 @@ export default class RecipeDetail extends Component {
             <h1 className="mt-4">{name}</h1>
             <p className="lead">
               by
-              <Link to={`/chefdetail/${userId}`}>&nbsp;{username}</Link>
+              <Link to={`/chefdetail/${userId}`}>
+                &nbsp;{firstname}&nbsp;{lastname}
+              </Link>
             </p>
             <hr />
             <p>Posted on {datePosted}</p>
@@ -235,7 +244,7 @@ export default class RecipeDetail extends Component {
                 <img
                   className="d-flex mr-3 rounded-circle fixed_picture"
                   src={comment.userId.picture}
-                  alt=""
+                  alt={comment.userId.firstname}
                 />
                 <div className="media-body">
                   <h5 className="mt-0">
@@ -297,11 +306,14 @@ export default class RecipeDetail extends Component {
 
           <div className="col-md-4">
             {/* <div class="card my-4"> */}
-
-            <button className="btn btn-info btn-xs" onClick={this.redirectEdit}>
-              <i className="far fa-edit" title="dd" />
-            </button>
-
+            {userId === user && (
+              <button
+                className="btn btn-info btn-xs"
+                onClick={this.redirectEdit}
+              >
+                <i className="far fa-edit" title="dd" />
+              </button>
+            )}
             {/* </div> */}
             <div className="card my-3">
               <h5 className="card-header">Top Recipes</h5>

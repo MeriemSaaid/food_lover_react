@@ -162,6 +162,14 @@ class Navbar extends Component {
                           </Link>
                         )}
                       </li>
+                      <li className="nav-item">
+                        {this.props.admin && (
+                          <Link to="/managerecipe" className="nav-link">
+                            {" "}
+                            Manage recipes
+                          </Link>
+                        )}
+                      </li>
                       {this.props.logged && (
                         <li className="nav-item">
                           <Link to="/profile" className="nav-link">
