@@ -4,9 +4,9 @@
 // check if running remotely
 
 // var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
-var username = "admin";
+// var username = "admin";
 //var password = process.env.MLAB_PASSWORD_WEBDEV;
-var password = "admin123";
+// var password = "admin123";
 
 connectionString = "mongodb://admin:admin123";
 
