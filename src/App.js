@@ -6,6 +6,7 @@ import Home from "./components/Home";
 
 import RecipeAdd from "./components/recipes/RecipeAdd";
 import RecipeList from "./components/recipes/RecipeList";
+
 import RecipeDetail from "./components/recipes/RecipeDetail";
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ManageRecipe from "./components/recipes/ManageRecipe";
@@ -96,6 +97,7 @@ class App extends Component {
                 />
               )}
             />
+            
             {/* <Route exact path="/edit" component={EditRecipe} /> */}
             <Route
               exact
@@ -189,7 +191,7 @@ class App extends Component {
               )}
             />
           </Switch>
-          <footer>{<Footer />}</footer>
+        <section className="section-footer">>{<Footer />}</section>
         </div>
       </BrowserRouter>
     );

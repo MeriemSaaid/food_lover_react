@@ -212,9 +212,9 @@ export default class Home extends Component {
                               className="intro-subtitle intro-price"
                               style={props}
                             >
-                              <a href="/">
+                              {/* <a href="/">
                                 <span className="price-a">Explore</span>
-                              </a>
+                              </a> */}
                             </p>
                           )}
                         </Spring>

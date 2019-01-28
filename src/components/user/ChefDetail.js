@@ -82,7 +82,7 @@ export default class ChefDetail extends Component {
     const id = this.props.match.params.id;
     this.setState({
       recipes: res.data.filter(recipe => {
-        return recipe.userId && recipe.userId === id;
+        return recipe.userId._id && recipe.userId._id === id;
       })
     });
   };
@@ -112,7 +112,7 @@ export default class ChefDetail extends Component {
                     <div className="agent-avatar-box">
                       <img
                         src={chef.picture}
-                        className="img-circle fixed_width_heigth_chef_detail border border-success"
+                        className="fixed_width_heigth_chef_detail float-right"
                         alt="Cinque Terre"
                       />
                     </div>

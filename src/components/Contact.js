@@ -14,7 +14,7 @@ export class Contact extends Component {
       subject: "",
       message: "",
       errors: {},
-      subject: "",
+      // subject: "",
       sendMessage: false
     };
   }

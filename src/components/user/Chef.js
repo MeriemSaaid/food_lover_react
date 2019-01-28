@@ -30,13 +30,13 @@ export default class Chef extends Component {
     // console.log(res.data);
     if (res.data === 0) {
       // console.log("not connected");
-      this.props.history.push("/login");
+      // this.props.history.push("/login");
     } else {
       this.setState({
         userId: res.data._id
       });
-      this.getChefs();
     }
+    this.getChefs();
   }
 
   render() {
@@ -64,7 +64,7 @@ export default class Chef extends Component {
                 <div className="thumbnail card">
                   <div className="img-event ">
                     <img
-                      className="group list-group-image img-fluid cursor_pointer"
+                      className="group list-group-image img-fluid cursor_pointer fixed_width_heigth_chef_detail"
                       src={chef.picture}
                       alt={chef.firstname}
                     />

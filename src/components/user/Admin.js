@@ -172,7 +172,8 @@ export default class EditProfile extends Component {
                   {/* URL Paste Area for PROFILE IMAGE */}
                   <p>
                     <small className="notice_default"><strong>Link Online Image URL here: </strong><span>(Upload button COMING SOON!)</span></small>
-                    <input className="form-control" name="picture" onChange={this.onChange} value={picture} placeholder="Add  your picture" />
+                    <input className="form-control" name="picture" onChange={this.onChange} value={picture} 
+                     placeholder="Add  your picture" />
                   </p>
                 </div>
               </div>

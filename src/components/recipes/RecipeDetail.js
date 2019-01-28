@@ -79,8 +79,8 @@ export default class RecipeDetail extends Component {
       comments: [...this.state.comments, res.data],
       content: ""
     });
-    const id = this.props.location.state.id;
-    this.getComments(id);
+    // const id = this.props.location.state.id;
+    this.getComments(this.state.recipeId);
   };
 
   //Get All comments for a recipe
@@ -144,8 +144,15 @@ export default class RecipeDetail extends Component {
 
   //Consult details
   showDetail = id => {
+    
     this.getRecipe(id);
+     this.getComments(id);
+     this.setState({
+      recipeId: id
+    });
   };
+
+  
 
   redirectEdit = e => {
     this.props.history.push({

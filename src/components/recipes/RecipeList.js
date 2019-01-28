@@ -106,6 +106,7 @@ export default class RecipeList extends Component {
     // console.log(user);
     return (
       <div className="container padding_div intro-single">
+      
         <div className="row">
           {/* <div className="col-3">&nbsp;&nbsp;</div>
           <div className="col-4">
@@ -149,24 +150,22 @@ export default class RecipeList extends Component {
           </div>
         </div>
         <div id="products" className="row view-group">
-          {recipes.map((recipe, i) => {
-            // console.log(recipe);
-            return (
-              <div className="item col-xs-4 col-lg-4" key={recipe._id}>
-                <div className="thumbnail card">
-                  <div className="img-event">
-                    <img
+    {recipes.map((recipe, i) => {
+        return (
+                <div className="item col-xs-4 col-lg-4" key={recipe._id}>
+                    <div className="thumbnail card">
+                        <div className="img-event">
+                        <img
                       className="group list-group-image img-fluid fixed_width_heigth cursor_pointer"
                       src={recipe.picture}
                       alt={recipe.name}
                       onClick={this.showDetail.bind(this, recipe._id)}
                     />
-                  </div>
-                  <div className="caption card-body">
-                    <h4 className="group card-title inner list-group-item-heading">
-                      {recipe.name}
-                    </h4>
-                    <p className="group inner list-group-item-text limit_p">
+                        </div>
+                        <div className="caption card-body">
+                            <h4 className="group card-title inner list-group-item-heading">
+                            {recipe.name}</h4>
+                            <p className="group inner list-group-item-text limit_p">
                       {recipe.description}
                     </p>
                     <button
@@ -175,14 +174,14 @@ export default class RecipeList extends Component {
                       data-target={`#recipe_${recipe._id}`}
                     >
                       Read more
-                    </button>
-                  </div>
+                    </button>  
+                        </div>
+                    </div>
+                    <PopupDesc recipe={recipe} />
                 </div>
-                <PopupDesc recipe={recipe} />
-              </div>
-            );
-          })}
-        </div>
+                );
+            })}
+            </div>
       </div>
     );
   }
