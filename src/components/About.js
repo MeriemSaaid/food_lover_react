@@ -123,7 +123,7 @@ class About extends Component {
               porta two.
             </p>
           </div>
-          <div className="card-footer-d">
+          {/* <div className="card-footer-d">
             <div className="socials-footer d-flex justify-content-center">
               <ul className="list-inline">
                 <li className="list-inline-item">
@@ -133,7 +133,7 @@ class About extends Component {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="col-md-4">

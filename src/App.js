@@ -97,7 +97,6 @@ class App extends Component {
                 />
               )}
             />
-            
             {/* <Route exact path="/edit" component={EditRecipe} /> */}
             <Route
               exact
@@ -191,7 +190,7 @@ class App extends Component {
               )}
             />
           </Switch>
-        <section className="section-footer">>{<Footer />}</section>
+          <section className="section-footer">{<Footer />}</section>
         </div>
       </BrowserRouter>
     );
