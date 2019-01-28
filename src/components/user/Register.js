@@ -26,7 +26,7 @@ class Register extends Component {
   removeSpace = e => {
     const str = e.target.value;
     this.setState({
-      [e.target.name]: str.replace( /\s/g, '')
+      [e.target.name]: str.replace(/\s/g, "")
     });
   };
 
@@ -51,11 +51,11 @@ class Register extends Component {
   }
 
   // showing whether the checkbox is checked or not
-  changeChef= (bol) => {
-     this.setState({
+  changeChef = bol => {
+    this.setState({
       cook: bol
-    })
-  } 
+    });
+  };
 
   onSubmit = async e => {
     e.preventDefault();
@@ -81,7 +81,8 @@ class Register extends Component {
       gender,
       experience,
       chef,
-      cook
+      cook,
+      picture: ""
     };
     if (username === "") {
       this.setState({
@@ -154,33 +155,80 @@ class Register extends Component {
                 {/* User's information input fields */}
                 <div className="form-group">
                   <label className="float-left">Username</label>
-                  <input maxLength={18} onChange={this.removeSpace} placeholder="Enter Username here..." className="form-control" name="username" value={username} />
+                  <input
+                    maxLength={18}
+                    onChange={this.removeSpace}
+                    placeholder="Enter Username here..."
+                    className="form-control"
+                    name="username"
+                    value={username}
+                  />
                 </div>
                 {errors.username && (
                   <div className="alert alert-warning">{errors.username}</div>
                 )}
                 <div className="form-group">
                   <label className="float-left">First Name</label>
-                  <input maxLength={30} placeholder="Enter First Name here..." className="form-control" name="firstname" onChange={this.onChange} value={firstname} required />
+                  <input
+                    maxLength={30}
+                    placeholder="Enter First Name here..."
+                    className="form-control"
+                    name="firstname"
+                    onChange={this.onChange}
+                    value={firstname}
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label className="float-left">Last Name</label>
-                  <input maxLength={30} placeholder="Enter Last Name here..." className="form-control" name="lastname" onChange={this.onChange} value={lastname} required />
+                  <input
+                    maxLength={30}
+                    placeholder="Enter Last Name here..."
+                    className="form-control"
+                    name="lastname"
+                    onChange={this.onChange}
+                    value={lastname}
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label className="float-left">Email</label>
-                  <input maxLength={50} type="email" placeholder="Enter Email here..." className="form-control" name="email" onChange={this.removeSpace} value={email} required />
+                  <input
+                    maxLength={50}
+                    type="email"
+                    placeholder="Enter Email here..."
+                    className="form-control"
+                    name="email"
+                    onChange={this.removeSpace}
+                    value={email}
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label className="float-left">Password</label>
-                  <input maxLength={12} placeholder="Enter Password here..." type="password" className="form-control" name="password" onChange={this.removeSpace} value={password} />
+                  <input
+                    maxLength={12}
+                    placeholder="Enter Password here..."
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    onChange={this.removeSpace}
+                    value={password}
+                  />
                 </div>
                 {errors.password && (
                   <div className="alert alert-warning">{errors.password}</div>
                 )}
                 <div className="form-group">
                   <label className="float-left">Confirm Password</label>
-                  <input placeholder="Confirm Password here..." type="password" className="form-control" name="confirmPassword" onChange={this.removeSpace} value={confirmPassword} />
+                  <input
+                    placeholder="Confirm Password here..."
+                    type="password"
+                    className="form-control"
+                    name="confirmPassword"
+                    onChange={this.removeSpace}
+                    value={confirmPassword}
+                  />
                 </div>
                 {errors.confirmPassword && (
                   <div className="alert alert-warning">
@@ -188,7 +236,12 @@ class Register extends Component {
                   </div>
                 )}
                 <label className="float-left">Select Gender</label>
-                <select className="form-control form-control-sm" name="gender" value={gender} onChange={this.onChange} >
+                <select
+                  className="form-control form-control-sm"
+                  name="gender"
+                  value={gender}
+                  onChange={this.onChange}
+                >
                   <option>Male</option>
                   <option>Female</option>
                   <option>Other</option>
@@ -198,41 +251,86 @@ class Register extends Component {
                 <div>
                   <h6>Register as an online cook?</h6>
                   Yes{" "}
-                  <input type="radio" onClick={this.changeChef.bind(this, true)} required name="chef" value={cook} id="yesCheck" />
+                  <input
+                    type="radio"
+                    onClick={this.changeChef.bind(this, true)}
+                    required
+                    name="chef"
+                    value={cook}
+                    id="yesCheck"
+                  />
                   No{" "}
-                  <input type="radio" onClick={this.changeChef.bind(this, false)} required name="chef" value={cook} id="noCheck" />
+                  <input
+                    type="radio"
+                    onClick={this.changeChef.bind(this, false)}
+                    required
+                    name="chef"
+                    value={cook}
+                    id="noCheck"
+                  />
                   <br />
                   {/* User experience text area */}
-                  {this.state.cook &&
-                  <div id="ifYes">
-                    <fieldset>
-                      <br />
-                      <label>Tell us about your cooking experience:</label>
-                      <br />
-                      <textarea placeholder="Share experience here..." required maxLength={500} name="experience" value={experience} onChange={this.onChange} />
-                    </fieldset>
-                  </div>}
+                  {this.state.cook && (
+                    <div id="ifYes">
+                      <fieldset>
+                        <br />
+                        <label>Tell us about your cooking experience:</label>
+                        <br />
+                        <textarea
+                          placeholder="Share experience here..."
+                          required
+                          maxLength={500}
+                          name="experience"
+                          value={experience}
+                          onChange={this.onChange}
+                        />
+                      </fieldset>
+                    </div>
+                  )}
                 </div>
                 <br />
                 {/* Terms of Service */}
                 <div className="form-check">
-                  <input className="form-check-input" required type="checkbox" value="" id="defaultCheck1" onChange={this.onChange} />
+                  <input
+                    className="form-check-input"
+                    required
+                    type="checkbox"
+                    value=""
+                    id="defaultCheck1"
+                    onChange={this.onChange}
+                  />
                   <label className="form-check-label">
                     I accept the new
-                      <span className="highlight_modal" data-toggle="modal" data-target="#exampleModal2">
-                        Terms of Service
-                      </span>
+                    <span
+                      className="highlight_modal"
+                      data-toggle="modal"
+                      data-target="#exampleModal2"
+                    >
+                      Terms of Service
+                    </span>
                     .
                   </label>
                   {/* MODAL IS HERE */}
-                  <div className="modal fade" id="exampleModal2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                  <div
+                    className="modal fade"
+                    id="exampleModal2"
+                    tabIndex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
                     <div className="modal-dialog" role="document">
                       <div className="modal-content">
                         <div className="modal-header">
                           <h5 className="modal-title" id="exampleModalLabel">
                             Terms of Service
                           </h5>
-                          <button type="button" className="close" data-dismiss="modal" aria-label="Close" >
+                          <button
+                            type="button"
+                            className="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
@@ -261,7 +359,11 @@ class Register extends Component {
                           </p>
                         </div>
                         <div className="modal-footer">
-                          <button type="button" className="btn btn-secondary" data-dismiss="modal" >
+                          <button
+                            type="button"
+                            className="btn btn-secondary"
+                            data-dismiss="modal"
+                          >
                             Close
                           </button>
                         </div>
@@ -272,10 +374,17 @@ class Register extends Component {
                 <br />
                 {/* Buttons are here*/}
                 <div>
-                  <button type="submit" className="active1 btn-success btn btn-block" >
+                  <button
+                    type="submit"
+                    className="active1 btn-success btn btn-block"
+                  >
                     Join Now!
                   </button>
-                  <Link to="/login" type="submit" className="btn btn-danger btn-block" >
+                  <Link
+                    to="/login"
+                    type="submit"
+                    className="btn btn-danger btn-block"
+                  >
                     Cancel
                   </Link>
                 </div>
