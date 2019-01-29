@@ -12,7 +12,9 @@
 
 // connectionString += "@ds115045.mlab.com:15045/food_lover"; // use yours
 // // }
+var connectionString = "mongodb://admin:admin123";
 
+connectionString += "@ds115045.mlab.com:15045/food_lover";
 if (process.env.MLAB_USERNAME_WEBDEV) {
   // check if running remotely
 

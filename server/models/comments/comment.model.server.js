@@ -5,6 +5,7 @@ var CommentModel = mongoose.model("CommentModel", CommentSchema);
 CommentModel.createComment = createComment;
 CommentModel.findCommentByRecipe = findCommentByRecipe;
 CommentModel.updateComment = updateComment;
+CommentModel.deleteComment = deleteComment;
 
 //Create a comment
 function createComment(comment) {
@@ -20,4 +21,10 @@ function updateComment(id, comment) {
   return CommentModel.updateOne({ _id: id }, comment);
 }
 
+//Delete a follow
+function deleteComment(id) {
+  return CommentModel.deleteOne({
+    _id: id
+  });
+}
 module.exports = CommentModel;

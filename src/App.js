@@ -153,7 +153,7 @@ class App extends Component {
               render={props => (
                 <RecipeDetail
                   {...props}
-                  // type={this.state.recipeType}
+                  admin={this.state.admin}
                   loggedIn={this.loggedIn}
                 />
               )}
@@ -178,7 +178,14 @@ class App extends Component {
               )}
             />
             <Route exact path="/detail/:id" component={RecipeDetail} />
-            <Route exact path="/listUsers" component={ListUsers} />
+            {/* <Route exact path="/listUsers" component={ListUsers} /> */}
+            <Route
+              exact
+              path="/listUsers"
+              render={props => (
+                <ListUsers {...props} admin={this.state.admin} />
+              )}
+            />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/about" component={About} />
             {/* <Route exact path="/managerecipe" component={ManageRecipe} /> */}

@@ -109,6 +109,11 @@ export default class RecipeDetail extends Component {
       editingContent: val
     });
   };
+  //delete comment
+  async deleteComment(id) {
+    await axios.delete(`/api/c_trash/${id}`);
+    this.getComments(this.state.recipeId);
+  }
 
   //Post a comment
   updateComment = async (comment, id) => {
@@ -144,15 +149,12 @@ export default class RecipeDetail extends Component {
 
   //Consult details
   showDetail = id => {
-    
     this.getRecipe(id);
-     this.getComments(id);
-     this.setState({
+    this.getComments(id);
+    this.setState({
       recipeId: id
     });
   };
-
-  
 
   redirectEdit = e => {
     this.props.history.push({
@@ -253,6 +255,51 @@ export default class RecipeDetail extends Component {
                   src={comment.userId.picture}
                   alt={comment.userId.firstname}
                 />
+                {/* MODAL IS HERE */}
+                <div
+                  className="modal fade"
+                  id="deleteModal"
+                  tabIndex="-1"
+                  role="dialog"
+                  aria-labelledby="deleteModalLabel"
+                  aria-hidden="true"
+                >
+                  <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="deleteModalLabel">
+                          Do you wish to delete this comment?
+                        </h5>
+                        <button
+                          type="button"
+                          className="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      {/* Modal Buttons */}
+                      <div className="modal-footer">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          data-dismiss="modal"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          onClick={this.deleteComment.bind(this, comment._id)}
+                          type="button"
+                          className="btn btn-warning"
+                          data-dismiss="modal"
+                        >
+                          Yes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className="media-body">
                   <h5 className="mt-0">
                     {comment.userId.firstname}&nbsp;{comment.userId.lastname}
@@ -301,6 +348,15 @@ export default class RecipeDetail extends Component {
                             )}
                           >
                             <i className="fa fa-edit" /> edit
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-default btn-sm"
+                            // onClick={this.deleteComment.bind(this, comment._id)}
+                            data-toggle="modal"
+                            data-target="#deleteModal"
+                          >
+                            <i className="far fa-trash-alt" /> Delete
                           </button>
                         </p>
                       )}

@@ -6,6 +6,8 @@ module.exports = function(app) {
   app.get("/api/comment/:recipeId", findCommentByRecipe);
   // Update Comment
   app.put("/api/comment", updateComment);
+  // Delete Comment
+  app.delete("/api/c_trash/:id", deleteComment);
 
   //Function to create a comment
   async function createComment(req, res) {
@@ -24,6 +26,13 @@ module.exports = function(app) {
     const comment = req.body;
     const id = comment._id;
     const data = await CommentModel.updateComment(id, comment);
+    res.json(data);
+  }
+
+  //Function to delete comment
+  async function deleteComment(req, res) {
+    const id = req.params["id"];
+    const data = await CommentModel.deleteComment(id);
     res.json(data);
   }
 };
