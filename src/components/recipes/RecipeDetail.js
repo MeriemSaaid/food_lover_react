@@ -111,6 +111,7 @@ export default class RecipeDetail extends Component {
   };
   //delete comment
   async deleteComment(id) {
+    window.$(`#delete${id}`).modal("hide");
     await axios.delete(`/api/c_trash/${id}`);
     this.getComments(this.state.recipeId);
   }
@@ -258,7 +259,7 @@ export default class RecipeDetail extends Component {
                 {/* MODAL IS HERE */}
                 <div
                   className="modal fade"
-                  id="deleteModal"
+                  id={`delete${comment._id}`}
                   tabIndex="-1"
                   role="dialog"
                   aria-labelledby="deleteModalLabel"
@@ -354,7 +355,7 @@ export default class RecipeDetail extends Component {
                             className="btn btn-default btn-sm"
                             // onClick={this.deleteComment.bind(this, comment._id)}
                             data-toggle="modal"
-                            data-target="#deleteModal"
+                            data-target={`#delete${comment._id}`}
                           >
                             <i className="far fa-trash-alt" /> Delete
                           </button>
