@@ -11,7 +11,7 @@
     "jquery": "^3.3.1",
     "mailgun-js": "^0.22.0",
     "mongoose": "^5.4.0",
-    "nodemailer": "^5.1.1",
+    "nodemailer": "^6.4.16",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "^16.7.0",
